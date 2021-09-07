@@ -3,7 +3,7 @@ const fs = require("fs");
 const client = new Discord.Client()
 const config = require("./config.json");
 const chalk = require('chalk');
-client.config = config
+client.config = config;
 
 fs.readdir(__dirname + "/./events/", (err, files) => {
   if (err) return console.error(err);
