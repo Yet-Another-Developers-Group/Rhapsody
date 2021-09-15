@@ -1,2 +1,6 @@
+#frontend
 src/main/bot/node_modules
 src/main/bot/config.json
+
+#backend
+src/main/backend/request_methods/.env
