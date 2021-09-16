@@ -1,10 +1,9 @@
 from flask import Flask
 
-app = Flask(__name__)
+from routes import routes
 
-@app.route("/")
-def home():
-	return "home page"
+app = Flask(__name__)
+app.register_blueprint(routes, url_prefix="/rhapsody")
 
 if __name__ == "__main__":
-	app.run(port=8000, debug=True)
+	app.run(port=1800, debug=True)
