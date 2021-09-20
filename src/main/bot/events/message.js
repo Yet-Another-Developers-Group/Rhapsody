@@ -16,7 +16,5 @@ module.exports = (client, message) => {
     if (!cmd) return;
 
     // Run the command
-    (async () => {
-        cmd.run(client, message, args);
-    })()
+    cmd.run(client, message, args);
 };

@@ -1,10 +1,10 @@
 const Discord = require("discord.js")
 exports.run = (client, message, args) => {
     const helpEmbed = new Discord.MessageEmbed()
-	.setColor('#0099ff')
-	.setTitle('Usage')
+	.setColor('#ff1111')
+	.setTitle('Rhapsody')
 	.addFields(
-		{ name: 'Never', value: 'Gonna Give You Up' }
+		{ name: 'Music', value: '`clear`, `play`, `queue`, `seek`, `skip`, `stop`' }
 	)
     message.channel.send(helpEmbed).catch(console.error);
 }
