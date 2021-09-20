@@ -2,8 +2,9 @@ const Discord = require("discord.js")
 const fs = require("fs");
 const client = new Discord.Client()
 const config = require("./config.json");
+const secrets = require("./secrets.json");
 const chalk = require('chalk');
-client.config = config;
+client.config = config
 
 fs.readdir(__dirname + "/./events/", (err, files) => ***REMOVED***
   if (err) return console.error(err);
@@ -28,11 +29,10 @@ fs.readdir(__dirname + "/./commands/", (err, files) => ***REMOVED***
   ***REMOVED***);
 ***REMOVED***);
 
-client.login(client.config.token)
+client.login(secrets.token)
 client.on('ready', () => ***REMOVED***
   console.log(chalk.green.bold('[Logged-in Notice]') + ' Logged in as ' + `$***REMOVED***client.user.tag***REMOVED***`);
   client.guilds.cache.forEach((guild) => ***REMOVED***
     console.log(chalk.gray.bold('[Member of]') + ' ' + guild.name)
   ***REMOVED***)
 ***REMOVED***);
-

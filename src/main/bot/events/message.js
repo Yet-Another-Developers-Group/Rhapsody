@@ -16,7 +16,5 @@ module.exports = (client, message) => ***REMOVED***
     if (!cmd) return;
 
     // Run the command
-    (async () => ***REMOVED***
-        cmd.run(client, message, args);
-    ***REMOVED***)()
+    cmd.run(client, message, args);
 ***REMOVED***;
