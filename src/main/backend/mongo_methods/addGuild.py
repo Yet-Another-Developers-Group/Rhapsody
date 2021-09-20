@@ -1,0 +1,2 @@
+def addGuild():
+	pass
