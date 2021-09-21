@@ -8,10 +8,25 @@ from request_methods import GetResults
 
 routes = Blueprint(__name__, "routes")
 
+#home
 @routes.route("/")
 def home():
-	return "home page"
 
+	try:
+		response = {
+			"status": 200
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)
+
+#test case for searching songs
 @routes.route("/search")
 def getResult():
 	args = request.args
@@ -25,27 +40,131 @@ def getResult():
 
 	return jsonify(response)
 
+#adding new channel to currently playing
+@routes.route("/addNewGuildChannel")
+def addNewGuildChannel():
 
+	try:
+		response = {
+			"status": 200
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)
+
+#get the id of the currently playing channel
+@routes.route("/getChannelId")
+def getChannelId():
+
+	try:
+		response = {
+			"status": 200
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)
+
+#stop playing in a channel
+@routes.route("/destroyPlayer")
+def destroyPlayer():
+
+	try:
+		response = {
+			"status": 200,
+			"channelId": "test"
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)
+
+#return the queue
+@routes.route("/getQueueList")
+def getQueueList():
+
+	try:
+		response = {
+			"status": 200,
+			"queue":[["title", "url", "thumbnail"]]
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)
+
+#searches and adds song to queue
 @routes.route("/addToQueue")
 def addToQueue():
-	pass
 
-@routes.route("/getQueue")
-def getQueue():
-	pass
+	try:
+		response = {
+			"status": 200
+		}
 
-@routes.route("/removeQueue")
-def addToQueue():
-	pass
+		return jsonify(response)
 
-@routes.route("/addGuildChannel")
-def addGuildChannel():
-	pass
+	except Exception as e:
+		response = {
+			"status": 500
+		}
 
-@routes.route("/addSongToQueue")
-def addToQueue():
-	pass
+		return jsonify(response)
 
-@routes.route("/addSongToQueue")
-def addToQueue():
-	pass
+#removes a song from the queue
+@routes.route("/removeFromQueue")
+def removeFromQueue():
+
+	try:
+		response = {
+			"status": 200
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)
+
+#returns the next song in the queue
+@routes.route("/advanceQueue")
+def advanceQueue():
+
+	try:
+		response = {
+			"status": 200,
+			"nowPlaying": ["title", "url", "thumbnail"]
+		}
+
+		return jsonify(response)
+
+	except Exception as e:
+		response = {
+			"status": 500
+		}
+
+		return jsonify(response)

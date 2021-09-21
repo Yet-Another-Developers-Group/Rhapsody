@@ -1,0 +1,49 @@
+{
+     "routes": [
+          {
+               "location": "/addNewGuildChannel?g=guild_id&c=channel_id",
+               "response":{
+                    "status": "200/500"
+               }
+          },
+          {
+               "location": "/getChannelId?g=guild_id",
+               "response":{
+                    "status": "200/500",
+                    "channelId": "blahblahblah"
+               }
+          },
+          {
+               "location": "/destroyPlayer?g=guild_id",
+               "response":{
+                    "status": "200/500"
+               }
+          },
+          {
+               "location": "/getQueueList?g=guild_id",
+               "response":{
+                    "status": "200/500",
+                    "queue": [["Title", "songurl", "thumburl"], ["Title", "songurl", "thumburl"]]
+               }
+          },
+          {
+               "location": "/addToQueue?g=guild_id&n=name ",
+               "response":{
+                    "status": "200/500/404"
+               }
+          },
+          {
+               "location": "/removeFromQueue?g=guild_id&pos=<number>",
+               "response":{
+                    "status": "200/500"
+               }
+          },
+          {
+               "location": "/advanceQueue?g=guild_id",
+               "response":{
+                    "status": "200/500",
+                    "nowplaying": ["Title", "songurl", "thumburl"]
+               }
+          }
+     ]
+}
