@@ -3,8 +3,8 @@ from flask import request
 from flask import render_template
 from flask import jsonify
 
-import mongo_methods
-from request_methods import GetResults
+from MongoConnector import MongoConnector
+import GetResults
 
 routes = Blueprint(__name__, "routes")
 
@@ -44,14 +44,21 @@ def getResult():
 @routes.route("/addNewGuildChannel")
 def addNewGuildChannel():
 
-	try:
+	args = request.args
+	guild_id = args.get("g")
+	channel_id = args.get("c")
+
+	connector = MongoConnector()
+	result = connector.addNewGuildChannel(guild_id, channel_id)
+
+	if result == True:
 		response = ***REMOVED***
 			"status": 200
 		***REMOVED***
 
 		return jsonify(response)
 
-	except Exception as e:
+	elif result == False:
 		response = ***REMOVED***
 			"status": 500
 		***REMOVED***

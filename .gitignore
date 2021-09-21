@@ -1,3 +1,4 @@
 src/main/bot/node_modules
 src/main/bot/config.json
 src/main/backend/.env
+src/main/backend/__pycache__
