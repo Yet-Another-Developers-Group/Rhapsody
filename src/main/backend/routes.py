@@ -68,11 +68,28 @@ def addNewGuildChannel():
 #get the id of the currently playing channel
 @routes.route("/getChannelId")
 def getChannelId():
+	
+	args = request.args
+	guild_id = args.get("g")
 
+	connector = MongoConnector()
+	
 	try:
-		response = {
-			"status": 200
-		}
+
+		result = connector.getChannelId(guild_id)
+
+		if result != False:
+
+			response = {
+				"status": 200,
+				"channelId": result
+			}
+
+		elif result == False:
+
+			response = {
+				"status": 404,
+			}
 
 		return jsonify(response)
 
@@ -87,10 +104,16 @@ def getChannelId():
 @routes.route("/destroyPlayer")
 def destroyPlayer():
 
+	args = request.args
+	guild_id = args.get("g")
+
 	try:
+
+		connector = MongoConnector()
+		connector.destroyPlayer(guild_id)
+
 		response = {
 			"status": 200,
-			"channelId": "test"
 		}
 
 		return jsonify(response)

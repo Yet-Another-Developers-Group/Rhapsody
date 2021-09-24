@@ -2,14 +2,12 @@ import pymongo
 
 class MongoConnector():
 	def __init__(self):
-		self.client = pymongo.MongoClient(
-			"mongodb+srv://rhapsody:rhapsody@personalcluster.4dqdp.mongodb.net/"
-			+"myFirstDatabase?retryWrites=true&w=majority"
-			)
+		self.client = pymongo.MongoClient("localhost", 27017)
 
 		self.client.test
 		self.database = self.client["rhapsody"]
 
+	###########################################################################
 	def addNewGuildChannel(self, guild_id, channel_id):
 
 		guild_id = str(guild_id)
@@ -21,7 +19,7 @@ class MongoConnector():
 			channel = collection.find({"_id":channel_id})
 
 			if channel.count() > 0:
-				colletion.update_one({"_id":channel_id}, {"$set":{currentlyPlaying:True}})
+				collection.update_one({"_id":channel_id}, {"$set":{"currentlyPlaying":True}})
 
 			else:
 				collection.insert_one({"_id":channel_id,
@@ -38,6 +36,30 @@ class MongoConnector():
 			print(e)
 			return False
 
+	###########################################################################
+	def getChannelId(self, guild_id):
+		current_collection = self.database["CurrentlyPlaying"]
+
+		channel = current_collection.find({"guild":guild_id})
+
+		if channel.count() > 0:
+			return channel[0]["_id"]
+
+		else:
+			return False
+
+	###########################################################################
+	def destroyPlayer(self, guild_id):
+
+		current_collection = self.database["CurrentlyPlaying"]
+		channel = current_collection.find({})
+		current_collection.delete_one({"guild": guild_id})
+
+		current_collection = self.database[guild_id]
+		current_collection.update_one({"_id":channel}, {"$set":{"currentlyPlaying":False,
+																"songs":[]}})
+
+	###########################################################################
 	def addToQueue(self, guild_id, song_link):
 
 		current_collection = self.database[guild_id]
