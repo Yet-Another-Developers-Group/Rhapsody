@@ -59,7 +59,11 @@ def addNewGuildChannel():
 		return jsonify(response)
 
 	elif result == False:
+		
+		print(e)
+
 		response = {
+
 			"status": 500
 		}
 
@@ -94,6 +98,9 @@ def getChannelId():
 		return jsonify(response)
 
 	except Exception as e:
+
+		print(e)
+
 		response = {
 			"status": 500
 		}
@@ -147,8 +154,16 @@ def getQueueList():
 #searches and adds song to queue
 @routes.route("/addToQueue")
 def addToQueue():
+	
+	args = request.args
+	guild_id = args.get("g")
+	term = args.get("n")
 
 	try:
+		
+		connector = MongoConnector()
+		connector.addToQueue(guild_id, term)
+
 		response = {
 			"status": 200
 		}
@@ -156,6 +171,9 @@ def addToQueue():
 		return jsonify(response)
 
 	except Exception as e:
+	
+		print(e)
+
 		response = {
 			"status": 500
 		}
@@ -184,15 +202,25 @@ def removeFromQueue():
 @routes.route("/advanceQueue")
 def advanceQueue():
 
+	args = request.args
+	guild_id = args.get("g")
+
 	try:
+
+		connector = MongoConnector()
+		result = connector.advanceQueue()
+
 		response = {
 			"status": 200,
-			"nowPlaying": ["title", "url", "thumbnail"]
+			"nowPlaying": result
 		}
 
 		return jsonify(response)
 
 	except Exception as e:
+
+		print(e)
+
 		response = {
 			"status": 500
 		}

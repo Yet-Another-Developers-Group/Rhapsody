@@ -1,5 +1,7 @@
 import pymongo
 
+from GetResults import getResult
+
 class MongoConnector():
 	def __init__(self):
 		self.client = pymongo.MongoClient("localhost", 27017)
@@ -52,7 +54,7 @@ class MongoConnector():
 	def destroyPlayer(self, guild_id):
 
 		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find({})
+		channel = current_collection.find({"guild":guild_id})[0]["_id"]
 		current_collection.delete_one({"guild": guild_id})
 
 		current_collection = self.database[guild_id]
@@ -60,16 +62,49 @@ class MongoConnector():
 																"songs":[]}})
 
 	###########################################################################
-	def addToQueue(self, guild_id, song_link):
+	def addToQueue(self, guild_id, search_term):
+
+		current_collection = self.database["CurrentlyPlaying"]
+		channel = current_collection.find({"guild":guild_id})[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		current_queue = current_collection.find({"_id":"queue"})
+		current_queue = current_collection.find({"_id":channel})[0]
+
+		result = getResult(search_term)
 
 		document = {"songs":[]}
-		document["songs"] = current_queue[0]["songs"]
-		document["songs"].append(song_link)
+		document["songs"] = current_queue["songs"]
+		document["songs"].append(result)
 
-		current_collection.update_one({"_id":"queue"}, {"$set":document})
+		current_collection.update_one({"_id":channel}, {"$set":document})
+
+	###########################################################################
+	def advanceQueue(self, guild_id):
+
+		current_collection = self.database["CurrentlyPlaying"]
+		channel = current_collection.find({"guild":guild_id})[0]["_id"]
+
+		current_collection = self.database[guild_id]
+		current_queue = current_collection.find({"_id":channel})[0]
+
+		document = {"songs":[]}
+		document["songs"] = current_queue["songs"]
+		
+		queue = document["songs"]
+
+		if len(queue) > 0:
+
+			result = queue[0]
+			queue.remove(result)
+			document["songs"] = queue
+
+			current_collection.update_one({"_id":channel}, {"$set":document})
+
+		else:
+			result = "404"
+
+		return result
+
 
 if __name__ == "__main__":
 	test = MongoConnector()
