@@ -1,0 +1,49 @@
+***REMOVED***
+     "routes": [
+          ***REMOVED***
+               "location": "/addNewGuildChannel?g=guild_id&c=channel_id",
+               "response":***REMOVED***
+                    "status": "200/500"
+               ***REMOVED***
+          ***REMOVED***,
+          ***REMOVED***
+               "location": "/getChannelId?g=guild_id",
+               "response":***REMOVED***
+                    "status": "200/500",
+                    "channelId": "blahblahblah"
+               ***REMOVED***
+          ***REMOVED***,
+          ***REMOVED***
+               "location": "/destroyPlayer?g=guild_id",
+               "response":***REMOVED***
+                    "status": "200/500"
+               ***REMOVED***
+          ***REMOVED***,
+          ***REMOVED***
+               "location": "/getQueueList?g=guild_id",
+               "response":***REMOVED***
+                    "status": "200/500",
+                    "queue": [["Title", "songurl", "thumburl"], ["Title", "songurl", "thumburl"]]
+               ***REMOVED***
+          ***REMOVED***,
+          ***REMOVED***
+               "location": "/addToQueue?g=guild_id&n=name ",
+               "response":***REMOVED***
+                    "status": "200/500/404"
+               ***REMOVED***
+          ***REMOVED***,
+          ***REMOVED***
+               "location": "/removeFromQueue?g=guild_id&pos=<number>",
+               "response":***REMOVED***
+                    "status": "200/500"
+               ***REMOVED***
+          ***REMOVED***,
+          ***REMOVED***
+               "location": "/advanceQueue?g=guild_id",
+               "response":***REMOVED***
+                    "status": "200/500",
+                    "nowplaying": ["Title", "songurl", "thumburl"]
+               ***REMOVED***
+          ***REMOVED***
+     ]
+***REMOVED***
