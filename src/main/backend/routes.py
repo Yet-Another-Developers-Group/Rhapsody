@@ -48,18 +48,17 @@ def addNewGuildChannel():
 	guild_id = args.get("g")
 	channel_id = args.get("c")
 
-	connector = MongoConnector()
-	result = connector.addNewGuildChannel(guild_id, channel_id)
+	try:
+		connector = MongoConnector()
+		connector.addNewGuildChannel(guild_id, channel_id)
 
-	if result == True:
 		response = {
 			"status": 200
 		}
 
 		return jsonify(response)
 
-	elif result == False:
-		
+	except Exception as e:		
 		print(e)
 
 		response = {

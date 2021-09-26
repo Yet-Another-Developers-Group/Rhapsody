@@ -15,28 +15,22 @@ class MongoConnector():
 		guild_id = str(guild_id)
 		channel_id = str(channel_id)
 
-		try:
-			collection = self.database[guild_id]
+		collection = self.database[guild_id]
 
-			channel = collection.find({"_id":channel_id})
+		channel = collection.find({"_id":channel_id})
 
-			if channel.count() > 0:
-				collection.update_one({"_id":channel_id}, {"$set":{"currentlyPlaying":True}})
+		if channel.count() > 0:
+			collection.update_one({"_id":channel_id}, {"$set":{"currentlyPlaying":True}})
 
-			else:
-				collection.insert_one({"_id":channel_id,
-									   "currentlyPlaying":True,
-									   "songs":[]})
+		else:
+			collection.insert_one({"_id":channel_id,
+									"currentlyPlaying":True,
+									"songs":[]})
 
-			currently_playing = self.database["CurrentlyPlaying"]
-			currently_playing.insert_one({"_id":channel_id,
-										  "guild":guild_id})
+		currently_playing = self.database["CurrentlyPlaying"]
+		currently_playing.insert_one({"_id":channel_id,
+										"guild":guild_id})
 
-			return True
-
-		except Exception as e:
-			print(e)
-			return False
 
 	###########################################################################
 	def getChannelId(self, guild_id):
@@ -55,7 +49,7 @@ class MongoConnector():
 
 		current_collection = self.database["CurrentlyPlaying"]
 		channel = current_collection.find({"guild":guild_id})[0]["_id"]
-		current_collection.delete_one({"guild": guild_id})
+		current_collection.delete_one({"_id": channel})
 
 		current_collection = self.database[guild_id]
 		current_collection.update_one({"_id":channel}, {"$set":{"currentlyPlaying":False,
