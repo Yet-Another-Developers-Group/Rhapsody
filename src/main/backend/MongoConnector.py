@@ -111,8 +111,19 @@ class MongoConnector():
 
 	###########################################################################
 	def removeFromQueue(self, guild_id, index):
-		pass
+		current_collection = self.database["CurrentlyPlaying"]
+		channel = current_collection.find(***REMOVED***"guild": guild_id***REMOVED***)[0]["_id"]
 
+		current_collection = self.database[guild_id]
+		queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]["songs"]
+
+		if index < len(queue):
+			queue.remove(queue[index])
+			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"songs":queue***REMOVED******REMOVED***)
+			return True
+
+		elif index >= len(queue):
+			return False
 
 if __name__ == "__main__":
 	test = MongoConnector()
