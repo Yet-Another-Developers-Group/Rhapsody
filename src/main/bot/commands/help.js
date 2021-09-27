@@ -4,7 +4,7 @@ exports.run = (client, message, args) => ***REMOVED***
 	.setColor('#ff1111')
 	.setTitle('Rhapsody')
 	.addFields(
-		***REMOVED*** name: 'Music', value: '`squeue`, `join`, `stop`, `clear`, `play`, `queue`, `stop`' ***REMOVED***
+		***REMOVED*** name: 'Music', value: '`squeue`, `join`, `clear`, `play`, `queue`, `stop`' ***REMOVED***
 	)
     message.channel.send(helpEmbed).catch(console.error);
 ***REMOVED***
