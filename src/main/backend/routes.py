@@ -207,12 +207,18 @@ def advanceQueue():
 	try:
 
 		connector = MongoConnector()
-		result = connector.advanceQueue()
+		result = connector.advanceQueue(guild_id)
 
-		response = {
-			"status": 200,
-			"nowPlaying": result
-		}
+		if result != "404":
+			response = {
+				"status": 200,
+				"nowPlaying": result
+			}
+
+		elif result == "404":
+			response = {
+				"status": 404
+			}
 
 		return jsonify(response)
 

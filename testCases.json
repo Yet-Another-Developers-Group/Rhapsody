@@ -1,0 +1,12 @@
+{
+    "testCases":[
+
+        {
+            "addNewGuildChannel": "/addNewGuildChannel?g=12345678&c=12345678"
+        },
+        {
+            "destroyPlayer": "/destroyPlayer?g=12345678"
+        }
+
+    ]
+}
