@@ -1,4 +1,3 @@
 {
-  "prefix": "!",
-  "apiendpoint": "http://localhost:1800/rhapsody/"
+  "prefix": "-"
 }
