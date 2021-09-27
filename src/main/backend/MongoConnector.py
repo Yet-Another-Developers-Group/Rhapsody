@@ -120,10 +120,10 @@ class MongoConnector():
 		if index < len(queue):
 			queue.remove(queue[index])
 			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"songs":queue***REMOVED******REMOVED***)
-			return True
+			return 200
 
 		elif index >= len(queue):
-			return False
+			return 404
 
 if __name__ == "__main__":
 	test = MongoConnector()
