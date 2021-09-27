@@ -1,4 +1,8 @@
 src/main/bot/node_modules
+<<<<<<< HEAD
+=======
+src/main/bot/secrets.json
+>>>>>>> 3b55be4f5ccba48718e63b952702de67566d217f
 src/main/bot/config.json
 src/main/backend/.env
 src/main/backend/__pycache__
