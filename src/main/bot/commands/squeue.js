@@ -8,11 +8,15 @@ exports.run = (client, message, args) => ***REMOVED***
     ***REMOVED***);
     resp.on('end', () => ***REMOVED***
           data = JSON.parse(data)
-            if (data.status == "200") ***REMOVED***
-                
-                message.inlineReply(data.queue)
+            if (data.status == "200" && data.queue.length > 0) ***REMOVED***
+                var result = '';
+                for (let i = 0; i < data.queue.length; i++) ***REMOVED***
+                    const element = data.queue[i];
+                    result+= (i+1)+". "+element[0]+"\n";
+                ***REMOVED***
+                message.inlineReply('```'+result+'```')
             ***REMOVED*** else ***REMOVED***
-                message.inlineReply('An error occurred trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
+                message.inlineReply('No songs in queue.');
             ***REMOVED***
     ***REMOVED***);
     ***REMOVED***).on("error", (err) => ***REMOVED***
