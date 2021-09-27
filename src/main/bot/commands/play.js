@@ -53,7 +53,9 @@ function playSong(array, message, client) {
                     console.log(chalk.green.bold('[Connected]') + ' Successfully connected to voice channel "' + VoiceChannel.name + '" on "' + message.guild.name + '" by request of "' + message.author.tag + '". Playing "' + song.title + '"');
                     const stream = ytdl("https://"+song.url, {filter: 'audioonly'});
                     const dispatcher = connection.play(stream, streamOptions);
-
+                    dispatcher.on('finish', function () {
+                         queryQueueServer(message, client);
+                    })
                     const songEmbed = new Discord.MessageEmbed()
                     .setColor('#ff1111')
                     .setImage(array[2])
