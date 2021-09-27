@@ -135,15 +135,24 @@ def destroyPlayer():
 @routes.route("/getQueueList")
 def getQueueList():
 
+	args = request.args
+	guild_id = args.get("g")
+
 	try:
+		connector = MongoConnector()
+		queue = connector.getQueueList(guild_id)
+
 		response = ***REMOVED***
 			"status": 200,
-			"queue":[["title", "url", "thumbnail"]]
+			"queue":queue
 		***REMOVED***
 
 		return jsonify(response)
 
 	except Exception as e:
+
+		print(e)
+
 		response = ***REMOVED***
 			"status": 500
 		***REMOVED***

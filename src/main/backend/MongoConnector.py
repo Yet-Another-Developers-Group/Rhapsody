@@ -99,6 +99,20 @@ class MongoConnector():
 
 		return result
 
+	###########################################################################
+	def getQueueList(self, guild_id):
+		current_collection = self.database["CurrentlyPlaying"]
+		channel = current_collection.find(***REMOVED***"guild": guild_id***REMOVED***)[0]["_id"]
+
+		current_collection = self.database[guild_id]
+		queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]["songs"]
+
+		return queue
+
+	###########################################################################
+	def removeFromQueue(self, guild_id, index):
+		pass
+
 
 if __name__ == "__main__":
 	test = MongoConnector()
