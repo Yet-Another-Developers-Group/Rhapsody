@@ -3,9 +3,5 @@ google-auth-oauthlib
 google-auth-httplib2
 google-api-python-client
 python-dotenv
-<<<<<<< HEAD
 pymongo
 gunicorn
-=======
-pymongo
->>>>>>> 3b55be4f5ccba48718e63b952702de67566d217f
