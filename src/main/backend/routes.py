@@ -192,9 +192,16 @@ def addToQueue():
 @routes.route("/removeFromQueue")
 def removeFromQueue():
 
+	args = request.args
+	guild_id = args.get("g")
+	index = args.get("pos")
+
 	try:
+		connector = MongoConnector()
+		result = connector.removeFromQueue(guild_id, index)
+
 		response = {
-			"status": 200
+			"status": result
 		}
 
 		return jsonify(response)
