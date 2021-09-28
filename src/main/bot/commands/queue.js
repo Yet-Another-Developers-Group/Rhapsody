@@ -13,10 +13,10 @@ exports.run = (client, message, args) => {
                 if (data.status == 200) {
                     message.inlineReply('Queued audio.')
                 } else {
-                    message.inlineReply('An error occurred trying to get the resource.')
+                    message.inlineReply('An error occurred while trying to get the resource.')
                 }
             } else {
-                message.inlineReply('An error occurred trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
+                message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
             }
     });
     }).on("error", (err) => {

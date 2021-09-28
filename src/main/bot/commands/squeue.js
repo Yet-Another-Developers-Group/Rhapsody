@@ -20,6 +20,6 @@ exports.run = (client, message, args) => {
             }
     });
     }).on("error", (err) => {
-            message.inlineReply('An error occurred trying to get the resource.')
+            message.inlineReply('An error occurred while trying to get the resource.')
     }); 
 };

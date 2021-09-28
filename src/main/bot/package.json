@@ -1,12 +1,14 @@
 {
   "name": "rhapsody",
   "version": "1.0.0",
-  "fullVersion": "1.0.0 RELEASE CANDIDATE NOT FOR PUBLIC",
+  "fullVersion": "1.0.0 Private Beta <NOT FOR PUBLIC!>",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "startmongomac": "brew services start mongodb",
+    "stopmongomac": "brew services stop mongodb"
   },
   "author": "Sumukh Prasad and Anubhav Shyjesh",
   "license": "ISC",

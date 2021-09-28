@@ -31,7 +31,7 @@ function queryQueueServer(message, client) {
           }
      });
      }).on("error", (err) => {
-          message.inlineReply('An error occurred trying to get the resource.')
+          message.inlineReply('An error occurred while trying to get the resource.')
      }); 
 }
 
@@ -68,7 +68,7 @@ function playSong(array, message, client) {
           })()
      });
      }).on("error", (err) => {
-          message.inlineReply('An error occurred trying to get the resource.')
+          message.inlineReply('An error occurred while trying to get the resource.')
      });
      
 }

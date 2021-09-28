@@ -16,17 +16,17 @@ exports.run = (client, message, args) => {
                 message.inlineReply('No songs in queue.');
             }
         } catch (error) {
-            message.inlineReply('An error occurred trying to get the resource.')
+            message.inlineReply('An error occurred while trying to get the resource.')
         }
     });
     }).on("error", (err) => {
-        message.inlineReply('An error occurred trying to get the resource.')
+        message.inlineReply('An error occurred while trying to get the resource.')
     });
 };
 
 
 function removeSong(channelId, message, number) {
-    http.get('http://localhost:1800/rhapsody/removeFromQueue?g='+channelId+'&pos='+number+'', (resp) => {
+    http.get('http://localhost:1800/rhapsody/removeFromQueue?g='+message.guild.id+'&pos='+(number-1)+'', (resp) => {
     let data = '';
     resp.on('data', (chunk) => {
         data += chunk;
@@ -38,11 +38,11 @@ function removeSong(channelId, message, number) {
         } else if (data.status == 404) {
             message.inlineReply('That track is not valid.')
         } else {
-            message.inlineReply('An error occured trying to get the resource.```status: ' +data.status+ '\nguildId: ' +message.guild.id+ '```Please contact us if the error persists.')
+            message.inlineReply('An error occured while trying to get the resource.```status: ' +data.status+ '\nguildId: ' +message.guild.id+ '```Please contact us if the error persists.')
         }
     });
     }).on("error", (err) => {
-         message.inlineReply('An error occurred trying to get the resource.')
+         message.inlineReply('An error occurred while trying to get the resource.')
     });
     
 }
