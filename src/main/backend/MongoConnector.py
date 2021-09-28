@@ -118,12 +118,14 @@ class MongoConnector():
 		queue = current_collection.find_one(***REMOVED***"_id":channel***REMOVED***)
 		queue = queue["songs"]
 
+		print(queue)
 		try:
-			queue.pop(index)
+			queue.pop(int(index))
 			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"songs":queue***REMOVED******REMOVED***)
 			return 200
 
 		except Exception as e:
+			print(e)
 			return 404
 
 if __name__ == "__main__":
