@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const version = require("../package.json").version;
+const version = require("../package.json").fullVersion;
 var server = "";
 var pyVer = "";
 var nodeVer = ""
