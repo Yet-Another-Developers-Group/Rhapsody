@@ -207,6 +207,9 @@ def removeFromQueue():
 		return jsonify(response)
 
 	except Exception as e:
+
+		print(e)
+
 		response = {
 			"status": 500
 		}
