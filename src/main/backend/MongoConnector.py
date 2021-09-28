@@ -119,7 +119,7 @@ class MongoConnector():
 		queue = queue["songs"]
 
 		try:
-			queue.pop(index)
+			queue.pop(int(index))
 			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"songs":queue***REMOVED******REMOVED***)
 			return 200
 
