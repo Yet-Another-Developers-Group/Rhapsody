@@ -115,13 +115,14 @@ class MongoConnector():
 		channel = current_collection.find({"guild": guild_id})[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		queue = current_collection.find_one({"_id":channel})
-		queue = queue["songs"]
+		queue = current_collection.find({"_id":channel})[0]
 
-		print(queue)
+		document = {"songs":[]}
+		document["songs"] = queue["songs"]
+
 		try:
-			queue.pop(int(index))
-			current_collection.update_one({"_id":channel}, {"$set":{"songs":queue}})
+			document["songs"].pop(int(index))
+			current_collection.update_one({"_id":channel}, {"$set":{"songs":document["songs"]}})
 			return 200
 
 		except Exception as e:
