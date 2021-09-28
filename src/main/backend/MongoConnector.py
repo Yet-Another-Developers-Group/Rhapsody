@@ -115,7 +115,8 @@ class MongoConnector():
 		channel = current_collection.find(***REMOVED***"guild": guild_id***REMOVED***)[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]["songs"]
+		queue = current_collection.find_one(***REMOVED***"_id":channel***REMOVED***)
+		queue = queue["songs"]
 
 		try:
 			queue.pop(index)
