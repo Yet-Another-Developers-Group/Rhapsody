@@ -8,11 +8,15 @@ exports.run = (client, message, args) => {
     });
     resp.on('end', () => {
           data = JSON.parse(data)
-            if (data.status == "200") {
-                
-                message.inlineReply(data.queue)
+            if (data.status == "200" && data.queue.length > 0) {
+                var result = '';
+                for (let i = 0; i < data.queue.length; i++) {
+                    const element = data.queue[i];
+                    result+= (i+1)+". "+element[0]+"\n";
+                }
+                message.inlineReply('```'+result+'```')
             } else {
-                message.inlineReply('An error occurred trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
+                message.inlineReply('No songs in queue.');
             }
     });
     }).on("error", (err) => {
