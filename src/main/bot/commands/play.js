@@ -31,7 +31,7 @@ function queryQueueServer(message, client) ***REMOVED***
           ***REMOVED***
      ***REMOVED***);
      ***REMOVED***).on("error", (err) => ***REMOVED***
-          message.inlineReply('An error occurred trying to get the resource.')
+          message.inlineReply('An error occurred while trying to get the resource.')
      ***REMOVED***); 
 ***REMOVED***
 
@@ -68,7 +68,7 @@ function playSong(array, message, client) ***REMOVED***
           ***REMOVED***)()
      ***REMOVED***);
      ***REMOVED***).on("error", (err) => ***REMOVED***
-          message.inlineReply('An error occurred trying to get the resource.')
+          message.inlineReply('An error occurred while trying to get the resource.')
      ***REMOVED***);
      
 ***REMOVED***

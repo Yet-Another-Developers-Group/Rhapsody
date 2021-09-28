@@ -17,13 +17,13 @@ const http = require('http');
                     VoiceChannel.join();
                     message.inlineReply('Joined Voice Channel.');
                ***REMOVED*** else ***REMOVED***
-                    message.inlineReply('An error occurred trying to get the resource.```status: ' +data.status+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
+                    message.inlineReply('An error occurred while trying to get the resource.```status: ' +data.status+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
                ***REMOVED***
           ***REMOVED*** else ***REMOVED***
-               message.inlineReply('An error occurred trying to get the resource.```status: ' +resp.statusCode+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
+               message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
           ***REMOVED***
      ***REMOVED***);
      ***REMOVED***).on("error", (err) => ***REMOVED***
-          message.inlineReply('An error occurred trying to get the resource.')
+          message.inlineReply('An error occurred while trying to get the resource.')
      ***REMOVED***);  
  ***REMOVED***;

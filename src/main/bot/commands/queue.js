@@ -13,10 +13,10 @@ exports.run = (client, message, args) => ***REMOVED***
                 if (data.status == 200) ***REMOVED***
                     message.inlineReply('Queued audio.')
                 ***REMOVED*** else ***REMOVED***
-                    message.inlineReply('An error occurred trying to get the resource.')
+                    message.inlineReply('An error occurred while trying to get the resource.')
                 ***REMOVED***
             ***REMOVED*** else ***REMOVED***
-                message.inlineReply('An error occurred trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
+                message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
             ***REMOVED***
     ***REMOVED***);
     ***REMOVED***).on("error", (err) => ***REMOVED***
