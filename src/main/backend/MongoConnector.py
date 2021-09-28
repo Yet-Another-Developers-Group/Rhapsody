@@ -117,12 +117,12 @@ class MongoConnector():
 		current_collection = self.database[guild_id]
 		queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]["songs"]
 
-		if index < len(queue):
-			queue.remove(queue[index])
+		try:
+			queue.pop(index)
 			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"songs":queue***REMOVED******REMOVED***)
 			return 200
 
-		elif index >= len(queue):
+		except Exception as e:
 			return 404
 
 if __name__ == "__main__":
