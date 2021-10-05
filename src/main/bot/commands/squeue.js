@@ -1,7 +1,7 @@
 require("../assets/ExtendedMessage");
 const http = require('http');
 exports.run = (client, message, args) => {
-    http.get('http://localhost:1800/rhapsody/getQueueList?g='+message.guild.id, (resp) => {
+    http.get('http://localhost:1800/rhapsody/queue/getQueueList?g='+message.guild.id, (resp) => {
     let data = '';
     resp.on('data', (chunk) => {
             data += chunk;

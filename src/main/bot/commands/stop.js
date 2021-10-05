@@ -26,7 +26,7 @@ const http = require('http');
  };
 
  function destroyPlayerOnServer(message) {
-    http.get('http://localhost:1800/rhapsody/destroyPlayer?g='+message.guild.id, (resp) => {
+    http.get('http://localhost:1800/rhapsody/guild/destroyPlayer?g='+message.guild.id, (resp) => {
         let data = '';
         resp.on('data', (chunk) => {
              data += chunk;

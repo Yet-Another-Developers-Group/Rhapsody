@@ -17,7 +17,7 @@ exports.run = (client, message, args) => {
 };
 
 function queryQueueServer(message, client) {
-     http.get('http://localhost:1800/rhapsody/advanceQueue?g='+message.guild.id, (resp) => {
+     http.get('http://localhost:1800/rhapsody/queue/advanceQueue?g='+message.guild.id, (resp) => {
      let data = '';
      resp.on('data', (chunk) => {
           data += chunk;
@@ -36,7 +36,7 @@ function queryQueueServer(message, client) {
 }
 
 function playSong(array, message, client) {
-     http.get('http://localhost:1800/rhapsody/getChannelId?g='+ message.guild.id, (resp) => {
+     http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+ message.guild.id, (resp) => {
      let data = '';
      resp.on('data', (chunk) => {
           data += chunk;

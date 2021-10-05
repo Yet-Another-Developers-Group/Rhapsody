@@ -2,7 +2,7 @@ require("../assets/ExtendedMessage");
 const http = require('http');
 exports.run = (client, message, args) => {
     if(!args || args.length < 1) return message.inlineReply("I'm sorry, I didn't understand that.");
-    http.get('http://localhost:1800/rhapsody/getChannelId?g='+message.guild.id, (resp) => {
+    http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+message.guild.id, (resp) => {
         let data = '';
         resp.on('data', (chunk) => {
         data += chunk;
@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
 
 
 function removeSong(channelId, message, number) {
-    http.get('http://localhost:1800/rhapsody/removeFromQueue?g='+message.guild.id+'&pos='+(number-1)+'', (resp) => {
+    http.get('http://localhost:1800/rhapsody/queue/removeFromQueue?g='+message.guild.id+'&pos='+(number-1)+'', (resp) => {
     let data = '';
     resp.on('data', (chunk) => {
         data += chunk;

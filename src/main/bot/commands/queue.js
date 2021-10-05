@@ -2,7 +2,7 @@ require("../assets/ExtendedMessage");
 const http = require('http');
 exports.run = (client, message, args) => {
     if(!args || args.length < 1) return message.inlineReply("I'm sorry, I didn't understand that.");
-    http.get('http://localhost:1800/rhapsody/addToQueue?g='+message.guild.id+'&n='+args.toString().replace(/,/gi, ' '), (resp) => {
+    http.get('http://localhost:1800/rhapsody/queue/addToQueue?g='+message.guild.id+'&n='+args.toString().replace(/,/gi, ' '), (resp) => {
     let data = '';
     resp.on('data', (chunk) => {
             data += chunk;
