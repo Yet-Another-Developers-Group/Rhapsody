@@ -17,7 +17,7 @@ exports.run = (client, message, args) => ***REMOVED***
 ***REMOVED***;
 
 function queryQueueServer(message, client) ***REMOVED***
-     http.get('http://localhost:1800/rhapsody/advanceQueue?g='+message.guild.id, (resp) => ***REMOVED***
+     http.get('http://localhost:1800/rhapsody/queue/advanceQueue?g='+message.guild.id, (resp) => ***REMOVED***
      let data = '';
      resp.on('data', (chunk) => ***REMOVED***
           data += chunk;
@@ -36,7 +36,7 @@ function queryQueueServer(message, client) ***REMOVED***
 ***REMOVED***
 
 function playSong(array, message, client) ***REMOVED***
-     http.get('http://localhost:1800/rhapsody/getChannelId?g='+ message.guild.id, (resp) => ***REMOVED***
+     http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+ message.guild.id, (resp) => ***REMOVED***
      let data = '';
      resp.on('data', (chunk) => ***REMOVED***
           data += chunk;

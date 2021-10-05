@@ -5,7 +5,7 @@ const http = require('http');
      if (!VoiceChannel || typeof VoiceChannel == 'undefined') ***REMOVED***
           return message.inlineReply("You are not currently in any voice channel.");
      ***REMOVED***
-     http.get('http://localhost:1800/rhapsody/addNewGuildChannel?g='+ message.guild.id +'&c='+ VoiceChannel.id, (resp) => ***REMOVED***
+     http.get('http://localhost:1800/rhapsody/guild/addNewGuildChannel?g='+ message.guild.id +'&c='+ VoiceChannel.id, (resp) => ***REMOVED***
      let data = '';
      resp.on('data', (chunk) => ***REMOVED***
           data += chunk;
