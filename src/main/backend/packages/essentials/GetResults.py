@@ -3,7 +3,7 @@ import os
 
 from googleapiclient.discovery import build
 
-dotenv.load_dotenv()
+dotenv.load_dotenv("../../.env")
 
 API_KEY = os.environ.get("API_KEY")
 SERVICE_NAME = "youtube"
