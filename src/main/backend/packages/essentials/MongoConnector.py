@@ -1,6 +1,6 @@
 import pymongo
 
-from GetResults import getResult
+from ..essentials.GetResults import getResult
 
 class MongoConnector():
 	def __init__(self):
