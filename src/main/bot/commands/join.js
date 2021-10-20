@@ -17,7 +17,7 @@ const http = require('http');
                     VoiceChannel.join();
                     message.inlineReply('Joined Voice Channel.');
                ***REMOVED*** else ***REMOVED***
-                    message.inlineReply('An error occurred while trying to get the resource.```status: ' +data.status+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
+                    message.inlineReply('You seem to be already streaming in this server. If you aren\'t, try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
                ***REMOVED***
           ***REMOVED*** else ***REMOVED***
                message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');

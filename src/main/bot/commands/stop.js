@@ -1,7 +1,7 @@
 require("../assets/ExtendedMessage");
 const http = require('http');
  exports.run = (client, message, args) => ***REMOVED***
-    http.get('http://localhost:1800/rhapsody/getChannelId?g='+message.guild.id, (resp) => ***REMOVED***
+    http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+message.guild.id, (resp) => ***REMOVED***
     let data = '';
     resp.on('data', (chunk) => ***REMOVED***
             data += chunk;
