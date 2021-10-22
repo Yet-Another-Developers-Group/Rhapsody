@@ -29,6 +29,17 @@ fs.readdir(__dirname + "/./commands/", (err, files) => ***REMOVED***
   ***REMOVED***);
 ***REMOVED***);
 
+fs.readdir(__dirname + "/./RDH/", (err, files) => ***REMOVED***
+  if (err) return console.error(err);
+  files.forEach(file => ***REMOVED***
+    if (!file.endsWith(".js")) return;
+    let props = require(__dirname + `/./RDH/$***REMOVED***file***REMOVED***`);
+    let commandName = 'rdh.'+file.split(".")[0];
+    console.log(chalk.magenta.bold('[Loading RhapsodyDiagnosticsHandler Command]') + ` $***REMOVED***commandName***REMOVED***...`);
+    client.commands.set(commandName, props);
+  ***REMOVED***);
+***REMOVED***);
+
 client.login(secrets.token)
 client.on('ready', () => ***REMOVED***
   console.log(chalk.green.bold('[Logged-in Notice]') + ' Logged in as ' + `$***REMOVED***client.user.tag***REMOVED***`);

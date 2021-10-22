@@ -1,4 +1,5 @@
 require("../assets/ExtendedMessage");
+const Discord = require("discord.js")
 const http = require('http');
 exports.run = (client, message, args) => ***REMOVED***
     http.get('http://localhost:1800/rhapsody/queue/getQueueList?g='+message.guild.id, (resp) => ***REMOVED***
@@ -14,7 +15,15 @@ exports.run = (client, message, args) => ***REMOVED***
                     const element = data.queue[i];
                     result+= (i+1)+". "+element[0]+"\n";
                 ***REMOVED***
-                message.inlineReply('```'+result+'```')
+
+                const attachment = new Discord.MessageAttachment('assets/squeue.png', 'icon.png');
+                const embed = new Discord.MessageEmbed()
+                .setColor('#ff1111')
+                .attachFiles(attachment)
+                .setThumbnail('attachment://icon.png')
+                .addField('Queue', '```'+result+'```')
+                message.inlineReply(embed).catch(console.error);
+
             ***REMOVED*** else ***REMOVED***
                 message.inlineReply('No songs in queue.');
             ***REMOVED***

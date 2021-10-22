@@ -5,9 +5,15 @@ exports.run = (client, message, args) => ***REMOVED***
     if(!client.commands.has(commandName)) ***REMOVED***
         return message.inlineReply('`Error: Command ' + commandName + ' is an invalid command!`');
     ***REMOVED***
-    delete require.cache[require.resolve(`./$***REMOVED***commandName***REMOVED***.js`)];
+
+    if (args[0].includes('rdh.')) ***REMOVED***
+        message.inlineReply(`You cannot reload this command.`);
+        return;
+    ***REMOVED***
+
+    delete require.cache[require.resolve(`../commands/$***REMOVED***commandName***REMOVED***.js`)];
     client.commands.delete(commandName);
-    const props = require(`./$***REMOVED***commandName***REMOVED***.js`);
+    const props = require(`../commands/$***REMOVED***commandName***REMOVED***.js`);
     client.commands.set(commandName, props);
     message.inlineReply(`The command $***REMOVED***commandName***REMOVED*** has been reloaded`);
 ***REMOVED***;

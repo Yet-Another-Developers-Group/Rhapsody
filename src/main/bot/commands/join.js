@@ -1,4 +1,5 @@
 require("../assets/ExtendedMessage");
+const Discord = require("discord.js");
 const http = require('http');
  exports.run = (client, message, args) => ***REMOVED***
      const VoiceChannel = message.member.voice.channel;
@@ -15,7 +16,15 @@ const http = require('http');
                data = JSON.parse(data)
                if (data.status == 200) ***REMOVED***      
                     VoiceChannel.join();
-                    message.inlineReply('Joined Voice Channel.');
+
+                    const attachment = new Discord.MessageAttachment('assets/joinvc.png', 'icon.png');
+                    const embed = new Discord.MessageEmbed()
+                    .setColor('#ff1111')
+                    .setTitle('Joined Voice Channel')
+                    .attachFiles(attachment)
+                    .setThumbnail('attachment://icon.png')
+                    .setTitle('Joined voice channel.')
+                    message.inlineReply(embed).catch(console.error);
                ***REMOVED*** else ***REMOVED***
                     message.inlineReply('You seem to be already streaming in this server. If you aren\'t, try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
                ***REMOVED***

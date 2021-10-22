@@ -30,9 +30,12 @@ exec('python3 -V', (err, stdout, stderr) => ***REMOVED***
 
 
 exports.run = (client, message, args) => ***REMOVED***
+     const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
     const helpEmbed = new Discord.MessageEmbed()
 	.setColor('#ff1111')
 	.setTitle('About Rhapsody')
+     .attachFiles(attachment)
+	.setThumbnail('attachment://icon.png')
 	.addFields(
 		***REMOVED*** name: 'Version', value: version ***REMOVED***,
           ***REMOVED*** name: 'Python', value: pyVer ***REMOVED***,

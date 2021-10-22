@@ -23,5 +23,8 @@
     "exec": "^0.2.1",
     "yt-search": "^0.1.1",
     "ytdl": "^1.4.1"
+  ***REMOVED***,
+  "devDependencies": ***REMOVED***
+    "nodemon": "^2.0.14"
   ***REMOVED***
 ***REMOVED***
