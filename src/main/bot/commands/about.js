@@ -1,48 +1,49 @@
 const Discord = require("discord.js");
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const version = require("../package.json").fullVersion;
 require("../assets/ExtendedMessage");
 var server = "";
 var pyVer = "";
 var nodeVer = ""
-const ***REMOVED*** exec ***REMOVED*** = require('child_process');
-exec('uname -a', (err, stdout, stderr) => ***REMOVED***
-     if (err) ***REMOVED***
+const { exec } = require('child_process');
+exec('uname -a', (err, stdout, stderr) => {
+     if (err) {
      // node couldn't execute the command
      return;
-     ***REMOVED***
+     }
      server+=stdout+'\n';
-***REMOVED***);
+});
 
-exec('node -v', (err, stdout, stderr) => ***REMOVED***
-     if (err) ***REMOVED***
+exec('node -v', (err, stdout, stderr) => {
+     if (err) {
      // node couldn't execute the command
      return;
-     ***REMOVED***
+     }
      nodeVer+=stdout+'\n';
-***REMOVED***);
+});
 
-exec('python3 -V', (err, stdout, stderr) => ***REMOVED***
-     if (err) ***REMOVED***
+exec('python3 -V', (err, stdout, stderr) => {
+     if (err) {
      // node couldn't execute the command
      return;
-     ***REMOVED***
+     }
      pyVer+=stdout+'\n';
-***REMOVED***);
+});
 
 
-exports.run = (client, message, args) => ***REMOVED***
+exports.run = (client, message, args) => {
      const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
     const helpEmbed = new Discord.MessageEmbed()
-	.setColor('#ff1111')
+	.setColor(defaultEmbedColor)
 	.setTitle('About Rhapsody')
      .attachFiles(attachment)
 	.setThumbnail('attachment://icon.png')
 	.addFields(
-		***REMOVED*** name: 'Version', value: version ***REMOVED***,
-          ***REMOVED*** name: 'Python', value: pyVer ***REMOVED***,
-          ***REMOVED*** name: 'Node.js', value: nodeVer ***REMOVED***,
-          ***REMOVED*** name: 'Server', value: server ***REMOVED***
+		{ name: 'Version', value: version },
+          { name: 'Python', value: pyVer },
+          { name: 'Node.js', value: nodeVer },
+          { name: 'Server', value: server }
 	)
      .setFooter('Powered by JavaScript and Python | Made by YADG | yadevgroup@gmail.com | https://yet-another-developers-group.github.io')
     message.inlineReply(helpEmbed).catch(console.error);
-***REMOVED***
+}

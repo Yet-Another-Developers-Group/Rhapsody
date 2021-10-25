@@ -1,31 +1,32 @@
 require("../assets/ExtendedMessage");
-const Discord = require("discord.js")
+const Discord = require("discord.js");
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const http = require('http');
-exports.run = (client, message, args) => ***REMOVED***
-    http.get('http://localhost:1800/rhapsody/queue/getQueueList?g='+message.guild.id, (resp) => ***REMOVED***
+exports.run = (client, message, args) => {
+    http.get('http://localhost:1800/rhapsody/queue/getQueueList?g='+message.guild.id, (resp) => {
     let data = '';
-    resp.on('data', (chunk) => ***REMOVED***
+    resp.on('data', (chunk) => {
             data += chunk;
-    ***REMOVED***);
-    resp.on('end', () => ***REMOVED***
+    });
+    resp.on('end', () => {
           data = JSON.parse(data)
-            if (data.status == "200" && data.queue.length > 0) ***REMOVED***
+            if (data.status == "200" && data.queue.length > 0) {
                 var result = '';
-                for (let i = 0; i < data.queue.length; i++) ***REMOVED***
+                for (let i = 0; i < data.queue.length; i++) {
                     const element = data.queue[i];
                     result+= (i+1)+". "+element[0]+"\n";
-                ***REMOVED***
+                }
 
                 const embed = new Discord.MessageEmbed()
-                .setColor('#ff1111')
+                .setColor(defaultEmbedColor)
                 .addField('Queue', '```'+result+'```')
                 message.inlineReply(embed).catch(console.error);
 
-            ***REMOVED*** else ***REMOVED***
+            } else {
                 message.inlineReply('No songs in queue.');
-            ***REMOVED***
-    ***REMOVED***);
-    ***REMOVED***).on("error", (err) => ***REMOVED***
+            }
+    });
+    }).on("error", (err) => {
             message.inlineReply('An error occurred while trying to get the resource.')
-    ***REMOVED***); 
-***REMOVED***;
+    }); 
+};

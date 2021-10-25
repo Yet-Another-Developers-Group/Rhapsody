@@ -1,15 +1,15 @@
 require("../assets/ExtendedMessage");
-module.exports = (client, message) => ***REMOVED***
-    if (message.author.bot) return;
+module.exports = (client, message) => {
+    if (message.author.bot || message.webhookId) return;
     if (message.content.includes("@here") || message.content.includes("@everyone")) return;
-    if (message.mentions.has(client.user.id)) ***REMOVED***
+    if (message.mentions.has(client.user.id)) {
         message.channel.send('Hi there! Use the `-help` command to get started.');
         return;
-    ***REMOVED***;
-    if (message.channel.type === 'dm') ***REMOVED***
+    };
+    if (message.channel.type === 'dm') {
         message.inlineReply('Sorry, mate. I don\'t work with DMs.');
         return;
-    ***REMOVED***
+    }
     if (message.content.indexOf(client.config.prefix) !== 0) return;
 
     // Our standard argument/command name definition.
@@ -24,4 +24,4 @@ module.exports = (client, message) => ***REMOVED***
 
     // Run the command
     cmd.run(client, message, args);
-***REMOVED***;
+};

@@ -15,9 +15,9 @@ def getResult():
 
 	result = GetResults.getResult(search_term) 
 
-	response = ***REMOVED***
+	response = {
 		"result": result
-	***REMOVED***
+	}
 
 	return jsonify(response)
 
@@ -32,10 +32,10 @@ def getQueueList():
 		connector = MongoConnector()
 		queue = connector.getQueueList(guild_id)
 
-		response = ***REMOVED***
+		response = {
 			"status": 200,
 			"queue":queue
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -43,9 +43,9 @@ def getQueueList():
 
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -62,9 +62,9 @@ def addToQueue():
 		connector = MongoConnector()
 		connector.addToQueue(guild_id, term)
 
-		response = ***REMOVED***
+		response = {
 			"status": 200
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -72,9 +72,9 @@ def addToQueue():
 	
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -90,9 +90,9 @@ def removeFromQueue():
 		connector = MongoConnector()
 		result = connector.removeFromQueue(guild_id, index)
 
-		response = ***REMOVED***
+		response = {
 			"status": result
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -100,9 +100,9 @@ def removeFromQueue():
 
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -119,15 +119,15 @@ def advanceQueue():
 		result = connector.advanceQueue(guild_id)
 
 		if result != "404":
-			response = ***REMOVED***
+			response = {
 				"status": 200,
 				"nowPlaying": result
-			***REMOVED***
+			}
 
 		elif result == "404":
-			response = ***REMOVED***
+			response = {
 				"status": 404
-			***REMOVED***
+			}
 
 		return jsonify(response)
 
@@ -135,8 +135,8 @@ def advanceQueue():
 
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)

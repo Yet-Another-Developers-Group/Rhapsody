@@ -1,52 +1,53 @@
 require("../assets/ExtendedMessage");
 const Discord = require("discord.js");
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const http = require('http');
-exports.run = (client, message, args) => ***REMOVED***
+exports.run = (client, message, args) => {
     if(!args || args.length < 1) return message.inlineReply("I'm sorry, I didn't understand that.");
-    http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+message.guild.id, (resp) => ***REMOVED***
+    http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+message.guild.id, (resp) => {
         let data = '';
-        resp.on('data', (chunk) => ***REMOVED***
+        resp.on('data', (chunk) => {
         data += chunk;
-    ***REMOVED***);
-    resp.on('end', () => ***REMOVED***
-        try ***REMOVED***
+    });
+    resp.on('end', () => {
+        try {
             data = JSON.parse(data)
-            if (data.status == "200") ***REMOVED***  
+            if (data.status == "200") {  
                 removeSong(data.channelId, message, args[0]);
-            ***REMOVED*** else ***REMOVED***
+            } else {
                 message.inlineReply('No songs in queue.');
-            ***REMOVED***
-        ***REMOVED*** catch (error) ***REMOVED***
+            }
+        } catch (error) {
             message.inlineReply('An error occurred while trying to get the resource.')
-        ***REMOVED***
-    ***REMOVED***);
-    ***REMOVED***).on("error", (err) => ***REMOVED***
+        }
+    });
+    }).on("error", (err) => {
         message.inlineReply('An error occurred while trying to get the resource.')
-    ***REMOVED***);
-***REMOVED***;
+    });
+};
 
 
-function removeSong(channelId, message, number) ***REMOVED***
-    http.get('http://localhost:1800/rhapsody/queue/removeFromQueue?g='+message.guild.id+'&pos='+(number-1)+'', (resp) => ***REMOVED***
+function removeSong(channelId, message, number) {
+    http.get('http://localhost:1800/rhapsody/queue/removeFromQueue?g='+message.guild.id+'&pos='+(number-1)+'', (resp) => {
     let data = '';
-    resp.on('data', (chunk) => ***REMOVED***
+    resp.on('data', (chunk) => {
         data += chunk;
-    ***REMOVED***);
-    resp.on('end', () => ***REMOVED***
+    });
+    resp.on('end', () => {
         data = JSON.parse(data);
-        if (data.status == 200) ***REMOVED***
+        if (data.status == 200) {
             const embed = new Discord.MessageEmbed()
-            .setColor('#ff1111')
+            .setColor(defaultEmbedColor)
             .setTitle('Removed from queue.')
             message.inlineReply(embed).catch(console.error);
-        ***REMOVED*** else if (data.status == 404) ***REMOVED***
+        } else if (data.status == 404) {
             message.inlineReply('That track is not valid.')
-        ***REMOVED*** else ***REMOVED***
+        } else {
             message.inlineReply('An error occured while trying to get the resource.```status: ' +data.status+ '\nguildId: ' +message.guild.id+ '```Please contact us if the error persists.')
-        ***REMOVED***
-    ***REMOVED***);
-    ***REMOVED***).on("error", (err) => ***REMOVED***
+        }
+    });
+    }).on("error", (err) => {
          message.inlineReply('An error occurred while trying to get the resource.')
-    ***REMOVED***);
+    });
     
-***REMOVED***
+}

@@ -1,4 +1,5 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require("../assets/ExtendedMessage");
 const newstuff = 
 `
@@ -6,14 +7,14 @@ const newstuff =
 - Improved Embeds by adding icons
 `
 
-exports.run = (client, message, args) => ***REMOVED***
+exports.run = (client, message, args) => {
 	const attachment = new Discord.MessageAttachment('assets/whatsnew.png', 'icon.png');
 	const helpEmbed = new Discord.MessageEmbed()
-		.setColor('#ff1111')
+		.setColor(defaultEmbedColor)
 		.setTitle('Rhapsody 2 - What\'s New')
 		.attachFiles(attachment)
 		.setThumbnail('attachment://icon.png')
 		.setDescription(newstuff)
 	    message.inlineReply(helpEmbed).catch(console.error);
-***REMOVED***
+}
 

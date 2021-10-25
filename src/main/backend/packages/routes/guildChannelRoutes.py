@@ -18,19 +18,19 @@ def addNewGuildChannel():
 		connector = MongoConnector()
 		connector.addNewGuildChannel(guild_id, channel_id)
 
-		response = ***REMOVED***
+		response = {
 			"status": 200
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
 	except Exception as e:		
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -49,16 +49,16 @@ def getChannelId():
 
 		if result != False:
 
-			response = ***REMOVED***
+			response = {
 				"status": 200,
 				"channelId": result
-			***REMOVED***
+			}
 
 		elif result == False:
 
-			response = ***REMOVED***
+			response = {
 				"status": 404,
-			***REMOVED***
+			}
 
 		return jsonify(response)
 
@@ -66,9 +66,9 @@ def getChannelId():
 
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -84,9 +84,9 @@ def destroyPlayer():
 		connector = MongoConnector()
 		connector.destroyPlayer(guild_id)
 
-		response = ***REMOVED***
+		response = {
 			"status": 200,
-		***REMOVED***
+		}
 
 		return jsonify(response)
 
@@ -94,8 +94,8 @@ def destroyPlayer():
 
 		print(e)
 
-		response = ***REMOVED***
+		response = {
 			"status": 500
-		***REMOVED***
+		}
 
 		return jsonify(response)

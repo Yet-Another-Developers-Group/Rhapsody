@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 require("../assets/ExtendedMessage");
 
-exports.run = (client, message, args) => ***REMOVED***
+exports.run = (client, message, args) => {
      const attachment = new Discord.MessageAttachment('assets/diagnostics.png', 'icon.png');
      const helpEmbed = new Discord.MessageEmbed()
      .setColor('#2f3136')
@@ -9,8 +9,8 @@ exports.run = (client, message, args) => ***REMOVED***
      .attachFiles(attachment)
      .setThumbnail('attachment://icon.png')
      .addFields(
-          ***REMOVED*** name: 'Rhapsody Diagnostics Handler', value: 'Diagnostics for Rhapsody. Use `-rdh.<command>` to access diagnostics information for the bot. These may include CPU, RAM, Network, etc.' ***REMOVED***
+          { name: 'Rhapsody Diagnostics Handler', value: 'Diagnostics for Rhapsody. Use `-rdh.<command>` to access diagnostics information for the bot. These may include CPU, RAM, Network, etc.' }
      )
      message.inlineReply(helpEmbed).catch(console.error);
-***REMOVED***
+}
 

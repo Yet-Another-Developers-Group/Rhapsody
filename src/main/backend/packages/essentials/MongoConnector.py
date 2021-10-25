@@ -17,26 +17,26 @@ class MongoConnector():
 
 		collection = self.database[guild_id]
 
-		channel = collection.find(***REMOVED***"_id":channel_id***REMOVED***)
+		channel = collection.find({"_id":channel_id})
 
 		if channel.count() > 0:
-			collection.update_one(***REMOVED***"_id":channel_id***REMOVED***, ***REMOVED***"$set":***REMOVED***"currentlyPlaying":True***REMOVED******REMOVED***)
+			collection.update_one({"_id":channel_id}, {"$set":{"currentlyPlaying":True}})
 
 		else:
-			collection.insert_one(***REMOVED***"_id":channel_id,
+			collection.insert_one({"_id":channel_id,
 									"currentlyPlaying":True,
-									"songs":[]***REMOVED***)
+									"songs":[]})
 
 		currently_playing = self.database["CurrentlyPlaying"]
-		currently_playing.insert_one(***REMOVED***"_id":channel_id,
-										"guild":guild_id***REMOVED***)
+		currently_playing.insert_one({"_id":channel_id,
+										"guild":guild_id})
 
 
 	###########################################################################
 	def getChannelId(self, guild_id):
 		current_collection = self.database["CurrentlyPlaying"]
 
-		channel = current_collection.find(***REMOVED***"guild":guild_id***REMOVED***)
+		channel = current_collection.find({"guild":guild_id})
 
 		if channel.count() > 0:
 			return channel[0]["_id"]
@@ -48,40 +48,40 @@ class MongoConnector():
 	def destroyPlayer(self, guild_id):
 
 		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find(***REMOVED***"guild":guild_id***REMOVED***)[0]["_id"]
-		current_collection.delete_one(***REMOVED***"_id": channel***REMOVED***)
+		channel = current_collection.find({"guild":guild_id})[0]["_id"]
+		current_collection.delete_one({"_id": channel})
 
 		current_collection = self.database[guild_id]
-		current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"currentlyPlaying":False,
-																"songs":[]***REMOVED******REMOVED***)
+		current_collection.update_one({"_id":channel}, {"$set":{"currentlyPlaying":False,
+																"songs":[]}})
 
 	###########################################################################
 	def addToQueue(self, guild_id, search_term):
 
 		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find(***REMOVED***"guild":guild_id***REMOVED***)[0]["_id"]
+		channel = current_collection.find({"guild":guild_id})[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		current_queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]
+		current_queue = current_collection.find({"_id":channel})[0]
 
 		result = getResult(search_term)
 
-		document = ***REMOVED***"songs":[]***REMOVED***
+		document = {"songs":[]}
 		document["songs"] = current_queue["songs"]
 		document["songs"].append(result)
 
-		current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":document***REMOVED***)
+		current_collection.update_one({"_id":channel}, {"$set":document})
 
 	###########################################################################
 	def advanceQueue(self, guild_id):
 
 		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find(***REMOVED***"guild":guild_id***REMOVED***)[0]["_id"]
+		channel = current_collection.find({"guild":guild_id})[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		current_queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]
+		current_queue = current_collection.find({"_id":channel})[0]
 
-		document = ***REMOVED***"songs":[]***REMOVED***
+		document = {"songs":[]}
 		document["songs"] = current_queue["songs"]
 		
 		queue = document["songs"]
@@ -92,7 +92,7 @@ class MongoConnector():
 			queue.remove(result)
 			document["songs"] = queue
 
-			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":document***REMOVED***)
+			current_collection.update_one({"_id":channel}, {"$set":document})
 
 		else:
 			result = "404"
@@ -102,27 +102,27 @@ class MongoConnector():
 	###########################################################################
 	def getQueueList(self, guild_id):
 		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find(***REMOVED***"guild": guild_id***REMOVED***)[0]["_id"]
+		channel = current_collection.find({"guild": guild_id})[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]["songs"]
+		queue = current_collection.find({"_id":channel})[0]["songs"]
 
 		return queue
 
 	###########################################################################
 	def removeFromQueue(self, guild_id, index):
 		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find(***REMOVED***"guild": guild_id***REMOVED***)[0]["_id"]
+		channel = current_collection.find({"guild": guild_id})[0]["_id"]
 
 		current_collection = self.database[guild_id]
-		queue = current_collection.find(***REMOVED***"_id":channel***REMOVED***)[0]
+		queue = current_collection.find({"_id":channel})[0]
 
-		document = ***REMOVED***"songs":[]***REMOVED***
+		document = {"songs":[]}
 		document["songs"] = queue["songs"]
 
 		try:
 			document["songs"].pop(int(index))
-			current_collection.update_one(***REMOVED***"_id":channel***REMOVED***, ***REMOVED***"$set":***REMOVED***"songs":document["songs"]***REMOVED******REMOVED***)
+			current_collection.update_one({"_id":channel}, {"$set":{"songs":document["songs"]}})
 			return 200
 
 		except Exception as e:

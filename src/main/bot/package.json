@@ -1,22 +1,23 @@
-***REMOVED***
+{
   "name": "rhapsody",
   "version": "1.0.0",
   "fullVersion": "1.1.0",
   "description": "",
   "main": "index.js",
-  "scripts": ***REMOVED***
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "start": "node index.js",
+    "startwebhookannouncer": "node webhookAnnouncer.js",
     "startmongomac": "brew services start mongodb",
     "stopmongomac": "brew services stop mongodb"
-  ***REMOVED***,
+  },
   "author": "Sumukh Prasad and Anubhav Shyjesh",
   "license": "ISC",
-  "engines": ***REMOVED***
+  "engines": {
     "node": "14.x"
-  ***REMOVED***,
-  "dependencies": ***REMOVED***
+  },
+  "dependencies": {
     "@discordjs/opus": "^0.5.3",
     "chalk": "^4.1.1",
     "discord-reply": "^0.1.2",
@@ -24,8 +25,8 @@
     "exec": "^0.2.1",
     "yt-search": "^0.1.1",
     "ytdl": "^1.4.1"
-  ***REMOVED***,
-  "devDependencies": ***REMOVED***
+  },
+  "devDependencies": {
     "nodemon": "^2.0.14"
-  ***REMOVED***
-***REMOVED***
+  }
+}

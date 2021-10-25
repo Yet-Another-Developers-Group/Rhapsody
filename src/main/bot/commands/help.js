@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require("../assets/ExtendedMessage");
 const verboseHelp = 
 `
@@ -29,37 +30,37 @@ const diagHelp =
 Diagnostics coming soon.
 Powered by ServerControl.
 `
-exports.run = (client, message, args) => ***REMOVED***
-	if(args && args.length > 0) ***REMOVED***
-		if (args[0] == 'v' || args[0] == 'verbose') ***REMOVED***
+exports.run = (client, message, args) => {
+	if(args && args.length > 0) {
+		if (args[0] == 'v' || args[0] == 'verbose') {
 			const embed = new Discord.MessageEmbed()
-                .setColor('#ff1111')
+                .setColor(defaultEmbedColor)
                 .addField('Help', '```' + verboseHelp + '```')
 
 			message.inlineReply(embed);
-		***REMOVED***
+		}
 
-		if (args[0] == 'd' || args[0] == 'diagnostics') ***REMOVED***
+		if (args[0] == 'd' || args[0] == 'diagnostics') {
 			const embed = new Discord.MessageEmbed()
-                .setColor('#ff1111')
+                .setColor(defaultEmbedColor)
                 .addField('Help', '```' + diagHelp + '```')
 
 			message.inlineReply(embed);
-		***REMOVED***
-	***REMOVED*** else ***REMOVED***
+		}
+	} else {
 		const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
 		const helpEmbed = new Discord.MessageEmbed()
-		.setColor('#ff1111')
+		.setColor(defaultEmbedColor)
 		.setTitle('Rhapsody')
 		.attachFiles(attachment)
 		.setThumbnail('attachment://icon.png')
 		.addFields(
-			***REMOVED*** name: 'Music', value: '`join`, `play`, `stop`' ***REMOVED***,
-			***REMOVED*** name: 'Queue', value: '`squeue`, `queue`, `remove`' ***REMOVED***,
-			***REMOVED*** name: 'Miscellaneous', value: '`about`, `help`' ***REMOVED***,
-			***REMOVED*** name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' ***REMOVED***
+			{ name: 'Music', value: '`join`, `play`, `stop`' },
+			{ name: 'Queue', value: '`squeue`, `queue`, `remove`' },
+			{ name: 'Miscellaneous', value: '`about`, `help`' },
+			{ name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' }
 		)
 	    message.inlineReply(helpEmbed).catch(console.error);
-	***REMOVED***;
-***REMOVED***
+	};
+}
 

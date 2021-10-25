@@ -1,19 +1,19 @@
 require("../assets/ExtendedMessage");
-exports.run = (client, message, args) => ***REMOVED***
+exports.run = (client, message, args) => {
     if(!args || args.length < 1) return message.reply("`Error: Argument not present!`");
     const commandName = args[0];
-    if(!client.commands.has(commandName)) ***REMOVED***
+    if(!client.commands.has(commandName)) {
         return message.inlineReply('`Error: Command ' + commandName + ' is an invalid command!`');
-    ***REMOVED***
+    }
 
-    if (args[0].includes('rdh.')) ***REMOVED***
+    if (args[0].includes('rdh.')) {
         message.inlineReply(`You cannot reload this command.`);
         return;
-    ***REMOVED***
+    }
 
-    delete require.cache[require.resolve(`../commands/$***REMOVED***commandName***REMOVED***.js`)];
+    delete require.cache[require.resolve(`../commands/${commandName}.js`)];
     client.commands.delete(commandName);
-    const props = require(`../commands/$***REMOVED***commandName***REMOVED***.js`);
+    const props = require(`../commands/${commandName}.js`);
     client.commands.set(commandName, props);
-    message.inlineReply(`The command $***REMOVED***commandName***REMOVED*** has been reloaded`);
-***REMOVED***;
+    message.inlineReply(`The command ${commandName} has been reloaded`);
+};

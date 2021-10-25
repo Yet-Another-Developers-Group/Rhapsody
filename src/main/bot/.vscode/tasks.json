@@ -1,16 +1,16 @@
-***REMOVED***
+{
 	"version": "2.0.0",
 	"tasks": [
-		***REMOVED***
+		{
 			"type": "npm",
 			"script": "dev",
 			"problemMatcher": [],
 			"label": "npm: dev",
 			"detail": "nodemon index.js",
-			"group": ***REMOVED***
+			"group": {
 				"kind": "build",
 				"isDefault": true
-			***REMOVED***
-		***REMOVED***
+			}
+		}
 	]
-***REMOVED***
+}
