@@ -3,10 +3,10 @@
 	"tasks": [
 		***REMOVED***
 			"type": "npm",
-			"script": "start",
+			"script": "dev",
 			"problemMatcher": [],
-			"label": "npm: start",
-			"detail": "node index.js",
+			"label": "npm: dev",
+			"detail": "nodemon index.js",
 			"group": ***REMOVED***
 				"kind": "build",
 				"isDefault": true

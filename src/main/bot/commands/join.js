@@ -16,13 +16,9 @@ const http = require('http');
                data = JSON.parse(data)
                if (data.status == 200) ***REMOVED***      
                     VoiceChannel.join();
-
-                    const attachment = new Discord.MessageAttachment('assets/joinvc.png', 'icon.png');
                     const embed = new Discord.MessageEmbed()
                     .setColor('#ff1111')
                     .setTitle('Joined Voice Channel')
-                    .attachFiles(attachment)
-                    .setThumbnail('attachment://icon.png')
                     .setTitle('Joined voice channel.')
                     message.inlineReply(embed).catch(console.error);
                ***REMOVED*** else ***REMOVED***

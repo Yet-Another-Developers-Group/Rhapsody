@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-
+require("../assets/ExtendedMessage");
 const newstuff = 
 `
 - New RhapsodyDiagnosticsHandler module

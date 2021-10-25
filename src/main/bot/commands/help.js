@@ -1,4 +1,5 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
+require("../assets/ExtendedMessage");
 const verboseHelp = 
 `
 -join:
@@ -31,11 +32,19 @@ Powered by ServerControl.
 exports.run = (client, message, args) => ***REMOVED***
 	if(args && args.length > 0) ***REMOVED***
 		if (args[0] == 'v' || args[0] == 'verbose') ***REMOVED***
-			message.inlineReply('```' + verboseHelp + '```');
+			const embed = new Discord.MessageEmbed()
+                .setColor('#ff1111')
+                .addField('Help', '```' + verboseHelp + '```')
+
+			message.inlineReply(embed);
 		***REMOVED***
 
 		if (args[0] == 'd' || args[0] == 'diagnostics') ***REMOVED***
-			message.inlineReply('```' + diagHelp + '```');
+			const embed = new Discord.MessageEmbed()
+                .setColor('#ff1111')
+                .addField('Help', '```' + diagHelp + '```')
+
+			message.inlineReply(embed);
 		***REMOVED***
 	***REMOVED*** else ***REMOVED***
 		const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
@@ -50,7 +59,7 @@ exports.run = (client, message, args) => ***REMOVED***
 			***REMOVED*** name: 'Miscellaneous', value: '`about`, `help`' ***REMOVED***,
 			***REMOVED*** name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' ***REMOVED***
 		)
-	    message.channel.send(helpEmbed).catch(console.error);
+	    message.inlineReply(helpEmbed).catch(console.error);
 	***REMOVED***;
 ***REMOVED***
 

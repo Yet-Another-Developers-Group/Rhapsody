@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const version = require("../package.json").fullVersion;
+require("../assets/ExtendedMessage");
 var server = "";
 var pyVer = "";
 var nodeVer = ""
@@ -43,5 +44,5 @@ exports.run = (client, message, args) => ***REMOVED***
           ***REMOVED*** name: 'Server', value: server ***REMOVED***
 	)
      .setFooter('Powered by JavaScript and Python | Made by YADG | yadevgroup@gmail.com | https://yet-another-developers-group.github.io')
-    message.channel.send(helpEmbed).catch(console.error);
+    message.inlineReply(helpEmbed).catch(console.error);
 ***REMOVED***

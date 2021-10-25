@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const https = require('https');
+require("../assets/ExtendedMessage");
 exports.run = (client, message, args) => ***REMOVED***
      https.get('https://catfact.ninja/fact', (resp) => ***REMOVED***
      let data = '';

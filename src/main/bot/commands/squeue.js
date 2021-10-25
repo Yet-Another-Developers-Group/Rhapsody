@@ -16,11 +16,8 @@ exports.run = (client, message, args) => ***REMOVED***
                     result+= (i+1)+". "+element[0]+"\n";
                 ***REMOVED***
 
-                const attachment = new Discord.MessageAttachment('assets/squeue.png', 'icon.png');
                 const embed = new Discord.MessageEmbed()
                 .setColor('#ff1111')
-                .attachFiles(attachment)
-                .setThumbnail('attachment://icon.png')
                 .addField('Queue', '```'+result+'```')
                 message.inlineReply(embed).catch(console.error);
 

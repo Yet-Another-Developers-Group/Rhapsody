@@ -35,12 +35,9 @@ function removeSong(channelId, message, number) ***REMOVED***
     resp.on('end', () => ***REMOVED***
         data = JSON.parse(data);
         if (data.status == 200) ***REMOVED***
-            const attachment = new Discord.MessageAttachment('assets/removefromqueue.png', 'icon.png');
             const embed = new Discord.MessageEmbed()
             .setColor('#ff1111')
             .setTitle('Removed from queue.')
-            .attachFiles(attachment)
-            .setThumbnail('attachment://icon.png')
             message.inlineReply(embed).catch(console.error);
         ***REMOVED*** else if (data.status == 404) ***REMOVED***
             message.inlineReply('That track is not valid.')

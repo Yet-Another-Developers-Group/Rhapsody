@@ -1,8 +1,15 @@
+require("../assets/ExtendedMessage");
 module.exports = (client, message) => ***REMOVED***
-    // Ignore all bots
     if (message.author.bot) return;
-
-    // Ignore messages not starting with the prefix (in config.json)
+    if (message.content.includes("@here") || message.content.includes("@everyone")) return;
+    if (message.mentions.has(client.user.id)) ***REMOVED***
+        message.channel.send('Hi there! Use the `-help` command to get started.');
+        return;
+    ***REMOVED***;
+    if (message.channel.type === 'dm') ***REMOVED***
+        message.inlineReply('Sorry, mate. I don\'t work with DMs.');
+        return;
+    ***REMOVED***
     if (message.content.indexOf(client.config.prefix) !== 0) return;
 
     // Our standard argument/command name definition.
