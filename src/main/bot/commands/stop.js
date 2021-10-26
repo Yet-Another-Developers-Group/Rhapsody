@@ -35,11 +35,9 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
         });
         resp.on('end', () => {
              if (resp.statusCode == "200") {
-                  const attachment = new Discord.MessageAttachment('assets/stop.png', 'icon.png');
                   const embed = new Discord.MessageEmbed()
                   .setColor(defaultEmbedColor)
                   .setTitle('Destroyed the player.')
-                  .attachFiles(attachment)
                   .setThumbnail('attachment://icon.png')
                   message.inlineReply(embed).catch(console.error);
 

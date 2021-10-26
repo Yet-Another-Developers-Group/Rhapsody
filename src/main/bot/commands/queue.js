@@ -18,13 +18,13 @@ exports.run = (client, message, args) => {
                     .setTitle('Queued audio.')
                     message.inlineReply(embed).catch(console.error);
                 } else {
-                    message.inlineReply('You are not currently in any voice channel.')
+                    message.inlineReply('You are not currently streaming in any voice channel.')
                 }
             } else {
                 message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
             }
     });
     }).on("error", (err) => {
-            message.inlineReply('You are not currently in any voice channel.')
+            message.inlineReply('You are not currently streaming in any voice channel.')
     }); 
 };

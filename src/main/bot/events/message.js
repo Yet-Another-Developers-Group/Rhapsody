@@ -3,7 +3,7 @@ module.exports = (client, message) => {
     if (message.author.bot || message.webhookId) return;
     if (message.content.includes("@here") || message.content.includes("@everyone")) return;
     if (message.mentions.has(client.user.id)) {
-        message.channel.send('Hi there! Use the `-help` command to get started.');
+        message.inlineReply('Hi there! Use the `-help` command to get started.');
         return;
     };
     if (message.channel.type === 'dm') {

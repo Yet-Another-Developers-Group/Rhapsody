@@ -58,8 +58,12 @@ function playSong(array, message, client) {
                          queryQueueServer(message, client);
                     })
 
+                    const attachment = new Discord.MessageAttachment('assets/sound.png', 'icon.png');
                     const songEmbed = new Discord.MessageEmbed()
                     .setColor(defaultEmbedColor)
+                    .setImage(array[2])
+                    .attachFiles(attachment)
+                    .setThumbnail('attachment://icon.png')
                     .setImage(array[2])
                     .addFields(
                          { name: 'Now Playing', value: song.title }

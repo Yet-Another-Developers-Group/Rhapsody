@@ -48,7 +48,7 @@ exports.run = (client, message, args) => {
 			message.inlineReply(embed);
 		}
 	} else {
-		const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
+		const attachment = new Discord.MessageAttachment('assets/help.png', 'icon.png');
 		const helpEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('Rhapsody')
@@ -57,7 +57,7 @@ exports.run = (client, message, args) => {
 		.addFields(
 			{ name: 'Music', value: '`join`, `play`, `stop`' },
 			{ name: 'Queue', value: '`squeue`, `queue`, `remove`' },
-			{ name: 'Miscellaneous', value: '`about`, `help`' },
+			{ name: 'Miscellaneous', value: '`about`, `help`, `knowme`' },
 			{ name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' }
 		)
 	    message.inlineReply(helpEmbed).catch(console.error);
