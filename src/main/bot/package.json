@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "start": "node index.js",
+    "lint": "./node_modules/.bin/eslint ./ --fix",
     "startmongomac": "brew services start mongodb",
     "stopmongomac": "brew services stop mongodb"
   },
@@ -21,13 +22,12 @@
     "chalk": "^4.1.1",
     "discord-reply": "^0.1.2",
     "discord.js": "^12.5.3",
-    "enquirer": "^2.3.6",
     "exec": "^0.2.1",
-    "tty": "^1.0.1",
     "yt-search": "^0.1.1",
     "ytdl": "^1.4.1"
   },
   "devDependencies": {
+    "eslint": "^8.1.0",
     "nodemon": "^2.0.14"
   }
 }
