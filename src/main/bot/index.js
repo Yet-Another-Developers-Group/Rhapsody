@@ -4,6 +4,8 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const secrets = require("./secrets.json");
 const chalk = require('chalk');
+const { prompt } = require('enquirer');
+const defaultEmbedColor = config.defaultEmbedColor;
 client.config = config;
 
 fs.readdir(__dirname + "/./events/", (err, files) => {
@@ -41,6 +43,3 @@ fs.readdir(__dirname + "/./RDH/", (err, files) => {
 });
 
 client.login(secrets.token)
-client.on('ready', () => {
-  
-});
