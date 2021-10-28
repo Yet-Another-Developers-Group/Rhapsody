@@ -6,6 +6,24 @@ const secrets = require('./secrets.json');
 const chalk = require('chalk');
 client.config = config;
 
+const startupBanner = `
+╭──────────────────────────────────────────────────╮
+│                                                  │
+│                     `+chalk.white.bold('Rhapsody')+`                     │
+│                                                  │
+│ `+chalk.cyan.bold('https://github.com/Yet-Another-Developers-Group/')+` │
+│                    `+chalk.cyan.bold('Rhapsody')+`                      │
+│                                                  │
+│    `+chalk.yellow('Made by Sumukh Prasad and Anubhav Shyjesh,')+`    │
+│                       `+chalk.yellow('YADG')+`                       │
+│                                                  │
+╰──────────────────────────────────────────────────╯
+`;
+
+
+
+console.log(startupBanner);
+
 fs.readdir(__dirname + '/./events/', (err, files) => {
 	if (err) return console.error(err);
 	files.forEach(file => {

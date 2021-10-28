@@ -3,24 +3,34 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require('../assets/ExtendedMessage');
 const verboseHelp = 
 `
--join:
+**Music:** 
+\`-join\`
   Connects the bot to the voice channel you're currently in.
-  
--play:
+\`-play\`:
   Starts playing songs from the queue.
-  
--stop:
+\`-stop\`:
   Stops playing and disconnects from the voice channel.
-  
--queue <link/song name>:
+
+**Queue:**
+\`-queue <song name>\`:
   Adds the song to the queue.
-  
--squeue:
+\`-squeue\`:
   See the current queue.
-  
--remove <pos>:
+\`-remove <pos>\`:
   Removes the song at the position <pos> in the queue.
-  
+
+**Playlist:**
+\`-createpl <name>\`:
+Creates a playlist.
+\`-deletepl <name>\`:
+Deletes a playlist.
+\`-addtopl -n <name> -s <song>\`:
+Adds song to playlist.
+\`-deletefrompl -n <name> -s <pos>\`:
+Removes the song at the position <pos> in the playlist.
+\`-addpltoqueue -name\`:
+Adds the playlist to queue.
+
  
 Tip: The -play and -stop commands are universal controls. Use the queue command to queue song first, then use -play.
 
@@ -35,7 +45,7 @@ exports.run = (client, message, args) => {
 		if (args[0] == 'v' || args[0] == 'verbose') {
 			const embed = new Discord.MessageEmbed()
 				.setColor(defaultEmbedColor)
-				.addField('Help', '```' + verboseHelp + '```');
+				.addField('Help', verboseHelp);
 
 			message.inlineReply(embed);
 		}
@@ -57,6 +67,7 @@ exports.run = (client, message, args) => {
 			.addFields(
 				{ name: 'Music', value: '`join`, `play`, `stop`' },
 				{ name: 'Queue', value: '`squeue`, `queue`, `remove`' },
+				{ name: 'Playlists', value: '`createpl`, `deletepl`, `addtopl`, `deletefrompl`, `addpltoqueue`' },
 				{ name: 'Miscellaneous', value: '`about`, `help`, `knowme`' },
 				{ name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' }
 			);

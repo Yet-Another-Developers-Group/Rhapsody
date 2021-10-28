@@ -13,16 +13,16 @@
     "stopmongomac": "brew services stop mongodb"
   },
   "author": "Sumukh Prasad and Anubhav Shyjesh",
-  "license": "ISC",
   "engines": {
     "node": "14.x"
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "discord-reply": "^0.1.2",
     "discord.js": "^12.5.3",
     "exec": "^0.2.1",
+    "npm": "^8.1.1",
     "yt-search": "^0.1.1",
     "ytdl": "^1.4.1"
   },
