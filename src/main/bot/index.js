@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const client = new Discord.Client();
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 const config = require('./config.json');
 const secrets = require('./secrets.json');
 const chalk = require('chalk');

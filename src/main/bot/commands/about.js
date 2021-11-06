@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const version = require('../package.json').fullVersion;
-require('../assets/ExtendedMessage');
+
 var server = '';
 var pyVer = '';
 var nodeVer = '';
@@ -32,11 +32,9 @@ exec('python3 -V', (err, stdout) => {
 
 
 exports.run = (client, message) => {
-	const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
-	const helpEmbed = new Discord.MessageEmbed()
+	const aboutEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('About Rhapsody')
-		.attachFiles(attachment)
 		.setThumbnail('attachment://icon.png')
 		.addFields(
 			{ name: 'Version', value: version },
@@ -45,5 +43,5 @@ exports.run = (client, message) => {
 			{ name: 'Server', value: server }
 		)
 		.setFooter('Powered by JavaScript and Python | Made by YADG | yadevgroup@gmail.com | https://yet-another-developers-group.github.io');
-	message.inlineReply(helpEmbed).catch(console.error);
+	message.reply({ embeds: [aboutEmbed], files: [{attachment:'assets/logo.png', name:'icon.png'}]}).catch(console.error);
 };

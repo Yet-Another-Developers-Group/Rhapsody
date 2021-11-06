@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-require('../assets/ExtendedMessage');
+
 const verboseHelp = 
 `
 **Music:** 
@@ -28,7 +28,7 @@ Deletes a playlist.
 Adds song to playlist.
 \`-deletefrompl -n <name> -s <pos>\`:
 Removes the song at the position <pos> in the playlist.
-\`-addpltoqueue -name\`:
+\`-addpltoqueue -n <name>\`:
 Adds the playlist to queue.
 
  
@@ -47,7 +47,7 @@ exports.run = (client, message, args) => {
 				.setColor(defaultEmbedColor)
 				.addField('Help', verboseHelp);
 
-			message.inlineReply(embed);
+			message.reply(embed);
 		}
 
 		if (args[0] == 'd' || args[0] == 'diagnostics') {
@@ -55,14 +55,12 @@ exports.run = (client, message, args) => {
 				.setColor(defaultEmbedColor)
 				.addField('Help', '```' + diagHelp + '```');
 
-			message.inlineReply(embed);
+			message.reply(embed);
 		}
 	} else {
-		const attachment = new Discord.MessageAttachment('assets/help.png', 'icon.png');
 		const helpEmbed = new Discord.MessageEmbed()
 			.setColor(defaultEmbedColor)
 			.setTitle('Rhapsody')
-			.attachFiles(attachment)
 			.setThumbnail('attachment://icon.png')
 			.addFields(
 				{ name: 'Music', value: '`join`, `play`, `stop`' },
@@ -71,7 +69,7 @@ exports.run = (client, message, args) => {
 				{ name: 'Miscellaneous', value: '`about`, `help`, `knowme`' },
 				{ name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' }
 			);
-		message.inlineReply(helpEmbed).catch(console.error);
+		message.reply({ embeds: [helpEmbed], files: [{attachment:'assets/help.png', name:'icon.png'}]}).catch(console.error);
 	}
 };
 

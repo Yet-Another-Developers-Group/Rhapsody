@@ -1,9 +1,9 @@
-require('../assets/ExtendedMessage');
+
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const http = require('http');
 exports.run = (client, message, args) => {
-	if(!args || args.length < 1) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
+	if(!args || args.length < 1) return message.reply('I\'m sorry, I didn\'t understand that.');
 	http.get('http://localhost:1800/rhapsody/queue/addToQueue?g='+message.guild.id+'&n='+args.toString().replace(/,/gi, ' '), (resp) => {
 		let data = '';
 		resp.on('data', (chunk) => {
@@ -16,15 +16,15 @@ exports.run = (client, message, args) => {
 					const embed = new Discord.MessageEmbed()
 						.setColor(defaultEmbedColor)
 						.setTitle('Queued audio.');
-					message.inlineReply(embed).catch(console.error);
+						message.reply({ embeds: [embed] });
 				} else {
-					message.inlineReply('You are not currently streaming in any voice channel.');
+					message.reply('You are not currently streaming in any voice channel.');
 				}
 			} else {
-				message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
+				message.reply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nguildId: ' +message.guild.id+ '```');
 			}
 		});
 	}).on('error', () => {
-		message.inlineReply('You are not currently streaming in any voice channel.');
+		message.reply('You are not currently streaming in any voice channel.');
 	}); 
 };

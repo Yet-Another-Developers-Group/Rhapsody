@@ -1,4 +1,4 @@
-require('../assets/ExtendedMessage');
+
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const chalk = require('chalk');
@@ -9,7 +9,7 @@ const http = require('http');
 exports.run = (client, message) => {
 	const VoiceChannel = message.member.voice.channel;
 	if (!VoiceChannel || typeof VoiceChannel == 'undefined') {
-		return message.inlineReply('You are not currently in any voice channel.');
+		return message.reply('You are not currently in any voice channel.');
 	}
 
 	queryQueueServer(message, client);
@@ -26,11 +26,11 @@ function queryQueueServer(message, client) {
 			if (data.status == '200') {  
 				playSong(data.nowPlaying, message, client);
 			} else {
-				message.inlineReply('No songs to play. Use the `queue` command to queue songs.');
+				message.reply('No songs to play. Use the `queue` command to queue songs.');
 			}
 		});
 	}).on('error', () => {
-		message.inlineReply('An error occurred while trying to get the resource.');
+		message.reply('An error occurred while trying to get the resource.');
 	}); 
 }
 
@@ -52,27 +52,31 @@ function playSong(array, message, client) {
 					console.log(chalk.green.bold('[Connected]') + ' Successfully connected to voice channel "' + VoiceChannel.name + '" on "' + message.guild.name + '" by request of "' + message.author.tag + '". Playing "' + song.title + '"');
 					const stream = ytdl('https://'+song.url, {filter: 'audioonly'});
 					const dispatcher = connection.play(stream, streamOptions);
-					dispatcher.on('finish', function () {
-						queryQueueServer(message, client);
-					});
-
-					const attachment = new Discord.MessageAttachment('assets/sound.png', 'icon.png');
 					const songEmbed = new Discord.MessageEmbed()
 						.setColor(defaultEmbedColor)
-						.setImage(array[2])
-						.attachFiles(attachment)
 						.setThumbnail('attachment://icon.png')
 						.setImage(array[2])
 						.addFields(
 							{ name: 'Now Playing', value: song.title }
 						);
+					const pauseButton = new Discord.MessageButton()
+						.setLabel("Pause")
+						.setStyle("green")
+						.setID("pause-button")
+					const resumeButton = new Discord.MessageButton()
+						.setLabel("Resume")
+						.setStyle("green")
+						.setID("resume-button")
+					message.reply({ embeds: [songEmbed], files: [{attachment:'assets/sound.png', name:'icon.png'}]}).catch(console.error);
 
-					message.inlineReply(songEmbed);
+					dispatcher.on('finish', function () {
+						queryQueueServer(message, client);
+					});
 				});
 			})();
 		});
 	}).on('error', () => {
-		message.inlineReply('An error occurred while trying to get the resource.');
+		message.reply('An error occurred while trying to get the resource.');
 	});
      
 }

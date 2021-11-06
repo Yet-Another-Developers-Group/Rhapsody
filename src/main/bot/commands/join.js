@@ -1,11 +1,11 @@
-require('../assets/ExtendedMessage');
+
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const http = require('http');
 exports.run = (client, message) => {
 	const VoiceChannel = message.member.voice.channel;
 	if (!VoiceChannel || typeof VoiceChannel == 'undefined') {
-		return message.inlineReply('You are not currently in any voice channel.');
+		return message.reply('You are not currently in any voice channel.');
 	}
 	http.get('http://localhost:1800/rhapsody/guild/addNewGuildChannel?g='+ message.guild.id +'&c='+ VoiceChannel.id, (resp) => {
 		let data = '';
@@ -21,15 +21,15 @@ exports.run = (client, message) => {
 						.setColor(defaultEmbedColor)
 						.setTitle('Joined Voice Channel')
 						.setTitle('Joined voice channel.');
-					message.inlineReply(embed).catch(console.error);
+						message.reply({ embeds: [embed] });
 				} else {
-					message.inlineReply('You seem to be already streaming in this server. If you aren\'t, try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
+					message.reply('You seem to be already streaming in this server. If you aren\'t, try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
 				}
 			} else {
-				message.inlineReply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
+				message.reply('An error occurred while trying to get the resource.```status: ' +resp.statusCode+ '\nvoiceChannelId: ' +VoiceChannel.id+ '\nguildId: ' +message.guild.id+ '```Try using `stop` and then using `join` again. If that doesn\'t work, contact us.');
 			}
 		});
 	}).on('error', () => {
-		message.inlineReply('An error occurred while trying to get the resource.');
+		message.reply('An error occurred while trying to get the resource.');
 	});  
 };

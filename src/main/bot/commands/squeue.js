@@ -1,4 +1,4 @@
-require('../assets/ExtendedMessage');
+
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const http = require('http');
@@ -20,13 +20,13 @@ exports.run = (client, message) => {
 				const embed = new Discord.MessageEmbed()
 					.setColor(defaultEmbedColor)
 					.addField('Queue', '```'+result+'```');
-				message.inlineReply(embed).catch(console.error);
+					message.reply({ embeds: [embed] });
 
 			} else {
-				message.inlineReply('No songs in queue.');
+				message.reply('No songs in queue.');
 			}
 		});
 	}).on('error', () => {
-		message.inlineReply('An error occurred while trying to get the resource.');
+		message.reply('An error occurred while trying to get the resource.');
 	}); 
 };
