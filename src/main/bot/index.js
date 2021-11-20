@@ -1,9 +1,17 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 const config = require('./config.json');
 const secrets = require('./secrets.json');
 const chalk = require('chalk');
+const lavalink = require('@lavacord/discord.js');
+
+
+
+const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
+const rllManager = new lavalink.Manager(client, config.nodes);
+rllManager.on('error', (err, node) => {
+	console.log(chalk.red.bold('[ERROR!]') + `Error: ${err}\nNode: ${node.id}`);
+});
 client.config = config;
 
 const startupBanner = `
@@ -19,9 +27,6 @@ const startupBanner = `
 │                                                  │
 ╰──────────────────────────────────────────────────╯
 `;
-
-
-
 console.log(startupBanner);
 
 fs.readdir(__dirname + '/./events/', (err, files) => {
@@ -59,3 +64,11 @@ fs.readdir(__dirname + '/./RDH/', (err, files) => {
 });
 
 client.login(secrets.token);
+
+
+module.exports = {
+	client,
+	rllManager,
+	commands: client.commands,
+	queues: {}
+};

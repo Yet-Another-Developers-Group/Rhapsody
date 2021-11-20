@@ -14,18 +14,17 @@
   },
   "author": "Sumukh Prasad and Anubhav Shyjesh",
   "engines": {
-    "node": "14.x"
+    "node": "^14.x"
   },
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
+    "@lavacord/discord.js": "^0.0.7",
+    "axios": "^0.24.0",
     "chalk": "^4.1.2",
     "discord-reply": "^0.1.2",
-    "discord.js": "^13.3.1",
+    "discord.js": "^12.5.3",
     "exec": "^0.2.1",
-    "npm": "^8.1.1",
-    "pretty-ms": "^7.0.1",
-    "yt-search": "^0.1.1",
-    "ytdl": "^1.4.1"
+    "npm": "^8.1.1"
   },
   "devDependencies": {
     "eslint": "^8.1.0",

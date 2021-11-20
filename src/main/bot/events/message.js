@@ -1,13 +1,13 @@
-
+require('../assets/ExtendedMessage');
 module.exports = (client, message) => {
 	if (message.author.bot || message.webhookId) return;
 	if (message.content.includes('@here') || message.content.includes('@everyone')) return;
-	if (message.mentions.has(client.user.id)) {
-		message.reply('Hi there! Use the `-help` command to get started.');
+	if (message.mentions.has(client.user.id) && message.content.toLowerCase().includes('help')) {
+		message.inlineReply('Hi there! Use the `-help` command to get started.');
 		return;
 	}
 	if (message.channel.type === 'dm') {
-		message.reply('Sorry, mate. I don\'t work with DMs.');
+		message.inlineReply('Sorry, mate. I don\'t work with DMs.');
 		return;
 	}
 	if (message.content.indexOf(client.config.prefix) !== 0) return;

@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-
+require('../assets/ExtendedMessage');
 exports.run = (client, message, args) => {
-	if(!args || args.length < 4) return message.reply('I\'m sorry, I didn\'t understand that.');
+	if(!args || args.length < 4) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
 	var song = '';
 	var name = '';
 	var currentlyparsing = '';
@@ -31,6 +31,6 @@ exports.run = (client, message, args) => {
 		.setColor(defaultEmbedColor)
 		.setTitle('Delete from playlist - Not Yet Finished.')
 		.setDescription(name + ' - ' + song);
-	message.reply({ embeds: [embed] });
+	message.inlineReply(embed).catch(console.error);
 };
 
