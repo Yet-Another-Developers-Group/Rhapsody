@@ -1,9 +1,20 @@
-const Discord = require("discord.js")
-exports.run = (client, message, args) => {
+const Discord = require('discord.js');
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
+require('../assets/ExtendedMessage');
+const newstuff = 
+`
+- New RhapsodyDiagnosticsHandler module
+- Improved Embeds by adding icons
+`;
+
+exports.run = (client, message) => {
+	const attachment = new Discord.MessageAttachment('assets/whatsnew.png', 'icon.png');
 	const helpEmbed = new Discord.MessageEmbed()
-		.setColor('#ff1111')
+		.setColor(defaultEmbedColor)
 		.setTitle('Rhapsody 2 - What\'s New')
-		.setDescription('Nothing, apparently.')
-	    message.inlineReply(helpEmbed).catch(console.error);
-}
+		.attachFiles(attachment)
+		.setThumbnail('attachment://icon.png')
+		.setDescription(newstuff);
+	message.inlineReply(helpEmbed).catch(console.error);
+};
 

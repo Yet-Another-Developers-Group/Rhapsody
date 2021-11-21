@@ -1,74 +1,32 @@
-require("../assets/ExtendedMessage");
-const Discord = require("discord.js");
-var path = require('path');
-const chalk = require('chalk');
-const yts = require("yt-search");
-const ytdl = require("ytdl-core");
-const streamOptions = {seek: 0, volume: 1};
-const http = require('http');
+const Discord = require('discord.js');
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
+const Queue = require('../rStructures/rQueue');
+const queues = require('..').queues;
+const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
-exports.run = (client, message, args) => {
-     const VoiceChannel = message.member.voice.channel;
-     if (!VoiceChannel || typeof VoiceChannel == 'undefined') {
-          return message.inlineReply("You are not currently in any voice channel.");
-     }
+exports.run = async (client, message, args) => {
 
-     queryQueueServer(message, client)
+	if(!args[0]) return message.channel.send('ARGS MISSING!');
+	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('YOU MUST BE IN A VOICE CHANNEL!');
+	
+	if(!queues[message.guild.id])
+	    queues[message.guild.id] = new Queue(message.guild.id, message.member.voice.channel.id, message.channel);
+
+	const song = await queues[message.guild.id].search(args.join(' '));
+	if(!song.tracks) return message.channel.send('UNKNOWN SONG!');
+
+	const isAdded = await queues[message.guild.id].play(song.tracks[0]);
+
+	if(isAdded) {
+		const embed = new Discord.MessageEmbed()
+			.setColor(defaultEmbedColor)
+			.setTitle('ADDED TO QUEUE')
+			.setDescription('x');
+		message.reply(embed).catch(console.error);
+	}
+
+
+
+	
 };
 
-function queryQueueServer(message, client) {
-     http.get('http://localhost:1800/rhapsody/queue/advanceQueue?g='+message.guild.id, (resp) => {
-     let data = '';
-     resp.on('data', (chunk) => {
-          data += chunk;
-     });
-     resp.on('end', () => {
-          data = JSON.parse(data)
-          if (data.status == "200") {  
-               playSong(data.nowPlaying, message, client);
-          } else {
-               message.inlineReply('No songs to play. Use the `queue` command to queue songs.');
-          }
-     });
-     }).on("error", (err) => {
-          message.inlineReply('An error occurred while trying to get the resource.')
-     }); 
-}
-
-function playSong(array, message, client) {
-     http.get('http://localhost:1800/rhapsody/guild/getChannelId?g='+ message.guild.id, (resp) => {
-     let data = '';
-     resp.on('data', (chunk) => {
-          data += chunk;
-     });
-     resp.on('end', () => {
-          data = JSON.parse(data);
-          var VoiceChannel = client.channels.cache.get(data.channelId);
-          (async () => {
-               const song = {
-                    title: array[0],
-                    url: array[1]
-               };
-               VoiceChannel.join().then(function(connection) {
-                    console.log(chalk.green.bold('[Connected]') + ' Successfully connected to voice channel "' + VoiceChannel.name + '" on "' + message.guild.name + '" by request of "' + message.author.tag + '". Playing "' + song.title + '"');
-                    const stream = ytdl("https://"+song.url, {filter: 'audioonly'});
-                    const dispatcher = connection.play(stream, streamOptions);
-                    dispatcher.on('finish', function () {
-                         queryQueueServer(message, client);
-                    })
-                    const songEmbed = new Discord.MessageEmbed()
-                    .setColor('#ff1111')
-                    .setImage(array[2])
-                    .addFields(
-                         { name: 'Now Playing', value: song.title }
-                    );
-
-                    message.inlineReply(songEmbed);
-               })
-          })()
-     });
-     }).on("error", (err) => {
-          message.inlineReply('An error occurred while trying to get the resource.')
-     });
-     
-}
