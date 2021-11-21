@@ -2,4 +2,6 @@ src/main/bot/node_modules
 src/main/bot/secrets.json
 src/main/backend/.env
 src/main/backend/__pycache__
+src/main/backend/packages/essentials/__pycache__
+src/main/backend/packages/routes/__pycache__
 .DS_Store
