@@ -14,14 +14,13 @@ exports.run = async (client, message, args) => {
 	const allSongs = await queues[message.guild.id].search(args.join(' '));
 	if(!allSongs.tracks || allSongs.tracks.length == 0) return message.channel.send('UNKNOWN SONG!');
 	const songs = allSongs.tracks.slice(0, 5);
-
+	
 	const options = songs.map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`);
-
 	const searchResultsEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('SEARCH RESULTS')
 		.setDescription(`\`\`\`\n${options.join('\n')}\n\`\`\``);
-	const msg = message.reply({ embeds: [searchResultsEmbed]}).catch(console.error);
+	message.reply(searchResultsEmbed).catch(console.error);
 
 	const chosenSong = (await message.channel.awaitMessages(msg => msg.author === message.author && ['1','2','3','4','5', 'cancel'].includes(msg.content), { max: 1 })).first().content;
 	if(chosenSong === 'cancel') return message.channel.send('Canceled');

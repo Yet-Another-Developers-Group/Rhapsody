@@ -40,7 +40,7 @@ module.exports = class Queue {
 		if (!nextSong) {
 			this.player = null;
 			this.currentlyPlaying = null;
-			await rllManager.leave(this.guildID);
+			rllManager.leave(this.guildID);
 			this.textChannel.send('Player has finished playing.');
 			return;
 		}
@@ -63,4 +63,37 @@ module.exports = class Queue {
 		}
 		await this.player.play(nextSong.track);
 	}
+
+	async join() {
+		if (!this.player) {
+			await rllManager.join({
+				guild: this.guildID,
+				channel: this.channelID,
+				node: rllManager.idealNodes[0].id
+			}, { selfdeaf: true });
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	async exit() {
+		if (rllManager.players.get(this.guildID)) {
+			await rllManager.leave(this.guildID);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	async pause() {
+		if (!this.player) return;
+		if (!this.player.paused) await this.player.pause(true);
+	}
+  
+	async resume() {
+		if (!this.player) return;
+		if (this.player.paused) await this.player.pause(false);
+	}
+
 };

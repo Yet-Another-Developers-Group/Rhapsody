@@ -23,6 +23,12 @@ exports.run = async (client, message, args) => {
 			.setTitle('ADDED TO QUEUE')
 			.setDescription('x');
 		message.reply(embed).catch(console.error);
+	} else {
+		const embed = new Discord.MessageEmbed()
+			.setColor(defaultEmbedColor)
+			.setTitle('NOW PLAYING')
+			.setDescription('x');
+		message.reply(embed).catch(console.error);
 	}
 
 
