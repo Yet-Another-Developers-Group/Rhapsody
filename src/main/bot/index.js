@@ -41,27 +41,6 @@ fs.readdir(__dirname + '/./events/', (err, files) => {
 
 client.commands = new Discord.Collection();
 
-<<<<<<< HEAD
-fs.readdir(__dirname + "/./commands/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(__dirname + `/./commands/${file}`);
-    let commandName = file.split(".")[0];
-    console.log(chalk.magenta.bold('[Loading Command]') + ` ${commandName}...`);
-    client.commands.set(commandName, props);
-  });
-});
-
-client.login(secrets.token)
-client.on('ready', () => {
-  console.log(chalk.green.bold('[Logged-in Notice]') + ' Logged in as ' + `${client.user.tag}`);
-  client.guilds.cache.forEach((guild) => {
-    console.log(chalk.gray.bold('[Member of]') + ' ' + guild.name)
-  });
-  client.user.setActivity('-help', ({type: "LISTENING"}))
-});
-=======
 fs.readdir(__dirname + '/./commands/', (err, files) => {
 	if (err) return console.error(err);
 	files.forEach(file => {
@@ -93,4 +72,3 @@ module.exports = {
 	commands: client.commands,
 	queues: {}
 };
->>>>>>> e2e3abc9c2b65fd9c66c52bb0e8c9ad7d84b7a87
