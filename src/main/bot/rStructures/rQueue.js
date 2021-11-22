@@ -40,7 +40,6 @@ module.exports = class Queue {
 		if (!nextSong) {
 			this.player = null;
 			this.currentlyPlaying = null;
-			rllManager.leave(this.guildID);
 			this.textChannel.send('Player has finished playing.');
 			return;
 		}
@@ -57,8 +56,7 @@ module.exports = class Queue {
 			})
 			this.player.once('end', data => {
 				if(data.reason === 'REPLACED' || data.reason === 'STOPPED') return;
-   
-				this._playNext();
+				console.log(data.reason)
 			});
 		}
 		await this.player.play(nextSong.track);
@@ -79,7 +77,9 @@ module.exports = class Queue {
 
 	async exit() {
 		if (rllManager.players.get(this.guildID)) {
-			await rllManager.leave(this.guildID);
+			this.player = null;
+			this.currentlyPlaying = null;
+			rllManager.leave(this.guildID);
 			return true;
 		} else {
 			return false;

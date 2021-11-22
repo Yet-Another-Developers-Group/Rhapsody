@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
 	if(!queues[message.guild.id])
 	    return message.reply('I\'m not currently streaming in this server.');
 	const hasExited = await queues[message.guild.id].exit();
-
+	queues[message.guild.id] = null;
 	if(hasExited) {
 		message.reply('I\'ve exited the voice channel.');
 	} else {
