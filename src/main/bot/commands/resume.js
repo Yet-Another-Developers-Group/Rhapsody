@@ -1,12 +1,11 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require('../assets/ExtendedMessage');
-exports.run = (client, message, args) => {
-	if(!args || args.length < 1) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
+exports.run = (client, message) => {
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
-		.setTitle('Add to queue - Not Yet Finished.')
-		.setDescription(args.toString().replace(/,/gi, ' '));
+		.setTitle('Resume - Not Yet Finished.')
+		.setDescription('Coming soon.');
 	message.inlineReply(embed).catch(console.error);
 };
 

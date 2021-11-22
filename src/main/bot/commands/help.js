@@ -5,15 +5,21 @@ const verboseHelp =
 `
 **Music:** 
 \`-join\`
-  Connects the bot to the voice channel you're currently in.
-\`-play\`:
-  Starts playing songs from the queue.
+  Connects the bot to the Voice Channel you're currently in.
+\`-play <song name>\`:
+  Starts playing a given song from a URL or search term. If a player is already playing, it adds the sng to the queue.
 \`-stop\`:
-  Stops playing and disconnects from the voice channel.
+  Stops playing and disconnects from the Voice Channel.
+\`-pause\`:
+  Pauses the player.
+\`-resume\`:
+  Resumes a paused player.
 
 **Queue:**
 \`-queue <song name>\`:
   Adds the song to the queue.
+\`-search <song name>\`:
+  Searches for a given search term.
 \`-squeue\`:
   See the current queue.
 \`-remove <pos>\`:
@@ -21,18 +27,15 @@ const verboseHelp =
 
 **Playlist:**
 \`-createpl <name>\`:
-Creates a playlist.
+  Creates a playlist.
 \`-deletepl <name>\`:
-Deletes a playlist.
+  Deletes a playlist.
 \`-addtopl -n <name> -s <song>\`:
-Adds song to playlist.
+  Adds song to playlist.
 \`-deletefrompl -n <name> -s <pos>\`:
-Removes the song at the position <pos> in the playlist.
+  Removes the song at the position <pos> in the playlist.
 \`-addpltoqueue -name\`:
-Adds the playlist to queue.
-
- 
-Tip: The -play and -stop commands are universal controls. Use the queue command to queue song first, then use -play.
+  Adds the playlist to queue.
 
 `;
 const diagHelp =
@@ -65,8 +68,8 @@ exports.run = (client, message, args) => {
 			.attachFiles(attachment)
 			.setThumbnail('attachment://icon.png')
 			.addFields(
-				{ name: 'Music', value: '`join`, `play`, `stop`' },
-				{ name: 'Queue', value: '`squeue`, `queue`, `remove`' },
+				{ name: 'Music', value: 'Indexing...' },
+				{ name: 'Queue', value: 'Indexing...' },
 				{ name: 'Playlists', value: '`createpl`, `deletepl`, `addtopl`, `deletefrompl`, `addpltoqueue`' },
 				{ name: 'Miscellaneous', value: '`about`, `help`, `knowme`' },
 				{ name: 'Tip', value: 'Use `v` or `verbose` after the help command to see detailed explanations for commands.' }

@@ -3,8 +3,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require('../assets/ExtendedMessage');
 const newstuff = 
 `
-- New RhapsodyDiagnosticsHandler module
-- Improved Embeds by adding icons
+How impatient are you?
 `;
 
 exports.run = (client, message) => {

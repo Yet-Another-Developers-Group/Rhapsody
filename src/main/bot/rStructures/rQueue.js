@@ -40,7 +40,7 @@ module.exports = class Queue {
 		if (!nextSong) {
 			this.player = null;
 			this.currentlyPlaying = null;
-			this.textChannel.send('Player has finished playing.');
+			this.textChannel.send('No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.');
 			return;
 		}
 
@@ -51,12 +51,9 @@ module.exports = class Queue {
 				node: rllManager.idealNodes[0].id
 			}, { selfdeaf: true });
 			this.player = rllManager.players.get(this.guildID);
-			this.player.once('start', data => {
-				this.textChannel.send('STARTED PLAYER!')
-			})
 			this.player.once('end', data => {
 				if(data.reason === 'REPLACED' || data.reason === 'STOPPED') return;
-				console.log(data.reason)
+				
 			});
 		}
 		await this.player.play(nextSong.track);
