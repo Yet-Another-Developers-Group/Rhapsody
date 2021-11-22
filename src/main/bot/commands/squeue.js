@@ -10,11 +10,7 @@ exports.run = async (client, message) => {
 
 	const next = queues[message.guild.id].queue;
 
-	const text = next.map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`);
-	const embed = new Discord.MessageEmbed()
-		.setColor(defaultEmbedColor)
-		.setTitle('QUEUE')
-		.setDescription(JSON.stringify(text) || 'No songs in queue.');
-	message.reply(embed).catch(console.error);
+	const text = next.map((song, index) => `${++index}. ${song.info.title} (${msToHMS(song.info.length)})`);
+	message.reply('```' + (JSON.stringify(text) || 'No songs in queue.') + '```').catch(console.error);
 };
 

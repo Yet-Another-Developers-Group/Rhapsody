@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
 	}
 
 	const chosenSong = await getChosenSongResult();
-	if(chosenSong === 'cancel') return message.channel.send('Canceled.');
+	if(chosenSong === 'cancel') return message.channel.send('Search for "' + args.join(' ') + '" was canceled.');
 	const song = songs[parseInt(chosenSong) - 1];
 
 	const isAdded = await queues[message.guild.id].play(song);
