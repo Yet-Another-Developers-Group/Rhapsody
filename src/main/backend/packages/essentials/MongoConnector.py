@@ -1,7 +1,4 @@
 import pymongo
-
-from ..essentials.GetResults import getResult
-
 class MongoConnector():
 	def __init__(self):
 		self.client = pymongo.MongoClient("localhost", 27017)
@@ -10,119 +7,51 @@ class MongoConnector():
 		self.database = self.client["rhapsody"]
 
 	###########################################################################
-	def addNewGuildChannel(self, guild_id, channel_id):
+	def addNewPlaylist(self, guild_id, playlist_name):
 
 		guild_id = str(guild_id)
-		channel_id = str(channel_id)
+		playlist_name = str(playlist_name)
 
 		collection = self.database[guild_id]
 
-		channel = collection.find({"_id":channel_id})
+		playlist = collection.find({"_id":playlist_name})
 
-		if channel.count() > 0:
-			collection.update_one({"_id":channel_id}, {"$set":{"currentlyPlaying":True}})
+		if playlist.count() < 0:
 
-		else:
-			collection.insert_one({"_id":channel_id,
-									"currentlyPlaying":True,
+			collection.insert_one({"_id":playlist_name,
 									"songs":[]})
 
-		currently_playing = self.database["CurrentlyPlaying"]
-		currently_playing.insert_one({"_id":channel_id,
-										"guild":guild_id})
-
-
 	###########################################################################
-	def getChannelId(self, guild_id):
-		current_collection = self.database["CurrentlyPlaying"]
-
-		channel = current_collection.find({"guild":guild_id})
-
-		if channel.count() > 0:
-			return channel[0]["_id"]
-
-		else:
-			return False
-
-	###########################################################################
-	def destroyPlayer(self, guild_id):
-
-		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find({"guild":guild_id})[0]["_id"]
-		current_collection.delete_one({"_id": channel})
+	def addToPlaylist(self, guild_id, playlist_name, song):
 
 		current_collection = self.database[guild_id]
-		current_collection.update_one({"_id":channel}, {"$set":{"currentlyPlaying":False,
-																"songs":[]}})
-
-	###########################################################################
-	def addToQueue(self, guild_id, search_term):
-
-		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find({"guild":guild_id})[0]["_id"]
-
-		current_collection = self.database[guild_id]
-		current_queue = current_collection.find({"_id":channel})[0]
-
-		result = getResult(search_term)
+		current_queue = current_collection.find({"_id":playlist_name})[0]
 
 		document = {"songs":[]}
 		document["songs"] = current_queue["songs"]
-		document["songs"].append(result)
+		document["songs"].append(song)
 
-		current_collection.update_one({"_id":channel}, {"$set":document})
-
-	###########################################################################
-	def advanceQueue(self, guild_id):
-
-		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find({"guild":guild_id})[0]["_id"]
-
-		current_collection = self.database[guild_id]
-		current_queue = current_collection.find({"_id":channel})[0]
-
-		document = {"songs":[]}
-		document["songs"] = current_queue["songs"]
-		
-		queue = document["songs"]
-
-		if len(queue) > 0:
-
-			result = queue[0]
-			queue.remove(result)
-			document["songs"] = queue
-
-			current_collection.update_one({"_id":channel}, {"$set":document})
-
-		else:
-			result = "404"
-
-		return result
+		current_collection.update_one({"_id":playlist_name}, {"$set":document})
 
 	###########################################################################
-	def getQueueList(self, guild_id):
-		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find({"guild": guild_id})[0]["_id"]
+	def getPlaylist(self, guild_id, playlist_name):
 
 		current_collection = self.database[guild_id]
-		queue = current_collection.find({"_id":channel})[0]["songs"]
+		queue = current_collection.find({"_id":playlist_name})[0]["songs"]
 
 		return queue
 
 	###########################################################################
-	def removeFromQueue(self, guild_id, index):
-		current_collection = self.database["CurrentlyPlaying"]
-		channel = current_collection.find({"guild": guild_id})[0]["_id"]
-
+	def removeFromPlaylist(self, guild_id, playlist_name, index):
 		current_collection = self.database[guild_id]
-		queue = current_collection.find({"_id":channel})[0]
+		queue = current_collection.find({"_id":playlist_name})[0]
 
 		document = {"songs":[]}
 		document["songs"] = queue["songs"]
 
 		try:
 			document["songs"].pop(int(index))
-			current_collection.update_one({"_id":channel}, {"$set":{"songs":document["songs"]}})
+			current_collection.update_one({"_id":playlist_name}, {"$set":{"songs":document["songs"]}})
 			return 200
 
 		except Exception as e:
