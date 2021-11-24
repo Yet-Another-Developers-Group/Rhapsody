@@ -27,6 +27,7 @@ const startupBanner = `
 │                                                  │
 ╰──────────────────────────────────────────────────╯
 `;
+console.clear();
 console.log(startupBanner);
 
 fs.readdir(__dirname + '/./events/', (err, files) => {
