@@ -8,8 +8,7 @@ exports.run = async (client, message, args) => {
 	
 	if(!args[0]) return message.channel.send('Please use a search term after the command like this:\n`-search <term>`');
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('You must be in a Voice Channel to use this command.');
-	if(!queues[message.guild.id])
-		queues[message.guild.id] = new Queue(message.guild.id, message.member.voice.channel.id, message.channel);
+	if(!queues[message.guild.id]) return message.channel.send('You must be currently streaming to use this command.');
 
 	const allSongs = await queues[message.guild.id].search(args.join(' '));
 	if(!allSongs.tracks || allSongs.tracks.length == 0) return message.channel.send('I\'m sorry, I couldn\'t find that song.');
