@@ -71,5 +71,6 @@ module.exports = {
 	client,
 	rllManager,
 	commands: client.commands,
-	queues: {}
+	queues: {},
+	locks: {},
 };

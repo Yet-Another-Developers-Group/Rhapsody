@@ -1,6 +1,6 @@
 require('../assets/ExtendedMessage');
 exports.run = (client, message, args) => {
-	if(!args || args.length < 1) return message.reply('`Error: Argument not present!`');
+	if(!args || args.length < 1) return message.inlineReply('`Error: Argument not present!`');
 	const commandName = args[0];
 	if(!client.commands.has(commandName)) {
 		return message.inlineReply('`Error: Command ' + commandName + ' is an invalid command!`');
