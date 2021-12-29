@@ -1,4 +1,0 @@
-1. Implementation of Playlist
-2. Implementation of Sound Effects
-3. Implementation of Queueing songs from links
-4. Displaying duration of songs and full queue
