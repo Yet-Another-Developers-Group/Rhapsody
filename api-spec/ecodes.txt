@@ -1,46 +1,46 @@
 Rhapsody Error Codes		
 
 Specific		
-Code	     Type	                         Reason
-E-1001	Creation of playlist	     Cannot create playlist, known error.
-E-1002	Creation of playlist	     Cannot create playlist, unknown error.
-E-2001	Deletion of playlist	     Cannot delete playlist, playlist not found.
-E-2002	Deletion of playlist	     Cannot delete playlist, operation not permitted.
-E-2003	Deletion of playlist	     Cannot delete playlist, unknown error.
-E-3001	Add track to playlist	     Cannot add track, playlist not found.
-E-3002	Add track to playlist	     Cannot add track, track object malformed.
-E-3003	Add track to playlist	     Cannot add track, unknown error occurred.
+Code		Type						Reason
+E-1001	Creation of playlist		Cannot create playlist, known error.
+E-1002	Creation of playlist		Cannot create playlist, unknown error.
+E-2001	Deletion of playlist		Cannot delete playlist, playlist not found.
+E-2002	Deletion of playlist		Cannot delete playlist, operation not permitted.
+E-2003	Deletion of playlist		Cannot delete playlist, unknown error.
+E-3001	Add track to playlist		Cannot add track, playlist not found.
+E-3002	Add track to playlist		Cannot add track, track object malformed.
+E-3003	Add track to playlist		Cannot add track, unknown error occurred.
 E-4001	Delete track from playlist	Cannot delete track, playlist not found.
 E-4002	Delete track from playlist	Cannot delete track, track id malformed.
 E-4003	Delete track from playlist	Cannot delete track, track does not exist.
 E-4004	Delete track from playlist	Cannot delete track, unknown error occurred.
-E-5001	Get Playlist	               Cannot get playlist, playlist not found.
-E-5002	Get Playlist	               Cannot get playlist, playlist empty.
-E-5003	Get Playlist	               Cannot get playlist, unknown error.
-E-6001	List Playlists	               Cannot list playlists, guild not found.
-E-6002	List Playlists	               Cannot get playlist, unknown error.
+E-5001	Get Playlist				Cannot get playlist, playlist not found.
+E-5002	Get Playlist				Cannot get playlist, playlist empty.
+E-5003	Get Playlist				Cannot get playlist, unknown error.
+E-6001	List Playlists				Cannot list playlists, guild not found.
+E-6002	List Playlists				Cannot get playlist, unknown error.
 		
 Generic		
-Code	          Type	                                        Reason
-E-PYMON-01	pymongo.errors.AutoReconnect	               Refer to PyMongo documentation.
-E-PYMON-02	pymongo.errors.BulkWriteError	               Refer to PyMongo documentation.
-E-PYMON-03	pymongo.errors.CollectionInvalid	          Refer to PyMongo documentation.
-E-PYMON-04	pymongo.errors.ConfigurationError	          Refer to PyMongo documentation.
-E-PYMON-05	pymongo.errors.ConnectionFailure	          Refer to PyMongo documentation.
-E-PYMON-06	pymongo.errors.CursorNotFound	               Refer to PyMongo documentation.
-E-PYMON-07	pymongo.errors.DocumentTooLarge	          Refer to PyMongo documentation.
-E-PYMON-08	pymongo.errors.DuplicateKeyError	          Refer to PyMongo documentation.
-E-PYMON-09	pymongo.errors.EncryptionError	          Refer to PyMongo documentation.
-E-PYMON-10	pymongo.errors.ExecutionTimeout	          Refer to PyMongo documentation.
-E-PYMON-11	pymongo.errors.InvalidName	               Refer to PyMongo documentation.
-E-PYMON-12	pymongo.errors.InvalidOperation	          Refer to PyMongo documentation.
-E-PYMON-13	pymongo.errors.NetworkTimeout	               Refer to PyMongo documentation.
-E-PYMON-14	pymongo.errors.NotPrimaryError	          Refer to PyMongo documentation.
-E-PYMON-15	pymongo.errors.OperationFailure	          Refer to PyMongo documentation.
-E-PYMON-16	pymongo.errors.ProtocolError	               Refer to PyMongo documentation.
+Code			Type									Reason
+E-PYMON-01	pymongo.errors.AutoReconnect				Refer to PyMongo documentation.
+E-PYMON-02	pymongo.errors.BulkWriteError				Refer to PyMongo documentation.
+E-PYMON-03	pymongo.errors.CollectionInvalid			Refer to PyMongo documentation.
+E-PYMON-04	pymongo.errors.ConfigurationError			Refer to PyMongo documentation.
+E-PYMON-05	pymongo.errors.ConnectionFailure			Refer to PyMongo documentation.
+E-PYMON-06	pymongo.errors.CursorNotFound				Refer to PyMongo documentation.
+E-PYMON-07	pymongo.errors.DocumentTooLarge			Refer to PyMongo documentation.
+E-PYMON-08	pymongo.errors.DuplicateKeyError			Refer to PyMongo documentation.
+E-PYMON-09	pymongo.errors.EncryptionError			Refer to PyMongo documentation.
+E-PYMON-10	pymongo.errors.ExecutionTimeout			Refer to PyMongo documentation.
+E-PYMON-11	pymongo.errors.InvalidName				Refer to PyMongo documentation.
+E-PYMON-12	pymongo.errors.InvalidOperation			Refer to PyMongo documentation.
+E-PYMON-13	pymongo.errors.NetworkTimeout				Refer to PyMongo documentation.
+E-PYMON-14	pymongo.errors.NotPrimaryError			Refer to PyMongo documentation.
+E-PYMON-15	pymongo.errors.OperationFailure			Refer to PyMongo documentation.
+E-PYMON-16	pymongo.errors.ProtocolError				Refer to PyMongo documentation.
 E-PYMON-17	pymongo.errors.ServerSelectionTimeoutError	Refer to PyMongo documentation.
-E-PYMON-18	pymongo.errors.WTimeoutError	               Refer to PyMongo documentation.
-E-PYMON-19	pymongo.errors.WriteConcernError	          Refer to PyMongo documentation.
-E-PYMON-20	pymongo.errors.WriteError	               Refer to PyMongo documentation.
-E-NONFATAL	Non-fatal error	                         Any non-fatal error that occurs.
-E-FATAL-ERR	Fatal error	                              Any fatal error. In this case, the process must restart.
+E-PYMON-18	pymongo.errors.WTimeoutError				Refer to PyMongo documentation.
+E-PYMON-19	pymongo.errors.WriteConcernError			Refer to PyMongo documentation.
+E-PYMON-20	pymongo.errors.WriteError				Refer to PyMongo documentation.
+E-NONFATAL	Non-fatal error						Any non-fatal error that occurs.
+E-FATAL-ERR	Fatal error							Any fatal error. In this case, the process must restart.
