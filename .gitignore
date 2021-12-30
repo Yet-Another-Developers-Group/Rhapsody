@@ -5,3 +5,4 @@ src/main/backend/__pycache__
 src/main/backend/packages/essentials/__pycache__
 src/main/backend/packages/routes/__pycache__
 .DS_Store
+api-spec/ecodes.xlsx
