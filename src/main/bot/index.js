@@ -14,7 +14,7 @@ var logStdout = process.stdout;
 console.log = function () {
   	logFile.write(util.format.apply(null, arguments) + '\n');
   	logStdout.write(util.format.apply(null, arguments) + '\n');
-}
+};
 
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 const rllManager = new lavalink.Manager(client, config.nodes);

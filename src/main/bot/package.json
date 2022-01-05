@@ -25,7 +25,9 @@
     "discord.js": "^12.5.3",
     "exec": "^0.2.1",
     "express": "^4.17.2",
-    "npm": "^8.1.1"
+    "npm": "^8.1.1",
+    "osx-temperature-sensor": "^1.0.7",
+    "systeminformation": "^5.9.17"
   },
   "devDependencies": {
     "eslint": "^8.1.0",
