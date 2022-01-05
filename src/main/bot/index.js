@@ -4,14 +4,24 @@ const config = require('./config.json');
 const secrets = require('./secrets.json');
 const chalk = require('chalk');
 const lavalink = require('@lavacord/discord.js');
+const RhapsodyDashboardAPIServer = require('./server/index.js');
 
+// Log to file as well as console.
+var util = require('util');
+var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
+var logStdout = process.stdout;
 
+console.log = function () {
+  	logFile.write(util.format.apply(null, arguments) + '\n');
+  	logStdout.write(util.format.apply(null, arguments) + '\n');
+}
 
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 const rllManager = new lavalink.Manager(client, config.nodes);
 rllManager.on('error', (err, node) => {
 	console.log(chalk.red.bold('[ERROR!]') + `Error: ${err}\nNode: ${node.id}`);
 });
+RhapsodyDashboardAPIServer.start(config.port);
 client.config = config;
 
 const startupBanner = `

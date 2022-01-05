@@ -1,5 +1,6 @@
 {
   "prefix": "-",
+  "port": "1801",
   "defaultEmbedColor": "#5992f5",
   "nodes": [
     {
