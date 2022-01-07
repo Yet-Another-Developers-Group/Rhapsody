@@ -11,6 +11,9 @@ var util = require('util');
 var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
 var logStdout = process.stdout;
 
+/**
+ * Makes console.log write to a file as well as stdout
+ */
 console.log = function () {
   	logFile.write(util.format.apply(null, arguments) + '\n');
   	logStdout.write(util.format.apply(null, arguments) + '\n');
