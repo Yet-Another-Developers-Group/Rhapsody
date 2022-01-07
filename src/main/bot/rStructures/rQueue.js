@@ -2,7 +2,17 @@ const { rllManager } = require('..');
 const axios = require('axios').default;
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 
-module.exports = class Queue {
+/**
+ * Queue class
+ */
+class Queue {
+
+	/**
+	 * 
+	 * @param {integer} guildID - ID of the guild to which the queue is attached
+	 * @param {integer} channelID - ID of the channel to which the queue is attached
+	 * @param {TextChannel} textChannel - Channel to which the bot posts updates from the queue
+	 */
 	constructor (guildID, channelID, textChannel) {
 		this.guildID = guildID;
 		this.channelID = channelID;
@@ -12,6 +22,11 @@ module.exports = class Queue {
 		this.currentlyPlaying = null;
 	}
 
+	/**
+	 * Searches YouTube.
+	 * @param {string} searchTerm - Term to search for (uses LavaLink)
+	 * @returns {array}
+	 */
 	async search(searchTerm) {
 		const node = rllManager.idealNodes[0];
 		const params = new URLSearchParams();
@@ -24,6 +39,11 @@ module.exports = class Queue {
 		return data.data || [];
 	}
 
+	/**
+	 * Plays song/adds to queue is another is already playing.
+	 * @param {Object} track 
+	 * @returns {boolean}
+	 */
 	async play(track) {
 		this.queue.push(track);
 		if (!this.currentlyPlaying) {
@@ -34,6 +54,9 @@ module.exports = class Queue {
 		}
 	}
 
+	/**
+	 * Plays next song.
+	 */
 	async _playNext() {
 		const nextSong = this.queue.shift();
 		this.currentlyPlaying = nextSong;
@@ -59,6 +82,10 @@ module.exports = class Queue {
 		await this.player.play(nextSong.track);
 	}
 
+	/**
+	 * Adds the bot to a Voice Channel.
+	 * @returns {boolean}
+	 */
 	async join() {
 		if (!this.player) {
 			await rllManager.join({
@@ -72,6 +99,10 @@ module.exports = class Queue {
 		}
 	}
 
+	/**
+	 * Removes the bot from a Voice Channel it is in.
+	 * @returns {boolean}
+	 */
 	async exit() {
 		if (rllManager.players.get(this.guildID)) {
 			this.player = null;
@@ -83,14 +114,24 @@ module.exports = class Queue {
 		}
 	}
 
+	/**
+	 * Pauses stream.
+	 * @returns {boolean}
+	 */
 	async pause() {
 		if (!this.player) return;
 		if (!this.player.paused) await this.player.pause(true);
 	}
   
+	/**
+	 * Resumes stream.
+	 * @returns {boolean}
+	 */
 	async resume() {
 		if (!this.player) return;
 		if (this.player.paused) await this.player.pause(false);
 	}
 
 };
+
+module.exports = Queue;
