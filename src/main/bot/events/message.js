@@ -1,4 +1,10 @@
 require('../ExtendedMessage/ExtendedMessage');
+
+/**
+ * Handles the message event.
+ * @param {Discord.client} client 
+ * @param {Discord.Message} message 
+ */
 module.exports = (client, message) => {
 	if (message.author.bot || message.webhookId) return;
 	if (message.content.includes('@here') || message.content.includes('@everyone')) return;

@@ -1,5 +1,10 @@
 const chalk = require('chalk');
 const { rllManager } = require('..');
+
+/**
+ * Handles the ready event.
+ * @param {Discord.Client} client 
+ */
 module.exports = (client) => {
 	console.log(chalk.green.bold('[Logged-in Notice]') + ' Logged in as ' + `${client.user.tag}`);
 	client.guilds.cache.forEach((guild) => {

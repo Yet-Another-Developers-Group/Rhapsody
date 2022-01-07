@@ -13,6 +13,13 @@ Anubhav Shyjesh ([github.com/Physics-Phreak](https://github.com/Physics-Phreak))
 
 "Happy listening!" - *the developers*
 `;
+
+/**
+ * Posts a message when the bot is added to a new Guild.
+ * @param {Discord.Client} client - bot's client
+ * @param {Discord.Guild} guild - guild which the bot joined
+ */
+
 module.exports = (client, guild) => {
 	console.log(chalk.gray.bold('[Added to guild!]') + ' ' + guild.name);
 
