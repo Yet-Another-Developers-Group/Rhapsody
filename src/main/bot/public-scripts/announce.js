@@ -2,6 +2,11 @@ const chalk = require('chalk');
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 
+/**
+ * Announes something in all the servers the bot is in.
+ * @param {string} title - Title of announcement
+ * @param {string} description - Description/content of announcement
+ */
 function sendAnnouncement(title, description) {
 	console.log(chalk.gray.bold('[Announcement]') + ` Sent announcement with title "${chalk.bold(title)}"`);
      description = description.replace(/\<rhapsodyAPINewlineIndicator\>/g, '\n');
