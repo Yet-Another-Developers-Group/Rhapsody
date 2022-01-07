@@ -4,7 +4,7 @@ const queues = require('..').queues;
 
 const LockAgent = require('../rStructures/rLockAgent');
 const locks = require('..').locks;
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 exports.run = async (client, message) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('You must be in a Voice Channel to use this command.');
 	

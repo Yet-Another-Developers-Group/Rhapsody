@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const version = require('../package.json').fullVersion;
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 var server = '';
 var pyVer = '';
 var nodeVer = '';

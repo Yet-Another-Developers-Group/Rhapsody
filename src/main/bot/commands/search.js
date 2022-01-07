@@ -4,7 +4,7 @@ const queues = require('..').queues;
 const locks = require('..').locks;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 exports.run = async (client, message, args) => {
 	
 	if(!args[0]) return message.channel.send('Please use a search term after the command like this:\n`-search <term>`');

@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 exports.run = (client, message, args) => {
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)

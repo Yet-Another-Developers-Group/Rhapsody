@@ -3,7 +3,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const Queue = require('../rStructures/rQueue');
 const queues = require('..').queues;
 const locks = require('..').locks;
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 
 const LockAgent = require('../rStructures/rLockAgent');
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;

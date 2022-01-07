@@ -1,4 +1,4 @@
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 exports.run = (client, message, args) => {
 	if(!args || args.length < 1) return message.inlineReply('`Error: Argument not present!`');
 	const commandName = args[0];

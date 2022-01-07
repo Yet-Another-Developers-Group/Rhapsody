@@ -1,4 +1,4 @@
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 module.exports = (client, message) => {
 	if (message.author.bot || message.webhookId) return;
 	if (message.content.includes('@here') || message.content.includes('@everyone')) return;

@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 
 exports.run = (client, message) => {
 	const attachment = new Discord.MessageAttachment('assets/diagnostics.png', 'icon.png');

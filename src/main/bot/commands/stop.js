@@ -1,6 +1,6 @@
 const queues = require('..').queues;
 
-require('../assets/ExtendedMessage');
+require('../ExtendedMessage/ExtendedMessage');
 const locks = require('..').locks;
 
 exports.run = async (client, message) => {
