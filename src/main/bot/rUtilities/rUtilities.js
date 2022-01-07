@@ -1,4 +1,9 @@
 module.exports = {
+	/**
+	 * Changes milliseconds to formatted string.
+	 * @param {integer} duration 
+	 * @returns {string}
+	 */
 	millisecondsToHMSString: (duration) => {
 		var seconds = parseInt((duration / 1000) % 60);
 		var minutes = parseInt((duration / (1000 * 60)) % 60);
