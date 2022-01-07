@@ -1,4 +1,9 @@
 const { APIMessage, Structures } = require('discord.js');
+/**
+ * Extends API for messages
+ * @constructor
+ * @augments APIMessage
+ */
 
 class ExtAPIMessage extends APIMessage {
 	resolveData() {
@@ -16,11 +21,29 @@ class ExtAPIMessage extends APIMessage {
 	}
 }
 
+/**
+ * Extends API for messages with [inlineReply]{@link inlineReply} and [edit]{@link edit}
+ * @constructor
+ * @extends Message
+ */
 class Message extends Structures.get('Message') {
+
+	/**
+	 * Allows bot to use inline replies.
+	 * @param {string} content - content of the reply to send
+	 * @param {string} options - options for the reply to send
+	 * @returns Message
+	 */
 	inlineReply(content, options) {
 		return this.channel.send(ExtAPIMessage.create(this, content, options, { replyTo: this }).resolveData());
 	}
 
+	/**
+	 * Allows bot to edit messages it sent.
+	 * @param {string} content - content to change message's existing content to
+	 * @param {string} options - options
+	 * @returns Message
+	 */
 	edit(content, options) {
 		return super.edit(ExtAPIMessage.create(this, content, options).resolveData());
 	}
