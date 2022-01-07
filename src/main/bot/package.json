@@ -10,7 +10,8 @@
     "start": "node index.js",
     "lint": "./node_modules/.bin/eslint ./ --fix",
     "startmongomac": "brew services start mongodb",
-    "stopmongomac": "brew services stop mongodb"
+    "stopmongomac": "brew services stop mongodb",
+    "generatedoc": "jsdoc -c ./jsdoc-conf.json"
   },
   "author": "Sumukh Prasad and Anubhav Shyjesh",
   "engines": {

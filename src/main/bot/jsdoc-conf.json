@@ -1,0 +1,21 @@
+{
+     "plugins": [],
+     "recurseDepth": 10,
+     "opts": {
+       "recurse": true,
+       "destination": "../bot-docs/"
+     },
+     "source": {
+       "include": ["."],
+       "includePattern": ".+\\.js(doc|x)?$",
+       "excludePattern": "node_modules"
+     },
+     "tags": {
+       "allowUnknownTags": true,
+       "dictionaries": ["jsdoc", "closure"]
+     },
+     "templates": {
+       "cleverLinks": true,
+       "monospaceLinks": true
+     }
+}
