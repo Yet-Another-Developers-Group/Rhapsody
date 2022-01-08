@@ -10,8 +10,7 @@ require('../ExtendedMessage/ExtendedMessage');
  * Adds the bot to a Voice Channel
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
- * @returns 
- */
+ *  */
 exports.run = async (client, message) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('You must be in a Voice Channel to use this command.');
 	

@@ -6,8 +6,7 @@ require('../ExtendedMessage/ExtendedMessage');
  * Lists playlists
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
- * @returns 
- */
+ *  */
 exports.run = (client, message) => {
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)

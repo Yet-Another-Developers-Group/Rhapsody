@@ -7,8 +7,7 @@ require('../ExtendedMessage/ExtendedMessage');
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  * @param {array} args 
- * @returns 
- */
+ *  */
 exports.run = (client, message, args) => {
 	if(!args || args.length < 1) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
 	const embed = new Discord.MessageEmbed()

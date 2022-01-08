@@ -7,8 +7,7 @@ require('../ExtendedMessage/ExtendedMessage');
  * Unlocks stream.
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
- * @returns 
- */
+ *  */
 exports.run = async (client, message) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.inlineReply('You must be in a Voice Channel to use this command.');
 	if(!queues[message.guild.id]) return message.inlineReply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');

@@ -11,8 +11,7 @@ require('../ExtendedMessage/ExtendedMessage');
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  * @param {array} args 
- * @returns 
- */
+ *  */
 exports.run = async (client, message, args) => {
 	
 	if(!args[0]) return message.channel.send('Please use a search term after the command like this:\n`-search <term>`');

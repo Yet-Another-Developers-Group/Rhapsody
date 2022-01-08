@@ -6,8 +6,7 @@ require('../ExtendedMessage/ExtendedMessage');
  * Resumes stream
  * @param {Discord.Client} client 
  * @param {Discord.Message} message  
- * @returns 
- */
+ *  */
 exports.run = async (client, message) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.inlineReply('You must be in a Voice Channel to use this command.');
 	if(locks[message.guild.id] &&

@@ -49,8 +49,7 @@ Powered by ServerControl.
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  * @param {array} args 
- * @returns 
- */
+ *  */
 exports.run = (client, message, args) => {
 	if(args && args.length > 0) {
 		if (args[0] == 'v' || args[0] == 'verbose') {
