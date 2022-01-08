@@ -1,8 +1,13 @@
 const queues = require('..').queues;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
-
-
 require('../ExtendedMessage/ExtendedMessage');
+
+/**
+ * Posts the current queue.
+ * @param {Discord.Client} client 
+ * @param {Discord.Message} message
+ * @returns 
+ */
 exports.run = async (client, message) => {
 
 	if(!queues[message.guild.id]) return message.channel.send('I\'m not currently streaming in this server.');
