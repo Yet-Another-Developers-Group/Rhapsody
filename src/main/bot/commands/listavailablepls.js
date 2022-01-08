@@ -1,7 +1,14 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require('../ExtendedMessage/ExtendedMessage');
-exports.run = (client, message, args) => {
+
+/**
+ * Lists playlists
+ * @param {Discord.Client} client 
+ * @param {Discord.Message} message 
+ * @returns 
+ */
+exports.run = (client, message) => {
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('List playlists - Not Yet Finished.')
