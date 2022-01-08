@@ -5,6 +5,14 @@ const locks = require('..').locks;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 require('../ExtendedMessage/ExtendedMessage');
+
+/**
+ * Searches Youtube (uses Lavalink), adds chosen track to queue.
+ * @param {Discord.Client} client 
+ * @param {Discord.Message} message 
+ * @param {array} args 
+ * @returns 
+ */
 exports.run = async (client, message, args) => {
 	
 	if(!args[0]) return message.channel.send('Please use a search term after the command like this:\n`-search <term>`');
