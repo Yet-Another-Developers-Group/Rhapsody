@@ -1,6 +1,14 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 require('../ExtendedMessage/ExtendedMessage');
+
+/**
+ * Deletes track from playlist.
+ * @param {Discord.Client} client 
+ * @param {Discord.Message} message 
+ * @param {array} args 
+ * @returns 
+ */
 exports.run = (client, message, args) => {
 	if(!args || args.length < 4) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
 	var song = '';
