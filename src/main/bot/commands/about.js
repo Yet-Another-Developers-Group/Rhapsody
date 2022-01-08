@@ -30,7 +30,11 @@ exec('python3 -V', (err, stdout) => {
 	pyVer+=stdout+'\n';
 });
 
-
+/**
+ * Posts an embed with information about Rhapsody
+ * @param {Discord.Client} client 
+ * @param {Discord.Message} message 
+ */
 exports.run = (client, message) => {
 	const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
 	const helpEmbed = new Discord.MessageEmbed()
