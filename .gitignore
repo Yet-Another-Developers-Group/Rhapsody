@@ -7,3 +7,4 @@ src/main/backend/packages/routes/__pycache__
 .DS_Store
 api-spec/ecodes.xlsx
 src/main/bot/log.txt
+src/RhapsodyDashboard/node_modules
