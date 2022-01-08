@@ -1,4 +1,4 @@
-require('../assets/ExtendedMessage.js');
+require('../ExtendedMessage/ExtendedMessage.js');
 
 /**
  * Ping/pong
