@@ -39,6 +39,6 @@ class LockAgent {
 		this.allowedUsers == null;
 		return true;
 	}
-};
+}
 
 module.exports = LockAgent;

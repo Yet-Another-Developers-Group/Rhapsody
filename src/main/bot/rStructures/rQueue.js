@@ -132,6 +132,6 @@ class Queue {
 		if (this.player.paused) await this.player.pause(false);
 	}
 
-};
+}
 
 module.exports = Queue;

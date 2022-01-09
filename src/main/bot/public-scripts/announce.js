@@ -9,30 +9,30 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  */
 function sendAnnouncement(title, description) {
 	console.log(chalk.gray.bold('[Announcement]') + ` Sent announcement with title "${chalk.bold(title)}"`);
-     description = description.replace(/\<rhapsodyAPINewlineIndicator\>/g, '\n');
-     const { client } = require("../index.js");
+	description = description.replace(/\<rhapsodyAPINewlineIndicator\>/g, '\n');
+	const { client } = require('../index.js');
 
-     client.guilds.cache.forEach((guild) => {
-          let defaultChannel = '';
-          guild.channels.cache.forEach((channel) => {
-               if(channel.type == 'text' && defaultChannel == '') {
-                    if(channel.permissionsFor(guild.me).has('SEND_MESSAGES')) {
-                         defaultChannel = channel;
-                    }
-               }
-          });
-          const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
-          const announcementEmbed = new Discord.MessageEmbed()
-               .setColor(defaultEmbedColor)
-               .setTitle(title)
-               .attachFiles(attachment)
-               .setThumbnail('attachment://icon.png')
-               .setDescription(description)
-               .setFooter('https://github.com/Yet-Another-Developers-Group/Rhapsody');
-          defaultChannel.send(announcementEmbed);
-      });
+	client.guilds.cache.forEach((guild) => {
+		let defaultChannel = '';
+		guild.channels.cache.forEach((channel) => {
+			if(channel.type == 'text' && defaultChannel == '') {
+				if(channel.permissionsFor(guild.me).has('SEND_MESSAGES')) {
+					defaultChannel = channel;
+				}
+			}
+		});
+		const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
+		const announcementEmbed = new Discord.MessageEmbed()
+			.setColor(defaultEmbedColor)
+			.setTitle(title)
+			.attachFiles(attachment)
+			.setThumbnail('attachment://icon.png')
+			.setDescription(description)
+			.setFooter('https://github.com/Yet-Another-Developers-Group/Rhapsody');
+		defaultChannel.send(announcementEmbed);
+	});
 	
 
-};
+}
    
 module.exports = { sendAnnouncement };

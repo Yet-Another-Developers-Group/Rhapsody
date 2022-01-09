@@ -6,8 +6,8 @@ const getRhapsodyInfo = require('./server-modules/aboutThisRhapsody.js');
 const announce = require('./server-modules/announce.js');
 
 app.all('*', function (req, res, next) {
-     res.header('Access-Control-Allow-Origin', '*');
-     next();
+	res.header('Access-Control-Allow-Origin', '*');
+	next();
 });
 
 app.get('/aboutServer', function (req, res) {
@@ -19,7 +19,7 @@ app.get('/aboutThisRhapsody', function (req, res) {
 });
 
 app.get('/announce', function (req, res) {
-	announce((req.query.title || "Announcement"), (req.query.description || "*Oops, something went wrong with the announcement script. Sorry!*")).then(value => res.end(JSON.stringify(value)));
+	announce((req.query.title || 'Announcement'), (req.query.description || '*Oops, something went wrong with the announcement script. Sorry!*')).then(value => res.end(JSON.stringify(value)));
 });
 
 function start(port) {
