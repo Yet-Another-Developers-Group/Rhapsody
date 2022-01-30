@@ -1,5 +1,5 @@
 require('../ExtendedMessage/ExtendedMessage');
-
+const Discord = require('discord.js');
 /**
  * Handles the message event.
  * @param {Discord.client} client 
@@ -28,6 +28,15 @@ module.exports = (client, message) => {
 	// If that command doesn't exist, silently exit and do nothing
 	if (!cmd) return;
 
-	// Run the command
-	cmd.run(client, message, args);
+	try {
+		// Run the command
+		cmd.run(client, message, args);
+	} catch (e) {
+		const errorEmbed = new Discord.MessageEmbed()
+		.setColor('#ff0000')
+		.setTitle('An error occurred.')
+		.setDescription("```" + e.message + "```");
+		message.channel.send(errorEmbed);
+		console.log(e);
+	}
 };
