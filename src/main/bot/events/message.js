@@ -33,9 +33,9 @@ module.exports = (client, message) => {
 		cmd.run(client, message, args);
 	} catch (e) {
 		const errorEmbed = new Discord.MessageEmbed()
-		.setColor('#ff0000')
-		.setTitle('An error occurred.')
-		.setDescription("```" + e.message + "```");
+			.setColor('#ff0000')
+			.setTitle('An error occurred.')
+			.setDescription('```' + e.message + '```');
 		message.channel.send(errorEmbed);
 		console.log(e);
 	}

@@ -14,6 +14,6 @@ exports.run = async (client, message) => {
 	const next = queues[message.guild.id].queue;
 
 	const text = next.map((song, index) => `${++index}. ${song.info.title} (${msToHMS(song.info.length)})`);
-	message.inlineReply('```' + (JSON.stringify(text) || 'No songs in queue.') + '```').catch(console.error);
+	message.inlineReply('```' + (text.join('\r\n') || 'No songs in queue.') + '```').catch(console.error);
 };
 

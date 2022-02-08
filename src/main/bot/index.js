@@ -79,6 +79,43 @@ fs.readdir(__dirname + '/./RDH/', (err, files) => {
 
 client.login(secrets.token);
 
+process.stdin.resume();//so the program will not close instantly
+var exitSequenceHasBeenCalled = false;
+function exitHandler(options, exitCode) {
+	if  (exitSequenceHasBeenCalled) return process.exit();
+	exitSequenceHasBeenCalled = true;
+	console.log(chalk.bold.red(`${exitCode} WAS CALLED ON MAIN PROCESS! `));
+	for (const queueObject in module.exports.queues) {
+		if (Object.hasOwnProperty.call(module.exports.queues, queueObject)) {
+			const element = module.exports.queues[queueObject];
+			if (element !== null && module.exports.rllManager.players.get(element.guildID)) {
+				const emergencyEmbed = new Discord.MessageEmbed()
+					.setColor('#ff0000')
+					.setTitle('Process exited.')
+					.setDescription('We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody), and we\'ll get this fixed as soon as possible.');
+				element.textChannel.send(emergencyEmbed);
+				console.log(chalk.bold.red(`EXITTED ${element.guildID}`));
+				element.player = null;
+				element.currentlyPlaying = null;
+				rllManager.leave(element.guildID);
+			}
+		}
+	}
+	console.log(chalk.bold.red('PROCESS IS EXITING!'));
+}
+
+//do something when app is closing
+process.on('exit', exitHandler.bind(null, {name: 'exit'}));
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {name: 'SIGINT'}));
+
+// catches "kill pid" (for example: nodemon restart)
+process.on('SIGUSR1', exitHandler.bind(null, {name: 'SIGUSR1'}));
+process.on('SIGUSR2', exitHandler.bind(null, {name: 'SIGUSR2'}));
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {name: 'uncaughtException'}));
 
 module.exports = {
 	client,
