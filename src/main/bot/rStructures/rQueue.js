@@ -1,6 +1,9 @@
+const Discord = require('discord.js');
 const { rllManager } = require('..');
 const axios = require('axios').default;
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
+const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 /**
  * Queue class
@@ -60,7 +63,15 @@ class Queue {
 	async _playNext() {
 		const nextSong = this.queue.shift();
 		this.currentlyPlaying = nextSong;
-		if (!nextSong) {
+
+		if (nextSong) {
+			const currentlyPlayingEmbed = new Discord.MessageEmbed()
+				.setColor(defaultEmbedColor)
+				.setTitle('Now Playing')
+				.setImage(`https://img.youtube.com/vi/${this.currentlyPlaying.info.identifier}/hqdefault.jpg`)
+				.setDescription(this.currentlyPlaying.info.title + ` - \`${msToHMS(this.currentlyPlaying.info.length)}\``);
+			this.textChannel.send(currentlyPlayingEmbed);
+		} else {
 			this.player = null;
 			this.currentlyPlaying = null;
 			this.textChannel.send('No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.');
@@ -76,7 +87,7 @@ class Queue {
 			this.player = rllManager.players.get(this.guildID);
 			this.player.once('end', data => {
 				if(data.reason === 'REPLACED' || data.reason === 'STOPPED') return;
-				
+				this._playNext();
 			});
 		}
 		await this.player.play(nextSong.track);

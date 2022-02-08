@@ -38,16 +38,6 @@ exports.run = async (client, message, args) => {
 			.setTitle('Song Added to Queue')
 			.setDescription(`${song.tracks[0].info.title} - ${song.tracks[0].info.author} - \`${msToHMS(song.tracks[0].info.length)}\``);
 		message.inlineReply(embed).catch(console.error);
-	} else {
-		const embed = new Discord.MessageEmbed()
-			.setColor(defaultEmbedColor)
-			.setTitle('Now Playing')
-			.setDescription(`${song.tracks[0].info.title} - ${song.tracks[0].info.author} - \`${msToHMS(song.tracks[0].info.length)}\``);
-		message.inlineReply(embed).catch(console.error);
 	}
-
-
-
-	
 };
 
