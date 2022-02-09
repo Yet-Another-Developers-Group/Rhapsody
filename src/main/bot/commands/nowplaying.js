@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const queues = require('..').queues;
 require('../ExtendedMessage/ExtendedMessage');
 
@@ -15,8 +17,7 @@ exports.run = async (client, message) => {
 			.setTitle('Now Playing')
 			.setImage(`https://img.youtube.com/vi/${queues[message.guild.id].currentlyPlaying.info.identifier}/hqdefault.jpg`)
 			.setDescription(queues[message.guild.id].currentlyPlaying.info.title);
-		this.textChannel.send(currentlyPlayingEmbed);
+		message.inlineReply(currentlyPlayingEmbed);
 	}
-	message.inlineReply('Skipped current song.');
 };
 
