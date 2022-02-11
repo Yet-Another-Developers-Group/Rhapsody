@@ -69,7 +69,7 @@ class Queue {
 				.setColor(defaultEmbedColor)
 				.setTitle('Now Playing')
 				.setImage(`https://img.youtube.com/vi/${this.currentlyPlaying.info.identifier}/hqdefault.jpg`)
-				.setDescription(this.currentlyPlaying.info.title + ` - \`${msToHMS(this.currentlyPlaying.info.length)}\``);
+				.setDescription(this.currentlyPlaying.info.title + ` - \`${this.currentlyPlaying.info.isStream ? "Live Stream" : msToHMS(this.currentlyPlaying.info.length)}\``);
 			this.textChannel.send(currentlyPlayingEmbed);
 		} else {
 			this.player = null;
