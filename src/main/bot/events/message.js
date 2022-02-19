@@ -1,5 +1,7 @@
 require('../ExtendedMessage/ExtendedMessage');
 const Discord = require('discord.js');
+const { requireUncached } = require('../rUtilities/rUtilities');
+
 /**
  * Handles the message event.
  * @param {Discord.client} client 
@@ -28,6 +30,14 @@ module.exports = (client, message) => {
 	// If that command doesn't exist, silently exit and do nothing
 	if (!cmd) return;
 
+	if (requireUncached("../config.json").status.isUnderMaintainence) {
+		message.channel.send({
+			files: [
+				requireUncached("../config.json").status.pathToFallbackImage
+			]
+		 });
+		 return;
+	};
 	try {
 		// Run the command
 		cmd.run(client, message, args);

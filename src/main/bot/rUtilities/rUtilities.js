@@ -14,6 +14,16 @@ module.exports = {
 		seconds = (seconds < 10) ? '0' + seconds : seconds;
 
 		return hours + ':' + minutes + ':' + seconds;
+	},
+
+	/**
+	 * Re-requires module without cache.
+	 * @param {string} module 
+	 * @returns {module}
+	 */
+	requireUncached: (module) => {
+		delete require.cache[require.resolve(module)];
+		return require(module);
 	}
 };
 

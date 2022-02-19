@@ -10,14 +10,14 @@ const RhapsodyDashboardAPIServer = require('./server/index.js');
 var util = require('util');
 var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
 var logStdout = process.stdout;
-
-/**
- * Makes console.log write to a file as well as stdout
- */
 console.log = function () {
   	logFile.write(util.format.apply(null, arguments) + '\n');
   	logStdout.write(util.format.apply(null, arguments) + '\n');
 };
+
+
+
+
 
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
 const rllManager = new lavalink.Manager(client, config.nodes);
@@ -26,6 +26,10 @@ rllManager.on('error', (err, node) => {
 });
 RhapsodyDashboardAPIServer.start(config.port);
 client.config = config;
+
+
+
+
 
 const startupBanner = `
 ╭──────────────────────────────────────────────────╮
@@ -43,6 +47,10 @@ const startupBanner = `
 console.clear();
 console.log(startupBanner);
 
+
+
+
+
 fs.readdir(__dirname + '/./events/', (err, files) => {
 	if (err) return console.error(err);
 	files.forEach(file => {
@@ -52,9 +60,7 @@ fs.readdir(__dirname + '/./events/', (err, files) => {
 		client.on(eventName, event.bind(null, client));
 	});
 });
-
 client.commands = new Discord.Collection();
-
 fs.readdir(__dirname + '/./commands/', (err, files) => {
 	if (err) return console.error(err);
 	files.forEach(file => {
@@ -65,7 +71,6 @@ fs.readdir(__dirname + '/./commands/', (err, files) => {
 		client.commands.set(commandName, props);
 	});
 });
-
 fs.readdir(__dirname + '/./RDH/', (err, files) => {
 	if (err) return console.error(err);
 	files.forEach(file => {
@@ -77,7 +82,15 @@ fs.readdir(__dirname + '/./RDH/', (err, files) => {
 	});
 });
 
+
+
+
 client.login(secrets.token);
+
+
+
+
+
 
 process.stdin.resume();//so the program will not close instantly
 var exitSequenceHasBeenCalled = false;
@@ -103,19 +116,19 @@ function exitHandler(options, exitCode) {
 	}
 	console.log(chalk.bold.red('PROCESS IS EXITING!'));
 }
-
 //do something when app is closing
 process.on('exit', exitHandler.bind(null, {name: 'exit'}));
-
 //catches ctrl+c event
 process.on('SIGINT', exitHandler.bind(null, {name: 'SIGINT'}));
-
 // catches "kill pid" (for example: nodemon restart)
 process.on('SIGUSR1', exitHandler.bind(null, {name: 'SIGUSR1'}));
 process.on('SIGUSR2', exitHandler.bind(null, {name: 'SIGUSR2'}));
-
 //catches uncaught exceptions
 process.on('uncaughtException', exitHandler.bind(null, {name: 'uncaughtException'}));
+
+
+
+
 
 module.exports = {
 	client,
