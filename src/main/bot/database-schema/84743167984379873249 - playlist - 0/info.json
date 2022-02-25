@@ -1,0 +1,8 @@
+{
+    "name": "Whatever",
+    "num_tracks": 2,
+
+    "tracks":[ 
+          ["title", "index"]
+    ]
+}

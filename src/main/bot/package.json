@@ -1,0 +1,34 @@
+{
+     "name": "rhapsody",
+     "version": "2a",
+     "fullVersion": "2 Alpha",
+     "description": "",
+     "main": "index.js",
+     "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "dev": "nodemon index.js --ignore 'config.json'",
+          "start": "node index.js",
+          "lint": "./node_modules/.bin/eslint ./ --fix",
+          "startmongomac": "brew services start mongodb",
+          "stopmongomac": "brew services stop mongodb",
+          "generatedoc": "jsdoc -c ./jsdoc-conf.json"
+     },
+     "author": "Sumukh Prasad and Anubhav Shyjesh",
+     "engines": {
+          "node": "^14.x"
+     },
+     "dependencies": {
+          "@lavacord/discord.js": "^0.0.7",
+          "axios": "^0.24.0",
+          "chalk": "^4.1.2",
+          "discord-reply": "^0.1.2",
+          "discord.js": "^13.6.0",
+          "exec": "^0.2.1",
+          "express": "^4.17.2",
+          "npm": "^8.1.1"
+     },
+     "devDependencies": {
+          "eslint": "^8.1.0",
+          "nodemon": "^2.0.14"
+     }
+}
