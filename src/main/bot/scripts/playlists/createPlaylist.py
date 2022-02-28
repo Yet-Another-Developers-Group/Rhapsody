@@ -19,6 +19,11 @@ if server_list.count_documents({"_id" : args.server_id}, limit = 1) != 0:
     num_playlists = old_doc["num_playlists"] + 1
     
     list_playlists = old_doc["list_playlists"]
+
+    if args.name in list_playlists:
+        print("Duplicate Playlist")
+        exit()
+
     list_playlists.append(args.name)
 
     server_list.update_one({"_id" : args.server_id}, {"$set" : {"num_playlists" : num_playlists}})
