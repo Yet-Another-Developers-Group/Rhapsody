@@ -15,7 +15,7 @@ class Logger {
 		var mi   =  rUtilities.fixZeroes(now.getMinutes(), 2);
 		var ss   =  rUtilities.fixZeroes(now.getSeconds(), 2);
 
-		var logLine = `${chalk.cyan.bold(`[${dd}-${mo}-${yyyy}-${hh}:${mi}:${ss}]:`)} ${util.format.apply(null, arguments)}\n`;
+		var logLine = `${chalk.cyan.bold(`[${dd}-${mo}-${yyyy}-${hh}:${mi}:${ss}]`)} ${util.format.apply(null, arguments)}\n`;
 
 		logFile.write(logLine);
 		logStdout.write(logLine);
