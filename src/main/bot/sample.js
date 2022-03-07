@@ -1,6 +1,6 @@
-const Logger = require("./helpers/logger");
+const Logger = require('./helpers/logger');
 
-Logger.log(1)
+Logger.log(1);
 
 /*
 

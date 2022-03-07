@@ -1,7 +1,7 @@
-const chalk = require("chalk");
+const chalk = require('chalk');
 const util = require('util');
-const rUtilities = require("../rUtilities/rUtilities.js");
-const fs = require("fs");
+const rUtilities = require('../rUtilities/rUtilities.js');
+const fs = require('fs');
 class Logger {
 	static log() {
 		var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
@@ -22,4 +22,4 @@ class Logger {
 	}
 }
 
-module.exports = Logger
+module.exports = Logger;
