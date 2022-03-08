@@ -1,4 +1,5 @@
 {
 	"prefix": "-",
-	"defaultEmbedColor": "#5992f5"
+	"defaultEmbedColor": "#5992f5",
+	"setActivityStatusText": "VERSION2A"
 }
