@@ -16,7 +16,7 @@ module.exports = (client, message) => {
 		return;
 	}
 	if (message.content.indexOf(client.config.prefix) !== 0) return;
-
+	message.reply('under construnction');
 	// Our standard argument/command name definition.
 	const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();

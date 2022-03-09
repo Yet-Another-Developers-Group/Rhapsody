@@ -1,7 +1,7 @@
-const chalk = require("chalk");
+const chalk = require('chalk');
 
 function printStartupBanner() {
-     const startupBanner = `
+	const startupBanner = `
 ╭──────────────────────────────────────────────────╮
 │                                                  │
 │                     `+chalk.white.bold('Rhapsody')+`                     │
@@ -14,7 +14,7 @@ function printStartupBanner() {
 │                                                  │
 ╰──────────────────────────────────────────────────╯
 `;
-     console.log(startupBanner);
+	console.log(startupBanner);
 }
 
 module.exports = {printStartupBanner};

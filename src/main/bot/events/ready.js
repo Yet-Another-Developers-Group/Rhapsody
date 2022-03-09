@@ -8,5 +8,5 @@ module.exports = (client) => {
 	/*client.guilds.cache.forEach((guild) => {
 		process.send(chalk.gray.bold('[Member of]') + ' ' + guild.name);
 	});*/
-     client.user.setActivity(setActivityStatusText, {type: 'LISTENING'});
+	client.user.setActivity(setActivityStatusText, {type: 'LISTENING'});
 };
