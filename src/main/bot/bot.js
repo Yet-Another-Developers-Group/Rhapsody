@@ -16,7 +16,7 @@ fs.readdir(__dirname + '/./events/', (err, files) => {
 		if (!file.endsWith('.js')) return;
 		const event = require(__dirname + `/./events/${file}`);
 		let eventName = file.split('.')[0];
-          process.send(chalk.magenta.bold('[Loading EventHandler]') + ` ${eventName}...`);
+		process.send(chalk.magenta.bold('[Loading EventHandler]') + ` ${eventName}...`);
 		client.on(eventName, event.bind(null, client));
 	});
 });

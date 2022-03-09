@@ -1,5 +1,4 @@
 const chalk = require('chalk');
-const { version } = require('../package.json');
 const { setActivityStatusText } = require('../config.json');
 
 module.exports = (client) => {
