@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const { setActivityStatusText } = require('../config.json');
+const rHelpManager = require('../rHelpManager/index.js');
 
 module.exports = (client) => {
 	process.send('Welcome to Rhapsody!');
@@ -8,4 +9,5 @@ module.exports = (client) => {
 		process.send(chalk.gray.bold('[Member of]') + ' ' + guild.name);
 	});*/
 	client.user.setActivity(setActivityStatusText, {type: 'LISTENING'});
+	rHelpManager.generateHelpDocs();
 };

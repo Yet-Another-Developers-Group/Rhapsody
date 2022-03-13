@@ -6,7 +6,7 @@
      "main": "index.js",
      "scripts": {
           "test": "echo \"Error: no test specified\" && exit 1",
-          "dev": "nodemon index.js --ignore 'config.json'",
+          "dev": "nodemon index.js --ignore config.json --ignore rHelpManager/helpDocs.json",
           "start": "node index.js",
           "lint": "./node_modules/.bin/eslint ./ --fix",
           "startmongomac": "brew services start mongodb",
@@ -25,6 +25,7 @@
           "discord.js": "^13.6.0",
           "exec": "^0.2.1",
           "express": "^4.17.2",
+          "moment": "^2.29.1",
           "npm": "^8.1.1"
      },
      "devDependencies": {

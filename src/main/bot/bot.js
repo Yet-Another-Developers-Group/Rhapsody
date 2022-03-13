@@ -30,6 +30,9 @@ fs.readdir(__dirname + '/./commands/', (err, files) => {
 		let commandName = file.split('.')[0];
 		process.send(chalk.magenta.bold('[Loading Command]') + ` ${commandName}...`);
 		client.commands.set(commandName, props);
+		props.shortcuts.forEach(sc => {
+			client.commands.set(sc, props);
+		});
 	});
 });
 

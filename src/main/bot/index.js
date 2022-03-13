@@ -3,7 +3,7 @@ const { ShardingManager } = require('discord.js');
 const Logger = require('./helpers/logger');
 const { printStartupBanner } = require('./helpers/printStartupBanner');
 
-console.clear();
+//console.clear();
 printStartupBanner();
 
 const manager = new ShardingManager('./bot.js', {
