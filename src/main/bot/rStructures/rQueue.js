@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { rllManager } = require('..');
+const { rllManager } = require('../bot.js');
 const axios = require('axios').default;
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
@@ -70,11 +70,11 @@ class Queue {
 				.setTitle('Now Playing')
 				.setImage(`https://img.youtube.com/vi/${this.currentlyPlaying.info.identifier}/hqdefault.jpg`)
 				.setDescription(this.currentlyPlaying.info.title + ` - \`${this.currentlyPlaying.info.isStream ? "Live Stream" : msToHMS(this.currentlyPlaying.info.length)}\``);
-			this.textChannel.send(currentlyPlayingEmbed);
+			this.textChannel.send({ embeds: [currentlyPlayingEmbed] });
 		} else {
 			this.player = null;
 			this.currentlyPlaying = null;
-			this.textChannel.send('No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.');
+			this.textChannel.send({ content: 'No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.' });
 			return;
 		}
 

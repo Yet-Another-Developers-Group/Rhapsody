@@ -14,7 +14,7 @@ const run = (client, message, args) => {
 			.setDescription(helpDocs.defaultPresets.defaultDialogIntroductionDescription);
 		return message.reply({ embeds: [helpEmbed] });
 	}
-	if (args[0] == 'list') return message.reply({ content: `**Rhapsody Commands List**\n\`\`\`${helpDocs.docs.map(doc => `-${doc.id}`)}\`\`\`` });
+	if (args[0] == 'list') return message.reply({ content: `**Rhapsody Commands List**\n\`\`\`${helpDocs.docs.map(doc => `${doc.name + ' - ' + doc.id}\n`).join('')}\`\`\`` });
 
 	const helpDoc = helpDocs.docs.filter(doc => doc.id == args[0])[0];
 

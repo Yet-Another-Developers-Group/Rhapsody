@@ -6,5 +6,9 @@
                { "name": "Meet the devs!", "value": "Sumukh Prasad ([github.com/SumukhPrasad](https://github.com/SumukhPrasad))\nAnubhav Shyjesh ([github.com/Physics-Phreak](https://github.com/Physics-Phreak))\n\n\"Happy listening!\" - *the developers*" }
           ],
           "footer": { "text": "https://github.com/Yet-Another-Developers-Group/Rhapsody" }
+     },
+     "whatsnew": {
+          "title": "Rhapsody 2 - What's new",
+          "desc": "Just how impatient are you?"
      }
 }
