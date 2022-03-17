@@ -11,7 +11,8 @@ module.exports = (client, message) => {
 		message.reply('Hi there! Use the `-help` command to get started.');
 		return;
 	}
-	if (message.channel.type === 'dm') {
+	console.log(message.channel.type);
+	if (message.channel.type === 'DM') {
 		message.reply('Sorry, mate. I don\'t work with DMs.');
 		return;
 	}
