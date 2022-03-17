@@ -36,7 +36,7 @@ module.exports = (client, message) => {
 			.setColor('#ff0000')
 			.setTitle('An error occurred.')
 			.setDescription('```' + e.message + '```');
-		message.channel.send(errorEmbed);
+		message.channel.send({ embeds: [errorEmbed] });
 		console.log(e);
 	}
 };
