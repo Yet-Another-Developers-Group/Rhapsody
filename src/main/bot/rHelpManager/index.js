@@ -18,6 +18,7 @@ class rHelpManager {
                     
 				process.send(chalk.yellow.bold('[Loading HelpDoc]') + ` ${file.split('.')[0]}...`);
 				helpDoc.id = file.split('.')[0];
+				if (helpDoc.shortcuts === "") helpDoc.shortcuts = "None."
 				helpDocJson.docs.push(helpDoc);
 			});
 
