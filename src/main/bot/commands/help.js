@@ -39,7 +39,7 @@ const helpDoc = {
 	name: 'Help',
 	desc: 'Provides help on commands/functions.',
 	commandSyntax: '-help <command>',
-	shortcuts: shortcuts.map(i => '-'+i).join(', ')
+	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 
 module.exports = {
