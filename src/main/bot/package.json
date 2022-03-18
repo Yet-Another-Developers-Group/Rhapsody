@@ -19,6 +19,7 @@
      },
      "dependencies": {
           "@discordjs/opus": "^0.5.3",
+          "@discordjs/voice": "^0.8.0",
           "@lavacord/discord.js": "^0.0.7",
           "axios": "^0.24.0",
           "chalk": "^4.1.2",
