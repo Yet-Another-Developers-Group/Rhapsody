@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-
+const Logger = require('./logger.js');
 function printStartupBanner() {
 	const startupBanner = `
 ╭──────────────────────────────────────────────────╮
@@ -14,7 +14,7 @@ function printStartupBanner() {
 │                                                  │
 ╰──────────────────────────────────────────────────╯
 `;
-	console.log(startupBanner);
+	Logger.log(startupBanner);
 }
 
 module.exports = {printStartupBanner};
