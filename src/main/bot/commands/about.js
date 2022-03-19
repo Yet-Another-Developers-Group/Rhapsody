@@ -34,7 +34,7 @@ exec('python3 -V', (err, stdout) => {
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  */
-const run = (client, message) => {
+const run = async (client, message) => {
 	const aboutEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('About Rhapsody')

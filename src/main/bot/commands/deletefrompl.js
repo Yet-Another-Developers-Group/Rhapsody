@@ -7,7 +7,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  * @param {Discord.Message} message 
  * @param {array} args 
  *  */
-const run = (client, message, args) => {
+const run = async (client, message, args) => {
 	if(!args || args.length < 4) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
 	var song = '';
 	var name = '';

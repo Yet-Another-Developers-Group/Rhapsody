@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const presets = require('../rGlobalMessageContentPresets/presets.json').introductoryMessage;
 
-const run = (client, message) => {
+const run = async (client, message) => {
 	const knowMeEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle(presets.title)

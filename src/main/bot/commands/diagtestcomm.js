@@ -1,4 +1,4 @@
-const run = (client, message, args) => {
+const run = async (client, message, args) => {
 	var output = '-- OUTPUT FOR THIS COMMAND HAS NOT BEEN CONFIGURED. --';
 
 	message.reply('```DIAGNOSTICS AND TESTING OUTPUT\n'+output+'```');

@@ -3,7 +3,7 @@ const { defaultEmbedColor } = require('../config.json');
 const rHelpManager = require('../rHelpManager');
 const helpDocs = rHelpManager.requireHelpDocs();
 
-const run = (client, message, args) => {
+const run = async (client, message, args) => {
 	const helpEmbed = new MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setFooter({text: `${helpDocs.version}, HelpDocs created on ${helpDocs.dateCreated}.`});

@@ -1,4 +1,4 @@
-const run = (client, message, args) => {
+const run = async (client, message, args) => {
 	message.reply("Example");
 };
 

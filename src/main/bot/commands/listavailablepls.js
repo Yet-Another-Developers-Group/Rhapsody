@@ -6,7 +6,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  *  */
-const run = (client, message) => {
+const run = async (client, message) => {
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('List playlists - Not Yet Finished.')
