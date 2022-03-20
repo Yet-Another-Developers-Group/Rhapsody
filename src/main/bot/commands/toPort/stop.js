@@ -9,7 +9,7 @@ const locks = require('..').locks;
  * @param {Discord.Message} message 
  *  */
 exports.run = async (client, message) => {
-	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('You must be in a Voice Channel to use this command.');
+	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if(locks[message.guild.id] &&
                typeof locks[message.guild.id] != 'undefined' &&
                locks[message.guild.id].isLocked && 

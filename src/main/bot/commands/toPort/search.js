@@ -14,9 +14,9 @@ require('../ExtendedMessage/ExtendedMessage');
  *  */
 exports.run = async (client, message, args) => {
 	
-	if(!args[0]) return message.channel.send('Please use a search term after the command like this:\n`-search <term>`');
-	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('You must be in a Voice Channel to use this command.');
-	if(!queues[message.guild.id]) return message.channel.send('You must be currently streaming to use this command.');
+	if(!args[0]) return message.reply('Please use a search term after the command like this:\n`-search <term>`');
+	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
+	if(!queues[message.guild.id]) return message.reply('You must be currently streaming to use this command.');
 	if(locks[message.guild.id] &&
                typeof locks[message.guild.id] != 'undefined' &&
                locks[message.guild.id].isLocked && 
@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
                locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	
 	const allSongs = await queues[message.guild.id].search(args.join(' '));
-	if(!allSongs.tracks || allSongs.tracks.length == 0) return message.channel.send('I\'m sorry, I couldn\'t find that song.');
+	if(!allSongs.tracks || allSongs.tracks.length == 0) return message.reply('I\'m sorry, I couldn\'t find that song.');
 	const songs = allSongs.tracks.slice(0, 5);
 	
 	const options = songs.map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`);
@@ -45,7 +45,7 @@ exports.run = async (client, message, args) => {
 	}
 
 	const chosenSong = await getChosenSongResult();
-	if(chosenSong === 'cancel') return message.channel.send('Search for "' + args.join(' ') + '" was canceled.');
+	if(chosenSong === 'cancel') return message.reply('Search for "' + args.join(' ') + '" was canceled.');
 	const song = songs[parseInt(chosenSong) - 1];
 
 	const isAdded = await queues[message.guild.id].play(song);

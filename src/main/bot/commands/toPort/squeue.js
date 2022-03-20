@@ -9,7 +9,7 @@ require('../ExtendedMessage/ExtendedMessage');
  *  */
 exports.run = async (client, message) => {
 
-	if(!queues[message.guild.id]) return message.channel.send('I\'m not currently streaming in this server.');
+	if(!queues[message.guild.id]) return message.reply('I\'m not currently streaming in this server.');
 
 	const next = queues[message.guild.id].queue;
 

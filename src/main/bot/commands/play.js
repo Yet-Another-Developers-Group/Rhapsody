@@ -10,7 +10,7 @@ const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 const run = async (client, message, args) => {
 	if(!args[0]) return message.reply('Please use a search term or URL after the command like this:\n`-play <search term or URL>`');
-	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.channel.send('You must be in a Voice Channel to use this command.');
+	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	
 	if(!queues[message.guild.id])
 		queues[message.guild.id] = new Queue(message.guild.id, message.member.voice.channel.id, message.channel);
@@ -22,7 +22,7 @@ const run = async (client, message, args) => {
 	if( locks[message.guild.id] && locks[message.guild.id].isLocked && locks[message.guild.id].userID != message.author.id && locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1 ) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 
 	const song = await queues[message.guild.id].search(args.join(' '));
-	if(!song.tracks) return message.channel.send('I\'m sorry, I couldn\'t find that song.');
+	if(!song.tracks) return message.reply('I\'m sorry, I couldn\'t find that song.');
 
 	const isAdded = await queues[message.guild.id].play(song.tracks[0]);
 
