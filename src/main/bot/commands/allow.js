@@ -9,6 +9,7 @@ const userregex = /<@![0-9]*>/;
  * @param {aray} args 
  *  */
 const run = async (client, message, args) => {
+	if(!args || args.length < 1) return message.reply('I\'m sorry, I didn\'t understand that.');
 	if (!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if (!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
 	if (!locks[message.guild.id]) return message.reply('This player is not currently locked');

@@ -14,7 +14,7 @@ const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
  *  */
 const run = async (client, message, args) => {
 	
-	if(!args[0]) return message.reply('Please use a search term after the command like this:\n`-search <term>`');
+	if(!args || args.length < 1) return message.reply('Please use a search term after the command like this:\n`-search <term>`');
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if(!queues[message.guild.id]) return message.reply('You must be currently streaming to use this command.');
 	if(locks[message.guild.id] &&

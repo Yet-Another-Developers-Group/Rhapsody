@@ -9,6 +9,7 @@ const run = async (client, message, args) => {
 		locks[message.guild.id].userID != message.author.id &&
 		locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	if(!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
+	if(!args || args.length < 1) return message.reply('Please specify a position after the command like this:\n`-remove <pos>`');
 
 	const n = args[0];
 

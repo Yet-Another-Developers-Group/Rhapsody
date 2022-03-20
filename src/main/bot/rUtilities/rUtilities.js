@@ -13,6 +13,9 @@ class rUtilities {
 
 		return hours + ':' + minutes + ':' + seconds;
 	}
+	static hmsStringToMiliseconds(str) {
+		
+	 }
 }
 
 module.exports = rUtilities;

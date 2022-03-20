@@ -9,7 +9,8 @@ const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 
 const run = async (client, message, args) => {
-	if(!args[0]) return message.reply('Please use a search term or URL after the command like this:\n`-play <search term or URL>`');
+	if(!args || args.length < 1) return message.reply('Please use a search term or URL after the command like this:\n`-play <search term or URL>`');
+	
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	
 	if(!queues[message.guild.id])
