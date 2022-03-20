@@ -6,7 +6,7 @@ const run = async (client, message) => {
 		.setColor(defaultEmbedColor)
 		.setTitle(presets.title)
 		.setDescription(presets.desc);
-	message.inlineReply({ embeds: [whatsNewEmbed] }).catch(console.error);
+	message.reply({ embeds: [whatsNewEmbed] }).catch(console.error);
 };
 
 

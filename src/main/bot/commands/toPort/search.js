@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
                typeof locks[message.guild.id] != 'undefined' &&
                locks[message.guild.id].isLocked && 
                locks[message.guild.id].userID != message.author.id &&
-               locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1) return message.inlineReply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+               locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	
 	const allSongs = await queues[message.guild.id].search(args.join(' '));
 	if(!allSongs.tracks || allSongs.tracks.length == 0) return message.channel.send('I\'m sorry, I couldn\'t find that song.');
@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
 		.setTitle('Search Results for "' + args.join(' ') + '"')
 		.setDescription(`\`\`\`\n${options.join('\n')}\n\`\`\``)
 		.setFooter('Reply to this message with 1/2/3/4/5 to chose a song to play. Reply with \'cancel\' to cancel this search.');
-	message.inlineReply(searchResultsEmbed).catch(console.error);
+	message.reply(searchResultsEmbed).catch(console.error);
 	
 	const filter = m => Number(m.content) >= 1 && Number(m.content) <= 23;
 	function getChosenSongResult() {
@@ -55,7 +55,7 @@ exports.run = async (client, message, args) => {
 			.setColor(defaultEmbedColor)
 			.setTitle('Song Added to Queue')
 			.setDescription(`${song.info.title} - ${song.info.author} - \`${msToHMS(song.info.length)}\``);
-		message.inlineReply(embed).catch(console.error);
+		message.reply(embed).catch(console.error);
 	}
 
 

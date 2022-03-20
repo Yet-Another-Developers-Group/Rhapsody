@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
 		locks[message.guild.id] = new LockAgent(false);
 
 
-	if( locks[message.guild.id] && locks[message.guild.id].isLocked && locks[message.guild.id].userID != message.author.id && locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1 ) return message.inlineReply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+	if( locks[message.guild.id] && locks[message.guild.id].isLocked && locks[message.guild.id].userID != message.author.id && locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1 ) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 
 	const song = await queues[message.guild.id].search(args.join(' '));
 	if(!song.tracks) return message.channel.send('I\'m sorry, I couldn\'t find that song.');
@@ -37,7 +37,7 @@ exports.run = async (client, message, args) => {
 			.setColor(defaultEmbedColor)
 			.setTitle('Song Added to Queue')
 			.setDescription(`${song.tracks[0].info.title} - ${song.tracks[0].info.author} - \`${song.tracks[0].info.isStream ? "Live Stream" : msToHMS(song.tracks[0].info.length)}\``);
-		message.inlineReply(embed).catch(console.error);
+		message.reply(embed).catch(console.error);
 	}
 };
 

@@ -8,7 +8,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  * @param {array} args 
  *  */
 const run = async (client, message, args) => {
-	if(!args || args.length < 1) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
+	if(!args || args.length < 1) return message.reply('I\'m sorry, I didn\'t understand that.');
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('Add playlist to queue - Not Yet Finished.')

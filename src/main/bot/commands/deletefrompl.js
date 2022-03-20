@@ -8,7 +8,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  * @param {array} args 
  *  */
 const run = async (client, message, args) => {
-	if(!args || args.length < 4) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
+	if(!args || args.length < 4) return message.reply('I\'m sorry, I didn\'t understand that.');
 	var song = '';
 	var name = '';
 	var currentlyparsing = '';

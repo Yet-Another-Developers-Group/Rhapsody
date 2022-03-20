@@ -8,7 +8,7 @@ const run = async (client, message) => {
 		.setTitle(presets.title)
 		.addFields(presets.fields)
 		.setFooter(presets.footer);
-	message.inlineReply({ embeds: [knowMeEmbed] });
+	message.reply({ embeds: [knowMeEmbed] });
 };
 
 const shortcuts = [];
