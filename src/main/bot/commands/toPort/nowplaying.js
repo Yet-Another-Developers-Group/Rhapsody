@@ -17,7 +17,7 @@ const run = async (client, message) => {
 			.setTitle('Now Playing')
 			.setImage(`https://img.youtube.com/vi/${queues[message.guild.id].currentlyPlaying.info.identifier}/hqdefault.jpg`)
 			.setDescription(queues[message.guild.id].currentlyPlaying.info.title);
-		message.reply(currentlyPlayingEmbed);
+		message.reply({ embeds: [currentlyPlayingEmbed] });
 	}
 };
 

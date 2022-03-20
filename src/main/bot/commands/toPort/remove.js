@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
 		.setColor(defaultEmbedColor)
 		.setTitle('Remove from queue - Not Yet Finished.')
 		.setDescription(args[0]);
-	message.reply(embed).catch(console.error);
+	message.reply({ embeds: [embed] });
 };
 
 const shortcuts = [];

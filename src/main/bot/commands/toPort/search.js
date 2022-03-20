@@ -32,8 +32,8 @@ const run = async (client, message, args) => {
 		.setColor(defaultEmbedColor)
 		.setTitle('Search Results for "' + args.join(' ') + '"')
 		.setDescription(`\`\`\`\n${options.join('\n')}\n\`\`\``)
-		.setFooter('Reply to this message with 1/2/3/4/5 to chose a song to play. Reply with \'cancel\' to cancel this search.');
-	message.reply(searchResultsEmbed).catch(console.error);
+		.setFooter({ text: 'Reply to this message with 1/2/3/4/5 to chose a song to play. Reply with \'cancel\' to cancel this search.' });
+	message.reply({ embeds: [embed] }).catch(console.error);
 	
 	const filter = m => Number(m.content) >= 1 && Number(m.content) <= 23;
 	function getChosenSongResult() {
@@ -55,7 +55,7 @@ const run = async (client, message, args) => {
 			.setColor(defaultEmbedColor)
 			.setTitle('Song Added to Queue')
 			.setDescription(`${song.info.title} - ${song.info.author} - \`${msToHMS(song.info.length)}\``);
-		message.reply(embed).catch(console.error);
+		message.reply({ embeds: [embed] }).catch(console.error);
 	}
 
 
