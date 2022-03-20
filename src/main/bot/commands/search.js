@@ -35,7 +35,7 @@ const run = async (client, message, args) => {
 		.setFooter({ text: 'Reply to this message with 1/2/3/4/5 to chose a song to play. Reply with \'cancel\' to cancel this search.' });
 	message.reply({ embeds: [searchResultsEmbed] }).catch(console.error);
 	
-	const filter = m => Number(m.content) >= 1 && Number(m.content) <= 5 && message.author.id === m.author.id;
+	const filter = m => Number(m.content) >= 1 && Number(m.content) <= 5 && message.author.id === m.author.id && m.type == 'REPLY';
 	function getChosenSongResult() {
 		return new Promise((resolve) => {
 			message.channel.awaitMessages({filter, max: 1, time: 10000, errors: ['time']})   

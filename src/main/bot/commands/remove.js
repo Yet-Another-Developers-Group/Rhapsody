@@ -16,7 +16,7 @@ const run = async (client, message, args) => {
 
 
 	message.reply(`Are you sure you want to remove **"${queues[message.guild.id].queue[n-1].info.title}"** from the queue?\n(Reply to this message with y/n to confirm.)`);
-	const filter = m => message.author.id === m.author.id;
+	const filter = m => message.author.id === m.author.id && m.type == 'REPLY';
 	function getChosenDecisionResult() {
 		return new Promise((resolve) => {
 			message.channel.awaitMessages({filter, max: 1, time: 10000, errors: ['time']})   
