@@ -1,6 +1,6 @@
 const queues = require('..').queues;
 const locks = require('..').locks;
-require('../ExtendedMessage/ExtendedMessage');
+
 
 /**
  * Locks stream.

@@ -1,6 +1,6 @@
 const queues = require('..').queues;
 
-require('../ExtendedMessage/ExtendedMessage');
+
 const locks = require('..').locks;
 
 /**

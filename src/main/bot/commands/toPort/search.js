@@ -4,7 +4,7 @@ const queues = require('..').queues;
 const locks = require('..').locks;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
-require('../ExtendedMessage/ExtendedMessage');
+
 
 /**
  * Searches Youtube (uses Lavalink), adds chosen track to queue.

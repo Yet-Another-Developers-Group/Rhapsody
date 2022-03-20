@@ -1,6 +1,5 @@
 const queues = require('..').queues;
 const locks = require('..').locks;
-require('../ExtendedMessage/ExtendedMessage.js');
 const userregex = /<@![0-9]*>/;
 
 /**

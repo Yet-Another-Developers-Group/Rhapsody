@@ -1,6 +1,6 @@
 const queues = require('..').queues;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
-require('../ExtendedMessage/ExtendedMessage');
+
 
 /**
  * Posts the current queue.

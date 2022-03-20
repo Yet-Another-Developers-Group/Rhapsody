@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const queues = require('..').queues;
-require('../ExtendedMessage/ExtendedMessage');
+
 
 /**
  * Skips currently playing track
