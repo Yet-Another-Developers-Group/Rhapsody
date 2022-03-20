@@ -1,7 +1,9 @@
 const run = async (client, message, args) => {
-	var output = '-- OUTPUT FOR THIS COMMAND HAS NOT BEEN CONFIGURED. --';
-
-	message.reply('```DIAGNOSTICS AND TESTING OUTPUT\n'+output+'```');
+	message.reply('test');
+	const filter = m => Number(m.content) >= 1 && Number(m.content) <= 23;
+	message.channel.awaitMessages({filter, max: 1, time: 1000, errors: ['time']})   
+		.then(collected => message.reply(collected.size.toString()))
+		.catch(collected => message.reply(collected.size.toString()));
 };
 
 const shortcuts = [];
