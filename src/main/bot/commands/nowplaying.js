@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-const queues = require('..').queues;
+const queues = require('../bot.js').queues;
 
 
 /**

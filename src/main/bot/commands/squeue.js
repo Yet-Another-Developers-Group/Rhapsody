@@ -1,4 +1,4 @@
-const queues = require('..').queues;
+const queues = require('../bot.js').queues;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 

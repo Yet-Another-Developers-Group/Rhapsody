@@ -1,5 +1,5 @@
-const queues = require('../..').queues;
-const locks = require('../..').locks;
+const queues = require('../bot.js').queues;
+const locks = require('../bot.js').locks;
 const userregex = /<@![0-9]*>/;
 
 /**

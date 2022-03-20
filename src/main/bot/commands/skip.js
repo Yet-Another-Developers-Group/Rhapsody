@@ -1,6 +1,6 @@
-const queues = require('..').queues;
+const queues = require('../bot.js').queues;
 
-const locks = require('..').locks;
+const locks = require('../bot.js').locks;
 
 
 /**

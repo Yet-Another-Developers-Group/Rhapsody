@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-const queues = require('..').queues;
-const locks = require('..').locks;
+const queues = require('../bot.js').queues;
+const locks = require('../bot.js').locks;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 
