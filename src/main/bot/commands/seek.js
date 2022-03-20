@@ -13,11 +13,7 @@ const run = async (client, message, args) => {
 	if(!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
 	if(!queues[message.guild.id].currentlyPlaying.info.isStream) return message.reply('Sorry, this command does not work on Live Streams.');
 
-	var ms = hmsStringToMiliseconds(args[0]); 
-	
-
-	message.reply('SEEK TO '+ms)
-
+	message.reply("SEEK TO " + args.join(' '))
 };
 
 const shortcuts = [];

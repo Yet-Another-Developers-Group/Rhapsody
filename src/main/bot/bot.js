@@ -5,6 +5,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const lavalink = require('@lavacord/discord.js');
 const rHelpManager = require('./rHelpManager');
+const rCommandsManager = require('./rCommandsManager');
 
 // Create a new client instance
 const client = new Client({
@@ -28,21 +29,7 @@ fs.readdir(__dirname + '/./events/', (err, files) => {
 	});
 });
 
-client.commands = new Collection();
-fs.readdir(__dirname + '/./commands/', (err, files) => {
-	if (err) return console.error(err);
-	files.forEach(file => {
-		if (!file.endsWith('.js')) return;
-		let props = require(__dirname + `/./commands/${file}`);
-		let commandName = file.split('.')[0];
-		process.send(chalk.magenta.bold('[Loading Command]') + ` ${commandName}...`);
-		client.commands.set(commandName, props);
-		props.shortcuts.forEach(sc => {
-			client.commands.set(sc, props);
-		});
-	});
-});
-
+rCommandsManager.loadCommands(client);
 rHelpManager.generateHelpDocs();
 
 // Login to Discord with your client's token

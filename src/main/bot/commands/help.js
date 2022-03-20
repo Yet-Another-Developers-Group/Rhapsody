@@ -1,9 +1,9 @@
 const { MessageEmbed } = require('discord.js');
 const { defaultEmbedColor } = require('../config.json');
 const rHelpManager = require('../rHelpManager');
-const helpDocs = rHelpManager.requireHelpDocs();
 
 const run = async (client, message, args) => {
+	const helpDocs = rHelpManager.requireHelpDocs();
 	const helpEmbed = new MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setFooter({text: `${helpDocs.version}, HelpDocs created on ${helpDocs.dateCreated}.`});
