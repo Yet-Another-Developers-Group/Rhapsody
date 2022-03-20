@@ -35,7 +35,7 @@ const run = async (client, message, args) => {
 	}
 };
 
-const shortcuts = ['p'];
+const shortcuts = ['p', 'queue'];
 
 const helpDoc = {
 	name: 'Play',
