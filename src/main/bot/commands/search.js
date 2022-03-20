@@ -66,9 +66,9 @@ const run = async (client, message, args) => {
 const shortcuts = [];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Search',
+	desc: 'Searches for a given search term.',
+	commandSyntax: '-search <search term>',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

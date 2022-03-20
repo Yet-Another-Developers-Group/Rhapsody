@@ -20,9 +20,9 @@ const run = async (client, message) => {
 const shortcuts = [];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'See Queue',
+	desc: 'See the current queue.',
+	commandSyntax: '-squeue',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

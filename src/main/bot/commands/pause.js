@@ -23,9 +23,9 @@ const run = async (client, message) => {
 const shortcuts = [];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Pause',
+	desc: 'Pauses the player.',
+	commandSyntax: '-pause',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

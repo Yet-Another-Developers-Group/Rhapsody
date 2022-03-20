@@ -31,9 +31,9 @@ const run = async (client, message) => {
 const shortcuts = [];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Lock',
+	desc: 'Locks the player.\nIf the player is locked, only users who have been allowed can control the player. Use the \`-allow\` command to allow more people.',
+	commandSyntax: '-lock',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

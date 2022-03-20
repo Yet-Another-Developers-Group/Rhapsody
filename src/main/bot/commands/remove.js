@@ -13,9 +13,9 @@ exports.run = (client, message, args) => {
 const shortcuts = [];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Remove',
+	desc: 'Removes the song at the position <pos> in the queue.',
+	commandSyntax: '-remove <pos>',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

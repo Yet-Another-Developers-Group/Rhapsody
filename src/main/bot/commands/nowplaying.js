@@ -21,12 +21,12 @@ const run = async (client, message) => {
 	}
 };
 
-const shortcuts = [];
+const shortcuts = ['np'];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Now Playing',
+	desc: 'Posts the currently playing song.',
+	commandSyntax: '-nowplaying',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

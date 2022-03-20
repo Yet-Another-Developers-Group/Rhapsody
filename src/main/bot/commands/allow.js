@@ -1,5 +1,5 @@
-const queues = require('..').queues;
-const locks = require('..').locks;
+const queues = require('../..').queues;
+const locks = require('../..').locks;
 const userregex = /<@![0-9]*>/;
 
 /**
@@ -36,12 +36,12 @@ const run = async (client, message, args) => {
 	message.reply('Unlocked player for selected users.');
 };
 
-const shortcuts = [];
+const shortcuts = ['a'];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Allow',
+	desc: 'Allows mentioned users to control the player. Multiple users can be allowed through a single command.',
+	commandSyntax: '-allow @User1 @User2 ...',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

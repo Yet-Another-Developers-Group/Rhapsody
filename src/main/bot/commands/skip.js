@@ -24,9 +24,9 @@ const run = async (client, message) => {
 const shortcuts = [];
 
 const helpDoc = {
-	name: '',
-	desc: '',
-	commandSyntax: '',
+	name: 'Skip',
+	desc: 'Skips the current song.',
+	commandSyntax: '-skip',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 
