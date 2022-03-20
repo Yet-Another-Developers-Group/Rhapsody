@@ -7,7 +7,7 @@ const locks = require('..').locks;
  * @param {Discord.Client} client 
  * @param {Discord.Message} message  
  *  */
-exports.run = async (client, message) => {
+const run = async (client, message) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if(locks[message.guild.id] &&
                typeof locks[message.guild.id] != 'undefined' &&
@@ -20,3 +20,17 @@ exports.run = async (client, message) => {
 	message.reply('Resumed player.');
 };
 
+const shortcuts = [];
+
+const helpDoc = {
+	name: '',
+	desc: '',
+	commandSyntax: '',
+	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
+};

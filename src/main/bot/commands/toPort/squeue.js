@@ -7,7 +7,7 @@ const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
  * @param {Discord.Client} client 
  * @param {Discord.Message} message
  *  */
-exports.run = async (client, message) => {
+const run = async (client, message) => {
 
 	if(!queues[message.guild.id]) return message.reply('I\'m not currently streaming in this server.');
 
@@ -17,3 +17,17 @@ exports.run = async (client, message) => {
 	message.reply('```' + (text.join('\r\n') || 'No songs in queue.') + '```').catch(console.error);
 };
 
+const shortcuts = [];
+
+const helpDoc = {
+	name: '',
+	desc: '',
+	commandSyntax: '',
+	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
+};

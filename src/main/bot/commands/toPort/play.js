@@ -13,7 +13,7 @@ const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
  * @param {Discord.Message} message 
  * @param {array} args 
  *  */
-exports.run = async (client, message, args) => {
+const run = async (client, message, args) => {
 
 	if(!args[0]) return message.reply('Please use a search term or URL after the command like this:\n`-play <term>`');
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
@@ -42,3 +42,17 @@ exports.run = async (client, message, args) => {
 };
 
 
+const shortcuts = [];
+
+const helpDoc = {
+	name: '',
+	desc: '',
+	commandSyntax: '',
+	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
+};

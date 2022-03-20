@@ -8,7 +8,7 @@ const userregex = /<@![0-9]*>/;
  * @param {Discord.message} message 
  * @param {aray} args 
  *  */
-exports.run = async (client, message, args) => {
+const run = async (client, message, args) => {
 	if (!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if (!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
 	if (!locks[message.guild.id]) return message.reply('This player is not currently locked');
@@ -36,3 +36,17 @@ exports.run = async (client, message, args) => {
 	message.reply('Unlocked player for selected users.');
 };
 
+const shortcuts = [];
+
+const helpDoc = {
+	name: '',
+	desc: '',
+	commandSyntax: '',
+	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
+};
