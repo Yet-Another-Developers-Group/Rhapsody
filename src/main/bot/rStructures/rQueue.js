@@ -143,6 +143,11 @@ class Queue {
 		if (this.player.paused) await this.player.pause(false);
 	}
 
+	async remove(n) {
+		this.queue = this.queue.splice(n,1)
+		return;
+	}
+
 }
 
 module.exports = Queue;
