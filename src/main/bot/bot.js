@@ -52,19 +52,17 @@ function exitHandler(options, exitCode) {
 	exitSequenceHasBeenCalled = true;
 	console.log(chalk.bold.red(`${exitCode} WAS CALLED ON MAIN PROCESS! `));
 	for (const queueObject in module.exports.queues) {
-		if (Object.hasOwnProperty.call(module.exports.queues, queueObject)) {
-			const element = module.exports.queues[queueObject];
-			if (element !== null && module.exports.rllManager.players.get(element.guildID)) {
-				const emergencyEmbed = new MessageEmbed()
-					.setColor('#ff0000')
-					.setTitle('Process exited.')
-					.setDescription('We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.');
-				element.textChannel.send({ embeds: [emergencyEmbed] });
-				console.log(chalk.bold.red(`EXITTED ${element.guildID}`));
-				element.player = null;
-				element.currentlyPlaying = null;
-				rllManager.leave(element.guildID);
-			}
+		const element = module.exports.queues[queueObject];
+		if (element !== null && module.exports.rllManager.players.get(element.guildID)) {
+			const emergencyEmbed = new MessageEmbed()
+				.setColor('#ff0000')
+				.setTitle('Process exited.')
+				.setDescription('We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.');
+			element.textChannel.send({ embeds: [emergencyEmbed] });
+			console.log(chalk.bold.red(`EXITTED ${element.guildID}`));
+			element.player = null;
+			element.currentlyPlaying = null;
+			rllManager.leave(element.guildID);
 		}
 	}
 	console.log(chalk.bold.red('PROCESS IS EXITING!'));
