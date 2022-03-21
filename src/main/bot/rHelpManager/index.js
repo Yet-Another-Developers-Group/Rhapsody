@@ -30,7 +30,7 @@ class rHelpManager {
 
 	static requireHelpDocs() {
 		delete require.cache[require.resolve('./helpDocs.json')];
-     	return require('./helpDocs.json');
+		return require('./helpDocs.json');
 	}
 }
 

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { rllManager } = require('../bot.js');
 const axios = require('axios').default;
-const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g);
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
@@ -149,7 +149,7 @@ class Queue {
 	 * @returns 
 	 */
 	async remove(n) {
-		this.queue.splice(n,1)
+		this.queue.splice(n,1);
 		return;
 	}
 

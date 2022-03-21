@@ -1,6 +1,6 @@
 const run = async (client, message, args) => {
 	message.reply('test');
-	throw 'E'
+	throw 'E';
 };
 
 const shortcuts = [];

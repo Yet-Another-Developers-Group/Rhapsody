@@ -13,7 +13,7 @@ const run = async (client, message) => {
 
 	const next = queues[message.guild.id].queue;
 
-	const text = next.map((song, index) => `${++index}. ${song.info.title} (${song.info.isStream ? "Live Stream" : msToHMS(song.info.length)})`);
+	const text = next.map((song, index) => `${++index}. ${song.info.title} (${song.info.isStream ? 'Live Stream' : msToHMS(song.info.length)})`);
 	message.reply('```' + (text.join('\r\n') || 'No songs in queue.') + '```').catch(console.error);
 };
 

@@ -75,7 +75,7 @@ process
 	})
 	.on('uncaughtException', err => {
 		console.error(err, 'Uncaught Exception thrown');
-		exitHandler.bind(null, {name: 'uncaughtException'})
+		exitHandler.bind(null, {name: 'uncaughtException'});
 	})
 	.on('exit', exitHandler.bind(null, {name: 'exit'}))
 	.on('SIGINT', exitHandler.bind(null, {name: 'SIGINT'}))

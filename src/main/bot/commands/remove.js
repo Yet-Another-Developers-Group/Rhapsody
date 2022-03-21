@@ -22,7 +22,7 @@ const run = async (client, message, args) => {
 		return new Promise((resolve) => {
 			message.channel.awaitMessages({filter, max: 1, time: 10000, errors: ['time']})   
 				.then(collected => resolve(collected.first().content.toLowerCase()))
-				.catch(collected => resolve('n'));
+				.catch(resolve('n'));
 		});
 	}
 

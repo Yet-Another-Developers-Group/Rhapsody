@@ -32,7 +32,7 @@ const shortcuts = [];
 
 const helpDoc = {
 	name: 'Lock',
-	desc: 'Locks the player.\nIf the player is locked, only users who have been allowed can control the player. Use the \`-allow\` command to allow more people.',
+	desc: 'Locks the player.\nIf the player is locked, only users who have been allowed can control the player. Use the `-allow` command to allow more people.',
 	commandSyntax: '-lock',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };

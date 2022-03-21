@@ -1,4 +1,3 @@
-const { hmsStringToMiliseconds } = require("../rUtilities/rUtilities");
 const queues = require('../bot.js').queues;
 const locks = require('../bot.js').locks;
 
@@ -13,7 +12,7 @@ const run = async (client, message, args) => {
 	if(!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
 	if(!queues[message.guild.id].currentlyPlaying.info.isStream) return message.reply('Sorry, this command does not work on Live Streams.');
 
-	message.reply("SEEK TO " + args.join(' '))
+	message.reply('SEEK TO ' + args.join(' '));
 };
 
 const shortcuts = [];
