@@ -47,7 +47,7 @@ module.exports = {
 
 process.stdin.resume();//so the program will not close instantly
 var exitSequenceHasBeenCalled = false;
-function exitHandler(options, exitCode) {
+async function exitHandler(options, exitCode) {
 	if  (exitSequenceHasBeenCalled) return process.exit();
 	exitSequenceHasBeenCalled = true;
 	console.log(chalk.bold.red(`${exitCode} WAS CALLED ON MAIN PROCESS! `));
@@ -58,14 +58,16 @@ function exitHandler(options, exitCode) {
 				.setColor('#ff0000')
 				.setTitle('Process exited.')
 				.setDescription('We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.');
-			element.textChannel.send({ embeds: [emergencyEmbed] });
+			await element.textChannel.send({ embeds: [emergencyEmbed] });
 			console.log(chalk.bold.red(`EXITTED ${element.guildID}`));
 			element.player = null;
 			element.currentlyPlaying = null;
 			rllManager.leave(element.guildID);
 		}
 	}
+
 	console.log(chalk.bold.red('PROCESS IS EXITING!'));
+	process.exit();
 }
 
 
