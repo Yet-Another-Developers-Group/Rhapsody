@@ -29,7 +29,7 @@ const run = async (client, message, args) => {
 	const chosenDecision = await getChosenDecisionResult();
 	if(chosenDecision != 'y') return message.reply('Did not remove track.');
 
-	queues[message.guild.id].remove(n);
+	queues[message.guild.id].remove(n-1);
 	message.reply('Removed track.');
 };
 

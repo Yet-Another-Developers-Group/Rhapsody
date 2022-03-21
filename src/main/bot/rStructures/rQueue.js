@@ -143,8 +143,13 @@ class Queue {
 		if (this.player.paused) await this.player.pause(false);
 	}
 
+	/**
+	 * Removes track n from the queue. WARNING: n IS THE ACTUAL INDEX IN THE ARRAY!
+	 * @param {Number} n 
+	 * @returns 
+	 */
 	async remove(n) {
-		this.queue = this.queue.splice(n,1)
+		this.queue.splice(n,1)
 		return;
 	}
 
