@@ -9,3 +9,4 @@ api-spec/ecodes.xlsx
 src/main/bot/logs/files/
 src/main/bot/rHelpManager/helpDocs.json
 src/RhapsodyDashboard/node_modules
+src/main/bot/commands/agenda.txt
