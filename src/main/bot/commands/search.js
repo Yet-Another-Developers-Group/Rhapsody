@@ -21,7 +21,7 @@ const run = async (client, message, args) => {
                typeof locks[message.guild.id] != 'undefined' &&
                locks[message.guild.id].isLocked && 
                locks[message.guild.id].userID != message.author.id &&
-               locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') > -1) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+               locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	
 	const allSongs = await queues[message.guild.id].search(args.join(' '));
 	if(!allSongs.tracks || allSongs.tracks.length == 0) return message.reply('I\'m sorry, I couldn\'t find that song.');
