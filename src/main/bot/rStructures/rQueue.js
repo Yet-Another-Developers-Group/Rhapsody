@@ -153,6 +153,11 @@ class Queue {
 		return;
 	}
 
+	async seek(t) {
+		if (!this.player) return;
+		this.player.seek(t)
+		return true;
+	}
 }
 
 module.exports = Queue;
