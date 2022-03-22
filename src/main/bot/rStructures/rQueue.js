@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { rllManager } = require('../bot.js');
-const { uniqBy } = require('../rUtilities/rUtilities.js');
+const { uniqeInQueue, findNonUniqeInQueue } = require('../rUtilities/rUtilities.js');
 const axios = require('axios').default;
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g);
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
@@ -166,9 +166,14 @@ class Queue {
 		return true;
 	}
 
+	async findDuplicateTracks() {
+		if (!this.player || this.queue == null || this.queue == []) return false;
+		return findNonUniqeInQueue(this.queue);
+	}
+
 	async removeDuplicateTracks() {
 		if (!this.player || this.queue == null || this.queue == []) return;
-		this.queue = uniqBy(this.queue, JSON.stringify);
+		this.queue = uniqeInQueue(this.queue);
 		return true;
 	}
 }

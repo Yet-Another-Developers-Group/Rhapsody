@@ -11,11 +11,13 @@ const run = async (client, message) => {
                locks[message.guild.id].isLocked && 
                locks[message.guild.id].userID != message.author.id &&
                locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+	if(queues[message.guild.id].queue.length < 1) return message.reply('No songs in queue. Use the `queue` or `play` command to add more songs to the queue.');
 
+     const duplicateTracks = await queues[message.guild.id].findDuplicateTracks();
+	
+     if (duplicateTracks.length < 1) return message.reply('No duplicates.');
 
-     const tracks = Object.keys(queues[message.guild.id].queue).filter((a) => queues[message.guild.id].queue[a] > 1).map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`).join('\n');
-
-     message.reply(tracks != '' ? `Are you sure you want to remove duplicate tracks from the queue?\n\`\`\`${tracks}\`\`\`\n(Reply to this message with y/n to confirm.)` : `No duplicates found.`);
+     message.reply(`Are you sure you want to remove duplicate tracks from the queue?\`\`\`${duplicateTracks.map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`).join('\n')}\`\`\`\n(Reply to this message with y/n to confirm.)`);
 
 	const filter = m => message.author.id === m.author.id && m.type == 'REPLY';
 	function getChosenDecisionResult() {

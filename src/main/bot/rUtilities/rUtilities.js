@@ -13,12 +13,25 @@ class rUtilities {
 
 		return hours + ':' + minutes + ':' + seconds;
 	}
-	static uniqBy(a, key) {
-		var seen = {};
-		return a.filter(function(item) {
-		    var k = key(item);
-		    return seen.hasOwnProperty(k) ? false : (seen[k] = true);
-		})
+
+	static findNonUniqeInQueue(array) {
+		const uniqueObjectArray = [];
+		for (const trackObject of array) {
+			if (uniqueObjectArray.filter(e => e.track === trackObject.track).length == 0) {
+				uniqueObjectArray.push(trackObject);
+			};
+		}
+		return array.filter(x => !uniqueObjectArray.includes(x));
+	}
+
+	static uniqeInQueue(array) {
+		const uniqueObjectArray = [];
+		for (const trackObject of array) {
+			if (uniqueObjectArray.filter(e => e.track === trackObject.track).length == 0) {
+				uniqueObjectArray.push(trackObject);
+			};
+		}
+		return uniqueObjectArray;
 	 }
 }
 
