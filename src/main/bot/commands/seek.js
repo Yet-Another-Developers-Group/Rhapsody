@@ -10,7 +10,7 @@ const run = async (client, message, args) => {
                locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	if(!args || args.length < 1) return message.reply('Please specify a seek time after the command like this:\n`-seek <time>`');
 	if(!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
-	if(!queues[message.guild.id].currentlyPlaying.info.isStream) return message.reply('Sorry, this command does not work on Live Streams.');
+	if(queues[message.guild.id].currentlyPlaying.info.isStream) return message.reply('Sorry, this command does not work on Live Streams.');
 
 	message.reply('SEEK TO ' + args.join(' '));
 };

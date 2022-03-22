@@ -10,6 +10,7 @@ const run = async (client, message) => {
                locks[message.guild.id].isLocked && 
                locks[message.guild.id].userID != message.author.id &&
                locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+	if(queues[message.guild.id].currentlyPlaying.info.isStream) return message.reply('Sorry, this command does not work on Live Streams.');
 	
 	queues[message.guild.id].seek(0);
 	message.reply('Rewound track.');
