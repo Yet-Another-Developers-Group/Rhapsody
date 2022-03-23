@@ -19,7 +19,7 @@ class rUtilities {
 		for (const trackObject of array) {
 			if (uniqueObjectArray.filter(e => e.track === trackObject.track).length == 0) {
 				uniqueObjectArray.push(trackObject);
-			};
+			}
 		}
 		return array.filter(x => !uniqueObjectArray.includes(x));
 	}
@@ -29,10 +29,10 @@ class rUtilities {
 		for (const trackObject of array) {
 			if (uniqueObjectArray.filter(e => e.track === trackObject.track).length == 0) {
 				uniqueObjectArray.push(trackObject);
-			};
+			}
 		}
 		return uniqueObjectArray;
-	 }
+	}
 }
 
 module.exports = rUtilities;

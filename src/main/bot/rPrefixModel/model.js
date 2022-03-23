@@ -1,4 +1,4 @@
-const { mongoose, Schema } = require("mongoose");
+const { mongoose, Schema } = require('mongoose');
 const prefixSchema =    new Schema({
 	guildID: Number,
 	setterUserID: String,
@@ -6,4 +6,4 @@ const prefixSchema =    new Schema({
 	content: String,
 });
 
-module.exports = mongoose.model('PrefixModel', prefixSchema, 'rhapsodyPrefixesCollection')
+module.exports = mongoose.model('PrefixModel', prefixSchema, 'rhapsodyPrefixesCollection');

@@ -10,8 +10,8 @@ const rCommandsManager = require('./rCommandsManager');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://127.0.0.1:27017', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
 });
 
 // Create a new client instance

@@ -30,7 +30,7 @@ module.exports = async (client, message) => {
 		if (!message.content.startsWith(data.content)) return;
 		args = message.content.slice(data.content.length).trim().split(/ +/g);
 	} else {
-		 args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+		args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
 		if (!message.content.startsWith(client.config.prefix)) return;
 	}
 

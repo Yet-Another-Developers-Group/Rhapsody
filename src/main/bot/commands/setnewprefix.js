@@ -2,7 +2,7 @@ const prefixModel = require('../rPrefixModel/model.js');
 const moment = require('moment');
 
 const run = async (client, message, args) => {
-	if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.channel.send("You are not allowed to change the bot's prefix, as you do not have the permissions to manage messages.");
+	if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.channel.send('You are not allowed to change the bot\'s prefix, as you do not have the permissions to manage messages.');
 	if(!args || args.length < 1) return message.reply('Please specify a new prefix to use.');
 	if(args.join(' ').length > 10) return message.reply('Prefixes cannot be more than 10 characters.');
 
@@ -12,29 +12,27 @@ const run = async (client, message, args) => {
 	
 	if (data) {
 		await prefixModel.findOneAndRemove({
-		    guildID: message.guild.id
-		})
-		
-		message.reply(`The new prefix is now **\`${args[0]}\`**.`);
-  
+			guildID: message.guild.id
+		});
 		let newData = new prefixModel({
 			guildID: message.guild.id,
 			setterUserID: `<@${message.author.id}>`,
 			setDate: moment().format('LLLL'),
 			content: args.join(' '),
-		})
+		});
 		newData.save();
-	 } else if (!data) {
-		message.reply(`The new prefix is now **\`${args[0]}\`**.`);
-  
+	} else if (!data) {
 		let newData = new prefixModel({
 			guildID: message.guild.id,
 			setterUserID: `<@${message.author.id}>`,
 			setDate: moment().format('LLLL'),
 			content: args.join(' '),
-		})
+		});
 		newData.save();
 	}
+
+
+	message.reply(`The new prefix is now **\`${args[0]}\`**.`);
 };
 
 const shortcuts = [];

@@ -17,19 +17,19 @@ const run = async (client, message, args) => {
 
 	const unitMap = [
 		{ 
-			possibleValues: ["ms", "milli", "millisecond", "milliseconds"],
+			possibleValues: ['ms', 'milli', 'millisecond', 'milliseconds'],
 			numberOfMilliseconds: 1
 		},
 		{ 
-			possibleValues: ["s", "sec", "secs", "second", "seconds"],
+			possibleValues: ['s', 'sec', 'secs', 'second', 'seconds'],
 			numberOfMilliseconds: 1000
 		},
 		{ 
-			possibleValues: ["m", "min", "mins", "minute", "minutes"],
+			possibleValues: ['m', 'min', 'mins', 'minute', 'minutes'],
 			numberOfMilliseconds: 60000
 		},
 		{ 
-			possibleValues: ["h", "hr", "hrs", "hour", "hours"],
+			possibleValues: ['h', 'hr', 'hrs', 'hour', 'hours'],
 			numberOfMilliseconds: 600000
 		},
 	];
@@ -47,7 +47,7 @@ const run = async (client, message, args) => {
 		const value = group.match(/[0-9]+/g)[0];
 		const unit = group.match(/[a-z]+/g)[0];
 		const unitObject = unitMap.filter(i => i.possibleValues.indexOf(unit) > -1)[0];
-		if (typeof unitObject == 'undefined') return message.reply(`Sorry, I couldn\'t understand this time specification: \n\`${group}\``);
+		if (typeof unitObject == 'undefined') return message.reply(`Sorry, I couldn't understand this time specification: \n\`${group}\``);
 		totalMS += value*unitObject.numberOfMilliseconds;
 	}
 	

@@ -9,15 +9,15 @@ const run = async (client, message) => {
 	
 	if (data) {
 		const embed = new Discord.MessageEmbed()
-		.setColor(defaultEmbedColor)
-		.setTitle('Prefix Configuration')
-		.addFields(
-			{name: 'Prefix', value: `\`${data.content}\``},
-			{name: 'Set Date', value: `This prefix was set on ${data.setDate}.`},
-			{name: 'Set By', value: `This prefix was set by ${data.setterUserID}.`}
-		);
+			.setColor(defaultEmbedColor)
+			.setTitle('Prefix Configuration')
+			.addFields(
+				{name: 'Prefix', value: `\`${data.content}\``},
+				{name: 'Set Date', value: `This prefix was set on ${data.setDate}.`},
+				{name: 'Set By', value: `This prefix was set by ${data.setterUserID}.`}
+			);
 		return message.reply({ embeds: [embed] });
-	};
+	}
 	message.reply('There\'s no custom prefix set for this server.');
 };
 
