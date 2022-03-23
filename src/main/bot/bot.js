@@ -7,6 +7,13 @@ const lavalink = require('@lavacord/discord.js');
 const rHelpManager = require('./rHelpManager');
 const rCommandsManager = require('./rCommandsManager');
 
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://127.0.0.1:27017', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
 // Create a new client instance
 const client = new Client({
 	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],

@@ -1,10 +1,13 @@
 const Discord = require('discord.js');
+const prefix = require('../rPrefixModel/model.js');
+
+
 /**
  * Handles the message event.
  * @param {Discord.client} client 
  * @param {Discord.Message} message 
  */
-module.exports = (client, message) => {
+module.exports = async (client, message) => {
 	if (message.author.bot || message.webhookId) return;
 	if (message.content.includes('@here') || message.content.includes('@everyone')) return;
 	if (message.mentions.has(client.user.id) && message.content.toLowerCase().includes('help')) {
@@ -16,10 +19,23 @@ module.exports = (client, message) => {
 		message.reply('Sorry, mate. I don\'t work with DMs.');
 		return;
 	}
-	if (message.content.indexOf(client.config.prefix) !== 0) return;
 	
+	const data = await prefix.findOne({
+		GuildID: message.guild.id
+	});
+
+	var args;
+
+	if (data) {
+		if (!message.content.startsWith(data.content)) return;
+		args = message.content.slice(data.content.length).trim().split(/ +/g);
+	} else {
+		 args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+		if (!message.content.startsWith(client.config.prefix)) return;
+	}
+
+
 	// Our standard argument/command name definition.
-	const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
 
 	// Grab the command data from the client.commands Enmap
@@ -27,7 +43,7 @@ module.exports = (client, message) => {
 
 	// If that command doesn't exist, silently exit and do nothing
 	if (!cmd) return;
-	
+
 	try {
 		// Run the command
 		cmd.run(client, message, args);

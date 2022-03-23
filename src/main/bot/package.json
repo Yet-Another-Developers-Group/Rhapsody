@@ -9,8 +9,8 @@
           "dev": "nodemon index.js --ignore config.json --ignore rHelpManager/helpDocs.json",
           "start": "node index.js",
           "lint": "./node_modules/.bin/eslint ./ --fix",
-          "startmongomac": "brew services start mongodb",
-          "stopmongomac": "brew services stop mongodb",
+          "startmongomac": "brew services start mongodb-community",
+          "stopmongomac": "brew services stop mongodb-community",
           "generatedoc": "jsdoc -c ./jsdoc-conf.json"
      },
      "author": "Sumukh Prasad and Anubhav Shyjesh",
@@ -28,6 +28,7 @@
           "exec": "^0.2.1",
           "express": "^4.17.2",
           "moment": "^2.29.1",
+          "mongoose": "^6.2.7",
           "npm": "^8.1.1"
      },
      "devDependencies": {
