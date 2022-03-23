@@ -80,10 +80,10 @@ async function exitHandler(options, exitCode) {
 
 process
 	.on('unhandledRejection', (reason, p) => {
-		console.error(reason, 'Unhandled Rejection at Promise', p);
+		process.send(reason, 'Unhandled Rejection at Promise', p);
 	})
 	.on('uncaughtException', err => {
-		console.error(err, 'Uncaught Exception thrown');
+		process.send(err, 'Uncaught Exception thrown');
 		exitHandler.bind(null, {name: 'uncaughtException'});
 	})
 	.on('exit', exitHandler.bind(null, {name: 'exit'}))
