@@ -1,7 +1,7 @@
 {
      "name": "rhapsody",
-     "version": "2A",
-     "fullVersion": "2 Alpha",
+     "version": "2B-0.1",
+     "fullVersion": "2 Beta - 0.1",
      "description": "",
      "main": "index.js",
      "scripts": {
