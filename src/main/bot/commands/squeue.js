@@ -8,7 +8,6 @@ const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
  * @param {Discord.Message} message
  *  */
 const run = async (client, message) => {
-
 	if(!queues[message.guild.id]) return message.reply('I\'m not currently streaming in this server.');
 
 	const next = queues[message.guild.id].queue;

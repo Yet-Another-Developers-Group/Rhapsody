@@ -14,10 +14,10 @@ const run = async (client, message, args) => {
 	if (!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
 	if (!locks[message.guild.id]) return message.reply('This player is not currently locked');
 	if(locks[message.guild.id] &&
-        typeof locks[message.guild.id] != 'undefined' &&
-        locks[message.guild.id].isLocked && 
-        locks[message.guild.id].userID != message.author.id &&
-        locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+		typeof locks[message.guild.id] != 'undefined' &&
+		locks[message.guild.id].isLocked && 
+		locks[message.guild.id].userID != message.author.id &&
+		locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 
 
           
