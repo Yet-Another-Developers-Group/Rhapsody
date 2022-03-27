@@ -1,6 +1,12 @@
 const queues = require('../bot.js').queues;
 const locks = require('../bot.js').locks;
 
+/**
+ * Removes a song from the queue.
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message, args) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if(locks[message.guild.id] &&

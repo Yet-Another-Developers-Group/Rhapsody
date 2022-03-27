@@ -7,7 +7,12 @@ const locks = require('../bot.js').locks;
 const LockAgent = require('../rStructures/rLockAgent');
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
-
+/**
+ * Plays a song.
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message, args) => {
 	if(!args || args.length < 1) return message.reply('Please use a search term or URL after the command like this:\n`-play <search term or URL>`');
 	

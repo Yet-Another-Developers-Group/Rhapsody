@@ -1,6 +1,13 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const presets = require('../rGlobalMessageContentPresets/presets.json').whatsnew;
+
+/**
+ * 
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message) => {
 	const whatsNewEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)

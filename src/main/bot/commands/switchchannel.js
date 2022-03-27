@@ -3,7 +3,7 @@ const locks = require('../bot.js').locks;
 
 
 /**
- * Resumes stream
+ * Switches channel.
  * @param {Discord.Client} client 
  * @param {Discord.Message} message  
  *  */

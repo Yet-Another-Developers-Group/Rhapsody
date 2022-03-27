@@ -1,6 +1,12 @@
 const prefixModel = require('../rPrefixModel/model.js');
 const moment = require('moment');
 
+/**
+ * Sets a new prefix for the server.
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message, args) => {
 	if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('You are not allowed to change the bot\'s prefix, as you do not have the permissions to manage messages.');
 	if(!args || args.length < 1) return message.reply('Please specify a new prefix to use.');

@@ -1,13 +1,19 @@
 const queues = require('../bot.js').queues;
 const locks = require('../bot.js').locks;
 
+/**
+ * Seeks the track.
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message, args) => {
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if(locks[message.guild.id] &&
-               typeof locks[message.guild.id] != 'undefined' &&
-               locks[message.guild.id].isLocked && 
-               locks[message.guild.id].userID != message.author.id &&
-               locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
+		typeof locks[message.guild.id] != 'undefined' &&
+		locks[message.guild.id].isLocked && 
+		locks[message.guild.id].userID != message.author.id &&
+		locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	if(!args || args.length < 1) return message.reply('Please specify a seek time after the command like this:\n`-seek <time>`');
 	if(!queues[message.guild.id]) return message.reply('I\'m not playing anything here at the moment. Use the `queue` or `play` command to add more songs to the queue.');
 	if(queues[message.guild.id].currentlyPlaying.info.isStream) return message.reply('Sorry, this command does not work on Live Streams.');

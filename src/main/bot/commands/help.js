@@ -2,6 +2,12 @@ const { MessageEmbed } = require('discord.js');
 const { defaultEmbedColor } = require('../config.json');
 const rHelpManager = require('../rHelpManager');
 
+/**
+ * Help.
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message, args) => {
 	const helpDocs = rHelpManager.requireHelpDocs();
 	const helpEmbed = new MessageEmbed()

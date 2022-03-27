@@ -2,6 +2,12 @@ const prefixModel = require('../rPrefixModel/model.js');
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 
+/**
+ * Posts information about the prefix.
+ * @param {Discord.client} client 
+ * @param {Discord.message} message 
+ * @returns 
+ */
 const run = async (client, message) => {
 	const data = await prefixModel.findOne({
 		GuildID: message.guild.id
