@@ -111,6 +111,16 @@ class Queue {
 		}
 	}
 
+	async switch(channelID) {
+		if (this.player) {
+			this.channelID = channelID;
+			await this.player.switchChannel(channelID, { selfdeaf: true });
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * Removes the bot from a Voice Channel it is in.
 	 * @returns {boolean}
