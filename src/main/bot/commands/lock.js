@@ -20,10 +20,13 @@ const run = async (client, message) => {
 		message.reply('Locked. You can unlock by using the `-unlock` command (If you don\'t, this player will automatically unlock in 15 minutes.).');
 		(async function () {
 			setTimeout(() => {
-				var isUnlocked = locks[message.guild.id].unlock();
-				if (isUnlocked) {
-					message.reply('Automatically unlocked this player.');
-				}
+				if(locks[message.guild.id] && 
+					locks[message.guild.id].isLocked) { 
+					var isUnlocked = locks[message.guild.id].unlock();
+					if (isUnlocked) {
+						message.reply('Automatically unlocked this player.');
+					}
+			}
 			}, 900000);
 		})();
 	} else {
