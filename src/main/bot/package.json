@@ -1,36 +1,37 @@
 {
-     "name": "rhapsody",
-     "version": "2B-0.2",
-     "fullVersion": "2 Beta - 0.2",
-     "description": "",
-     "main": "index.js",
-     "scripts": {
-          "test": "echo \"Error: no test specified\" && exit 1",
-          "dev": "nodemon index.js --ignore config.json --ignore rHelpManager/helpDocs.json",
-          "start": "node index.js",
-          "lint": "./node_modules/.bin/eslint ./ --fix",
-          "startmongomac": "brew services start mongodb-community",
-          "stopmongomac": "brew services stop mongodb-community",
-          "generatedoc": "jsdoc -c ./jsdoc-conf.json"
-     },
-     "author": "Sumukh Prasad and Anubhav Shyjesh",
-     "engines": {
-          "node": "^14.x"
-     },
-     "dependencies": {
-          "@discordjs/opus": "^0.5.3",
-          "@discordjs/voice": "^0.8.0",
-          "@lavacord/discord.js": "^0.0.7",
-          "axios": "^0.24.0",
-          "canvas": "^2.9.1",
-          "chalk": "^4.1.2",
-          "discord.js": "^13.6.0",
-          "exec": "^0.2.1",
-          "moment": "^2.29.1",
-          "mongoose": "^6.2.7"
-     },
-     "devDependencies": {
-          "eslint": "^8.10.0",
-          "nodemon": "^2.0.14"
-     }
+  "name": "rhapsody",
+  "version": "2a",
+  "fullVersion": "2 Alpha",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js --ignore 'config.json'",
+    "start": "node index.js",
+    "lint": "./node_modules/.bin/eslint ./ --fix",
+    "startmongomac": "brew services start mongodb",
+    "stopmongomac": "brew services stop mongodb",
+    "generatedoc": "jsdoc -c ./jsdoc-conf.json"
+  },
+  "author": "Sumukh Prasad and Anubhav Shyjesh",
+  "engines": {
+    "node": "^14.x"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "@lavacord/discord.js": "^0.0.7",
+    "axios": "^0.24.0",
+    "chalk": "^4.1.2",
+    "discord-reply": "^0.1.2",
+    "discord.js": "^12.5.3",
+    "exec": "^0.2.1",
+    "express": "^4.17.2",
+    "npm": "^8.1.1",
+    "osx-temperature-sensor": "^1.0.7",
+    "systeminformation": "^5.9.17"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0",
+    "nodemon": "^2.0.14"
+  }
 }

@@ -1,0 +1,15 @@
+.tab-buttons-container {
+     padding-left: 10px;
+     position: fixed;
+     top: 10;
+     left: 10;
+     z-index: 99;
+}
+
+.tabs-container {
+     width: calc(100% - 20px);
+     height: calc(100% - 40px);
+     position: fixed;
+     top: 27px;
+     z-index: 9;
+}
