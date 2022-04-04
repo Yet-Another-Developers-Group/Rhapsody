@@ -1,17 +1,5 @@
 {
-  "prefix": "-",
-  "port": "1801",
-  "defaultEmbedColor": "#5992f5",
-  "nodes": [
-    {
-      "id": "1",
-      "host": "localhost",
-      "port": "2333",
-      "password": "rllManager@node1"
-    }
-  ],
-  "status": {
-    "isUnderMaintainence": false,
-    "pathToFallbackImage": "./assets/update.png"
-  }
+	"prefix": "-",
+	"defaultEmbedColor": "#7029b2",
+	"setActivityStatusText": "VERSION2B-0.5"
 }
