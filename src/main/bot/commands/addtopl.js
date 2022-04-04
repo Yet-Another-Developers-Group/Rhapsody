@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
+require('../ExtendedMessage/ExtendedMessage');
 
 /**
  * Adds track to Playlist
@@ -7,8 +8,8 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  * @param {Discord.Message} message 
  * @param {array} args 
  *  */
-const run = async (client, message, args) => {
-	if(!args || args.length < 4) return message.reply('I\'m sorry, I didn\'t understand that.');
+exports.run = (client, message, args) => {
+	if(!args || args.length < 4) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
 	var song = '';
 	var name = '';
 	var currentlyparsing = '';
@@ -33,25 +34,11 @@ const run = async (client, message, args) => {
 			break;
 		}
 	}
-	if (song == '' || name == '') return message.reply('I\'m sorry, I didn\'t understand that.');
+	if (song == '' || name == '') return message.inlineReply('I\'m sorry, I didn\'t understand that.');
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('Add to playlist - Not Yet Finished.')
 		.setDescription(name + ' - ' + song);
-	message.reply({ embeds: [embed] });
+	message.inlineReply(embed).catch(console.error);
 };
 
-const shortcuts = [];
-
-const helpDoc = {
-	name: 'Add Track to Playlist',
-	desc: 'Adds track to playlist.',
-	commandSyntax: '-addtopl -n <name> -s <song>',
-	shortcuts: shortcuts.map(i => '-'+i).join(', ')
-};
-
-module.exports = {
-	run,
-	shortcuts,
-	helpDoc
-};
