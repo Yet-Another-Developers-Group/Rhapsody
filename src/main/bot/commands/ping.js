@@ -1,11 +1,23 @@
-require('../ExtendedMessage/ExtendedMessage.js');
-
 /**
  * Ping/pong
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  *  */
-exports.run = async (client, message) => {
-	message.inlineReply('Pong!');
+const run = async (client, message) => {
+	message.reply('Pong!');
 };
 
+const shortcuts = [];
+
+const helpDoc = {
+	name: 'Ping',
+	desc: 'Replies with "pong".',
+	commandSyntax: '-ping',
+	shortcuts: shortcuts.map(i => '-'+i).join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
+};

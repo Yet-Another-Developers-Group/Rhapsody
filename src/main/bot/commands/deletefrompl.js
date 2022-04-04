@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-require('../ExtendedMessage/ExtendedMessage');
 
 /**
  * Deletes track from playlist.
@@ -8,8 +7,8 @@ require('../ExtendedMessage/ExtendedMessage');
  * @param {Discord.Message} message 
  * @param {array} args 
  *  */
-exports.run = (client, message, args) => {
-	if(!args || args.length < 4) return message.inlineReply('I\'m sorry, I didn\'t understand that.');
+const run = async (client, message, args) => {
+	if(!args || args.length < 4) return message.reply('I\'m sorry, I didn\'t understand that.');
 	var song = '';
 	var name = '';
 	var currentlyparsing = '';
@@ -38,6 +37,20 @@ exports.run = (client, message, args) => {
 		.setColor(defaultEmbedColor)
 		.setTitle('Delete from playlist - Not Yet Finished.')
 		.setDescription(name + ' - ' + song);
-	message.inlineReply(embed).catch(console.error);
+	message.reply({ embeds: [embed] });
 };
 
+const shortcuts = [];
+
+const helpDoc = {
+	name: 'Delete Track from Playlist',
+	desc: 'Removes the song at the position <pos> in the playlist.',
+	commandSyntax: '-deletefrompl -n <name> -s <pos>',
+	shortcuts: shortcuts.map(i => '-'+i).join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
+};
