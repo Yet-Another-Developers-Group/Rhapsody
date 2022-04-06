@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
+const { millisecondsToHMSString } = require('../rUtilities/rUtilities');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const queues = require('../bot.js').queues;
-
+const moment = require('moment');
 
 /**
  * Skips currently playing track
@@ -16,7 +17,7 @@ const run = async (client, message) => {
 			.setColor(defaultEmbedColor)
 			.setTitle('Now Playing')
 			.setImage(`https://img.youtube.com/vi/${queues[message.guild.id].currentlyPlaying.info.identifier}/hqdefault.jpg`)
-			.setDescription(queues[message.guild.id].currentlyPlaying.info.title);
+			.setDescription(`${queues[message.guild.id].currentlyPlaying.info.title} - \`${ millisecondsToHMSString(moment().valueOf() -queues[message.guild.id].currentlyPlayingStartedTimeStamp)}\`/\`${ millisecondsToHMSString(queues[message.guild.id].currentlyPlaying.info.length)}\``);
 		message.reply({ embeds: [currentlyPlayingEmbed] });
 	}
 };
