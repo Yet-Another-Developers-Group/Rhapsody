@@ -171,6 +171,7 @@ class Queue {
 	async seek(t) {
 		if (!this.player) return;
 		this.player.seek(t);
+		this.currentlyPlayingStartedTimeStamp = moment().valueOf()-t;
 		return true;
 	}
 
