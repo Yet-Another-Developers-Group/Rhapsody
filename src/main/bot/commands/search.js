@@ -38,7 +38,7 @@ const run = async (client, message, args) => {
 		content: 'Search results:'
 	});
 
-	const filter = m => Number(m.content) >= 1 && Number(m.content) <= 5 && message.author.id === m.author.id && m.type == 'REPLY';
+	const filter = m => (Number(m.content) >= 1 && Number(m.content) <= 5 || m.content.toLowerCase() == 'cancel') && message.author.id === m.author.id && m.type == 'REPLY';
 	function getChosenSongResult() {
 		return new Promise((resolve) => {
 			message.channel.awaitMessages({filter, max: 1, time: 60000, errors: ['time']})   
