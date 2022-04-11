@@ -6,7 +6,7 @@
 			"script": "dev",
 			"problemMatcher": [],
 			"label": "npm: dev",
-			"detail": "nodemon index.js",
+			"detail": "nodemon index.js --ignore 'config.json'",
 			"group": {
 				"kind": "build",
 				"isDefault": true

@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const version = require('../package.json').fullVersion;
-require('../ExtendedMessage/ExtendedMessage');
 var server = '';
 var pyVer = '';
 var nodeVer = '';
@@ -35,19 +34,32 @@ exec('python3 -V', (err, stdout) => {
  * @param {Discord.Client} client 
  * @param {Discord.Message} message 
  */
-exports.run = (client, message) => {
-	const attachment = new Discord.MessageAttachment('assets/logo.png', 'icon.png');
-	const helpEmbed = new Discord.MessageEmbed()
+const run = async (client, message) => {
+	const aboutEmbed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('About Rhapsody')
-		.attachFiles(attachment)
-		.setThumbnail('attachment://icon.png')
 		.addFields(
 			{ name: 'Version', value: version },
 			{ name: 'Python', value: pyVer },
 			{ name: 'Node.js', value: nodeVer },
 			{ name: 'Server', value: server }
 		)
-		.setFooter('Powered by JavaScript and Python | Made by YADG | yadevgroup@gmail.com | https://yet-another-developers-group.github.io');
-	message.inlineReply(helpEmbed).catch(console.error);
+		.setFooter({ text: 'Powered by JavaScript and Python | https://github.com/Yet-Another-Developers-Group/Rhapsody' });
+	message.reply({ embeds: [aboutEmbed] });
+};
+
+
+const shortcuts = ['aboutrhapsody', 'info', 'aboutserver'];
+
+const helpDoc = {
+	name: 'About',
+	desc: 'Posts information about the server.',
+	commandSyntax: '-about',
+	shortcuts: shortcuts.map(i => '-'+i).join(', ')
+};
+
+module.exports = {
+	run,
+	shortcuts,
+	helpDoc
 };

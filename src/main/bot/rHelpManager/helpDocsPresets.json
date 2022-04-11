@@ -1,0 +1,7 @@
+{ 
+     "defaultDialogIntroductionTitle": "Rhapsody Help",
+     "defaultDialogIntroductionDescription": "To use Rhapsody's help function, use:\n`-help <commandname>`.\n\nTo list all the commands, use:\n`-help list`",
+     "defaultTitleSchema": "Rhapsody Help - %COMMANDNAME%",
+     "defaultDescriptionSchema": "%COMMANDDESCRIPTION%\n\n**Syntax:**\n`%COMMANDSYNTAX%`\n**Shortcuts:** %COMMANDSHORTCUTS%\n",
+     "defaultNotFoundMessageDescription": "Sorry, **%REQUESTEDNAME%** is not a command."
+}

@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
-const { rllManager } = require('..');
+const { rllManager } = require('../bot.js');
+const { uniqeInQueue, findNonUniqeInQueue } = require('../rUtilities/rUtilities.js');
 const axios = require('axios').default;
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
+const moment = require('moment');
 
 /**
  * Queue class
@@ -23,6 +25,7 @@ class Queue {
 		this.queue = [];
 		this.player = null;
 		this.currentlyPlaying = null;
+		this.currentlyPlayingStartedTimeStamp = null;
 	}
 
 	/**
@@ -69,12 +72,12 @@ class Queue {
 				.setColor(defaultEmbedColor)
 				.setTitle('Now Playing')
 				.setImage(`https://img.youtube.com/vi/${this.currentlyPlaying.info.identifier}/hqdefault.jpg`)
-				.setDescription(this.currentlyPlaying.info.title + ` - \`${this.currentlyPlaying.info.isStream ? "Live Stream" : msToHMS(this.currentlyPlaying.info.length)}\``);
-			this.textChannel.send(currentlyPlayingEmbed);
+				.setDescription(this.currentlyPlaying.info.title + ` - \`${this.currentlyPlaying.info.isStream ? 'Live Stream' : msToHMS(this.currentlyPlaying.info.length)}\``);
+			this.textChannel.send({ embeds: [currentlyPlayingEmbed] });
 		} else {
 			this.player = null;
 			this.currentlyPlaying = null;
-			this.textChannel.send('No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.');
+			this.textChannel.send({ content: 'No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.' });
 			return;
 		}
 
@@ -90,7 +93,9 @@ class Queue {
 				this._playNext();
 			});
 		}
+
 		await this.player.play(nextSong.track);
+		this.currentlyPlayingStartedTimeStamp = moment().valueOf();
 	}
 
 	/**
@@ -104,6 +109,16 @@ class Queue {
 				channel: this.channelID,
 				node: rllManager.idealNodes[0].id
 			}, { selfdeaf: true });
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	async switch(channelID) {
+		if (this.player) {
+			this.channelID = channelID;
+			await this.player.switchChannel(channelID, { selfdeaf: true });
 			return true;
 		} else {
 			return false;
@@ -143,6 +158,39 @@ class Queue {
 		if (this.player.paused) await this.player.pause(false);
 	}
 
+	/**
+	 * Removes track n from the queue. WARNING: n IS THE ACTUAL INDEX IN THE ARRAY!
+	 * @param {Number} n 
+	 * @returns 
+	 */
+	async remove(n) {
+		this.queue.splice(n,1);
+		return;
+	}
+
+	async seek(t) {
+		if (!this.player) return;
+		this.player.seek(t);
+		this.currentlyPlayingStartedTimeStamp = moment().valueOf()-t;
+		return true;
+	}
+
+	async clearQueue() {
+		if (!this.player) return;
+		this.queue = [];
+		return true;
+	}
+
+	async findDuplicateTracks() {
+		if (!this.player || this.queue == null || this.queue == []) return false;
+		return findNonUniqeInQueue(this.queue);
+	}
+
+	async removeDuplicateTracks() {
+		if (!this.player || this.queue == null || this.queue == []) return;
+		this.queue = uniqeInQueue(this.queue);
+		return true;
+	}
 }
 
 module.exports = Queue;
