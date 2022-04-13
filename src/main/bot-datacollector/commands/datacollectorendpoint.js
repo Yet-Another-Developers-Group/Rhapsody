@@ -3,12 +3,12 @@ const run = async (client, message, args) => {
 	message.reply(`Question: ${data[0]}\nExpected: ${data[1]}`);
 };
 
-const shortcuts = ['dtc'];
+const shortcuts = ['dcep', 'adddata', 'newdata'];
 
 const helpDoc = {
-	name: '`DIAGTESTCOMM`',
-	desc: '`DIAGNOSTICS AND TESTING - REMOVE BEFORE RELEASE!`',
-	commandSyntax: '-diagtestcomm <ARGS>',
+	name: 'Data Collector Endpoint',
+	desc: 'Allows to add new data.',
+	commandSyntax: '-datacollectorendpoint <submissiondata> - <identifier>',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 

@@ -10,3 +10,8 @@ src/main/bot/logs/files/
 src/main/bot/rHelpManager/helpDocs.json
 src/RhapsodyDashboard/node_modules
 src/main/bot/commands/agenda.txt
+
+src/main/bot-datacollector/logs/files/
+src/main/bot-datacollector/rHelpManager/helpDocs.json
+src/main/bot-datacollector/node_modules
+src/main/bot-datacollector/secrets.json
