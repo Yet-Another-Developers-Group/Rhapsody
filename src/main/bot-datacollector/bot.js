@@ -8,7 +8,7 @@ const rCommandsManager = require('./rCommandsManager');
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017', {
+mongoose.connect('mongodb://127.0.0.1:27017/rhapsody', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
@@ -37,4 +37,19 @@ rHelpManager.generateHelpDocs();
 client.login(token);
 
 client.config = require('./config.json');
-	
+
+
+process
+	.on('unhandledRejection', (reason, p) => {
+		process.send('Unhandled Rejection at Promise');
+		process.send(JSON.stringify(reason));
+		process.send(JSON.stringify(p));
+
+		console.log(reason, 'Unhandled Rejection at Promise', p);
+	})
+	.on('uncaughtException', err => {
+		process.send('Uncaught Exception thrown');
+		process.send(JSON.stringify(err));
+		console.log(err, 'Uncaught Exception thrown');
+		process.exit()
+	})

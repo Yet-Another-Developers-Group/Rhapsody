@@ -1,3 +1,5 @@
+const collectedDataModel = require('../rCollectedDataModel/model.js');
+
 class rDataCollectionManager {
      static checkIfIdentifierIsValid(identifier) {
           const identifiers = require('../../bot/rHelpManager/helpDocs.json').docs.map(i => i.id);
@@ -5,8 +7,13 @@ class rDataCollectionManager {
           return true;
      }
 
-     static async addDataAndIdentifierArrayToDatabase(data, id) {
-          return false;
+     static async addDataAndIdentifierArrayToDatabase(d, id) {
+          let newData = new collectedDataModel({
+               commandIdentifier: id,
+               data: d,
+          });
+          await newData.save();
+          return true;
      }
 }
 
