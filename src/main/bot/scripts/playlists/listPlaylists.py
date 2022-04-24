@@ -1,5 +1,4 @@
 import argparse
-from flask import jsonify
 
 import pymongo
 from pymongo import MongoClient
