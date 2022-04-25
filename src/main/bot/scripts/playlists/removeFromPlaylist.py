@@ -31,6 +31,8 @@ try:
     list_songs = info_doc["list_songs"]
     num_songs = info_doc["num_songs"]
 
+    song = list_songs[pos]
+
     ### Remove song from info doc
     list_songs.remove(list_songs[pos])
     num_songs -= 1
@@ -45,6 +47,16 @@ try:
     ### Update info doc
     playlist.update_one({"_id": "info"}, {"$set":{"list_songs": list_songs}})
     playlist.update_one({"_id": "info"}, {"$set":{"num_songs": num_songs}})
+
+    ### Response
+    res = {
+        "guild_id": args.server_id,
+        "name": args.name,
+        "track": song[0]
+    }
+
+    res = json.dumps(res)
+    print(res)
 
 except Exception as e:
     print(e)
