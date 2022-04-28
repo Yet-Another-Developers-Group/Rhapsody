@@ -11,7 +11,7 @@ parser.add_argument("-g", "--server_id", help="Server ID for which the new playl
 args = parser.parse_args()
 
 client = MongoClient()
-db = client["Rhapsody"]
+db = client["rhapsody"]
 
 server_list = db["info"]
 

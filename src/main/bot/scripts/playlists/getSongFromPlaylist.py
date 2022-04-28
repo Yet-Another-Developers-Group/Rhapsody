@@ -15,7 +15,7 @@ parser.add_argument("-s", "--song_index", help="The index of the song in the pla
 args = parser.parse_args()
 
 client = MongoClient()
-db = client["Rhapsody"]
+db = client["rhapsody"]
 
 playlist_name = args.server_id + "-" + args.name
 

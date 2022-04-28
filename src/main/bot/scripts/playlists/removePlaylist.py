@@ -10,7 +10,7 @@ parser.add_argument("-n", "--name", help="Name of the Playlist to be removed")
 args = parser.parse_args()
 
 client = MongoClient()
-db = client["Rhapsody"]
+db = client["rhapsody"]
 
 try:
     server_list = db["info"]

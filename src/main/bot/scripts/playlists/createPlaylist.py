@@ -12,7 +12,7 @@ parser.add_argument("-n", "--name", help="Name of the new Playlist to be created
 args = parser.parse_args()
 
 client = MongoClient()
-db = client["Rhapsody"]
+db = client["rhapsody"]
 
 server_list = db["info"]
 
