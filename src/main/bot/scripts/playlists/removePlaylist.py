@@ -41,8 +41,10 @@ try:
         
         exit()
 
-except pymongo.errors.PyMongoError as e:
+except Exception as e:
 
-    print(json.dumps({
-        "ecode": "E-2003"
-    }))
+    # print(json.dumps({
+    #     "ecode": "E-2003"
+    # }))
+
+    print(e)

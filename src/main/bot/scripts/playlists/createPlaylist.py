@@ -63,4 +63,5 @@ try:
     print(res)
 
 except Exception as e:
-    print(json.dumps({"ecode":"E-1001"}))
+    # print(json.dumps({"ecode":"E-1001"}))
+    print(e)

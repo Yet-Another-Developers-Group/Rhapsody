@@ -32,7 +32,8 @@ try:
         }))
 
 except Exception as e:
-    print(json.dumps({
-        "ecodes": "E-6002"
-    }))
- 
+    # print(json.dumps({
+    #     "ecodes": "E-6002"
+    # }))
+
+    print(e)
