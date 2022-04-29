@@ -19,6 +19,9 @@ E-5002	Get Playlist				Cannot get playlist, playlist empty.
 E-5003	Get Playlist				Cannot get playlist, unknown error.
 E-6001	List Playlists				Cannot list playlists, guild not found.
 E-6002	List Playlists				Cannot get playlist, unknown error.
+E-7001	rScriptsManager Error	     Cannot find script.
+E-7002	rScriptsManager Error	     Timeout
+E-7003	rScriptsManager Error	     Cannot execute script, unknown error.
 		
 Generic		
 Code			Type									Reason
