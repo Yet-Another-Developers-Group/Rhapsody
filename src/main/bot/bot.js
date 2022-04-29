@@ -50,7 +50,21 @@ module.exports = {
 	locks: {},
 };
 
-
+Error.prototype.toJSON = function() {
+	var ret = {
+	    name: this.name,
+	    message: this.message,
+	    stack: this.stack,
+	    __error__: true
+	};
+	// Add any custom properties such as .code in file-system errors
+	Object.keys(this).forEach(function(key) {
+	    if (!ret[key]) {
+		   ret[key] = this[key];
+	    }
+	}, this);
+	return ret;
+ };
 
 process.stdin.resume();//so the program will not close instantly
 var exitSequenceHasBeenCalled = false;
@@ -83,13 +97,10 @@ process
 		process.send('Unhandled Rejection at Promise');
 		process.send(JSON.stringify(reason));
 		process.send(JSON.stringify(p));
-
-		console.log(reason, 'Unhandled Rejection at Promise', p);
 	})
 	.on('uncaughtException', err => {
 		process.send('Uncaught Exception thrown');
-		process.send(JSON.stringify(err));
-		console.log(err, 'Uncaught Exception thrown');
+		process.send(JSON.stringify(err.toJSON()));
 		exitHandler.bind(null, {name: 'uncaughtException'});
 	})
 	.on('exit', exitHandler.bind(null, {name: 'exit'}))

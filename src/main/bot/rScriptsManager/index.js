@@ -7,10 +7,11 @@ class rScriptsManager {
           try {
                const result = execSync(`python3 ${__dirname}/../scripts/${scriptCatagory}/${name}.py ${args}`);
                console.log(`python3 ${__dirname}/../scripts/${scriptCatagory}/${name}.py ${args}`);
+               if (typeof JSON.parse(sult).ecode != 'undefined')return { error: { code: JSON.parse(result).ecode } }
                return { content: result.toString() };  
           } catch (err) { 
-               process.send('Exception thrown');
-		     console.log(err);
+               process.send('Exception thrown from script:');
+		     process.sned(JSON.stringify(err.toJSON()));
                return { error: { code: '7003' } };
           }
      }
