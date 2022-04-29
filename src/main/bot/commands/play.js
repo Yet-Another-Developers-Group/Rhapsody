@@ -17,6 +17,7 @@ const run = async (client, message, args) => {
 	if(!args || args.length < 1) return message.reply('Please use a search term or URL after the command like this:\n`-play <search term or URL>`');
 	
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
+	if (!message.member.voice.channel.permissionsFor(message.guild.me).has('CONNECT', 'SPEAK')) return message.author.send(`I'm sorry, I don't have permissions to play music in **#${message.member.voice.channel.name}** on the **${message.guild.name}** server. Please contact your server's administrators/moderators to fix this issue. If you are the administrator/moderator for the server, you can fix this issue by giving Rhapsody the following permissions:\n- Connect\n- Speak\n- Priority Speaker`);
 	
 	if(!queues[message.guild.id])
 		queues[message.guild.id] = new Queue(message.guild.id, message.member.voice.channel.id, message.channel);
