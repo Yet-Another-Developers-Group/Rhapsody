@@ -44,6 +44,11 @@ module.exports = async (client, message) => {
 	// If that command doesn't exist, silently exit and do nothing
 	if (!cmd) return;
 
+	if (!message.channel.permissionsFor(message.guild.me).has('SEND_MESSAGES')) {
+		message.author.send(`I'm sorry, I don't have permissions to send messages to **#${message.channel.name}** on the **${message.guild.name}** server. Please contact your server's administrators/moderators to fix this issue. If you are the administrator/moderator for the server, you can fix this issue by giving Rhapsody the following permissions:\n- Send Messages\n- Manage Messages\n- Embed Links\n- Attach Files\n- Add Reactions`);
+		return;
+	}
+	
 	try {
 		// Run the command
 		cmd.run(client, message, args);
