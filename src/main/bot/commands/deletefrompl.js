@@ -33,6 +33,9 @@ const run = async (client, message, args) => {
 			break;
 		}
 	}
+
+	if (/^\d+$/.test(s)) return message.reply('I\'m sorry, I didn\'t understand that. The argument for `-s` must be an positive integer.')
+
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('Delete from playlist - Not Yet Finished.')

@@ -10,6 +10,7 @@ E-2003	Deletion of playlist		Cannot delete playlist, unknown error.
 E-3001	Add track to playlist		Cannot add track, playlist not found.
 E-3002	Add track to playlist		Cannot add track, track object malformed.
 E-3003	Add track to playlist		Cannot add track, unknown error occurred.
+E-3004	Add track to playlist		Cannot add track, song already exists in playlist.
 E-4001	Delete track from playlist	Cannot delete track, playlist not found.
 E-4002	Delete track from playlist	Cannot delete track, track id malformed.
 E-4003	Delete track from playlist	Cannot delete track, track does not exist.

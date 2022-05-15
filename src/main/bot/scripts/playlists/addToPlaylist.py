@@ -17,7 +17,7 @@ args = parser.parse_args()
 client = MongoClient()
 db = client["rhapsody"]
 
-playlist_name = args.server_id + "-" + args.name
+playlist_name = args.server_id + "-" + args.name.strip()
 
 playlist = db[playlist_name]
 
@@ -28,7 +28,9 @@ try:
 
     ### Prelims
     info_doc = playlist.find_one({"_id":"info"})
-
+    if info_doc is None:
+            print(json.dumps({"ecode":"E-3001"}))
+            exit()
     ### Updating info doc
     num_songs = info_doc["num_songs"] + 1
     list_songs = info_doc["list_songs"]
@@ -38,7 +40,7 @@ try:
     song_info = [song_doc["info"]["title"], song_doc["info"]["author"], song_doc["info"]["length"]]
 
     if song_info in list_songs:
-        print("Duplicate Song")
+        print(json.dumps({"ecode":"E-3004"}))
         exit()
 
     else:

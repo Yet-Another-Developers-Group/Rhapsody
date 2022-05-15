@@ -12,8 +12,7 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const run = async (client, message, args) => {
 	if(!args || args.length < 1) return message.reply('I\'m sorry, I didn\'t understand that.');
 	
-	const data = await rScriptsManager.runScript('playlists', 'createPlaylist', `-g ${message.guild.id} -n ${rUtilities.Base64.encode(args.toString().replace(/,/gi, ' '))}`);
-	console.log(JSON.stringify(data))
+	const data = await rScriptsManager.runScript('playlists', 'createPlaylist', `-g ${message.guild.id} -n "${args.toString().replace(/,/gi, ' ')}"`);
 	if (typeof data.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
 	.setColor("#ff0000")
 	.setTitle('An error occured.')
