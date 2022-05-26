@@ -36,7 +36,7 @@ const run = async (client, m, args) => {
 		}
 	}
 
-	if (/^\d+$/.test(song)) return m.reply('I\'m sorry, I didn\'t understand that. The argument for `-s` must be an positive integer.')
+	if (parseInt(song) < 1) return m.reply('I\'m sorry, I didn\'t understand that. The argument for `-s` must be a positive integer.')
 	
 	var message = await m.reply('Checking...');
 

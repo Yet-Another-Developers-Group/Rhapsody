@@ -22,7 +22,7 @@ playlist_name = args.server_id + "-" + args.name
 
 playlist = db[playlist_name]
 
-pos = int(args.song_position) - 1
+pos = int(args.song_position) 
 
 try:
 
