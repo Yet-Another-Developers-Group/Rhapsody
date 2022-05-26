@@ -44,7 +44,13 @@ const run = async (client, message, args) => {
 		.setDescription(name + ' - ' + song);
 	message.reply({ embeds: [embed] });*/
 
-	// TODO: ADD CHECK FOR PLAYLIST EXISTENCE
+	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
+	if (typeof playlistsData.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
+	.setColor("#ff0000")
+	.setTitle('An error occured.')
+	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	 
+	if (!JSON.parse(playlistsData.content).playlists.includes(name.trim())) return message.reply('Playlist not found.'); 
 
 	var searchResultsMessage = await message.reply('Loading search results...');
 
@@ -71,7 +77,7 @@ const run = async (client, message, args) => {
 	}
 
 	const chosenSong = await getChosenSongResult();
-	if(chosenSong === 'cancel') return message.reply('Search for "' + args.join(' ') + '" was canceled.');
+	if(chosenSong === 'cancel') return message.reply('Search for "' + track + '" was canceled.');
 	const song = songs[parseInt(chosenSong) - 1];
 
 	
@@ -83,7 +89,7 @@ const run = async (client, message, args) => {
 	.setTitle('An error occured.')
 	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
 
-	searchResultsMessage.edit(`**${song.info.title} - ${song.info.author}** was added to **${data.content.name}**.`);
+	searchResultsMessage.edit(`**${song.info.title} - ${song.info.author}** was added to **${JSON.parse(data.content).name}**.`);
 };
 
 const shortcuts = [];

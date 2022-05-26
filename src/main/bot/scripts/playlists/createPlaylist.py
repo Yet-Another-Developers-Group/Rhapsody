@@ -25,7 +25,7 @@ try:
         list_playlists = old_doc["list_playlists"]
 
         if args.name in list_playlists:
-            print("Duplicate Playlist")
+            print(json.dumps({"ecode":"E-1003"}))
             exit()
 
         list_playlists.append(args.name)

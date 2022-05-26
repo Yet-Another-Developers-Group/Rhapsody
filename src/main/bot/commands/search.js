@@ -14,7 +14,7 @@ const rSearchImagingManager = require('../rSearchImagingManager/index.js');
  *  */
 const run = async (client, message, args) => {
 	
-	if(!args || args.length < 1) return message.reply('Please use a search term after the command like this:\n`-searchwiththumbs <term>`');
+	if(!args || args.length < 1) return message.reply('Please use a search term after the command like this:\n`-search <term>`');
 	if(!message.member.voice.channel || typeof message.member.voice.channel == 'undefined') return message.reply('You must be in a Voice Channel to use this command.');
 	if (!message.member.voice.channel.permissionsFor(message.guild.me).has('CONNECT', 'SPEAK')) return message.author.send(`I'm sorry, I don't have permissions to play music in **#${message.member.voice.channel.name}** on the **${message.guild.name}** server. Please contact your server's administrators/moderators to fix this issue. If you are the administrator/moderator for the server, you can fix this issue by giving Rhapsody the following permissions:\n- Connect\n- Speak\n- Priority Speaker`);
 	if(!queues[message.guild.id]) return message.reply('You must be currently streaming to use this command.');

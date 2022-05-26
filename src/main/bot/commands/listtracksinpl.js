@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
+const rScriptsManager = require('../rScriptsManager');
+const rUtilities = require('../rUtilities/rUtilities');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-
 /**
  * Lists tracks in a playlist.
  * @param {Discord.Client} client 
@@ -9,10 +10,25 @@ const defaultEmbedColor = require('../config.json').defaultEmbedColor;
  *  */
 const run = async (client, message, args) => {
 	if(!args || args.length < 1) return message.reply('I\'m sorry, I didn\'t understand that.');
+
+	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
+	if (typeof playlistsData.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
+	.setColor("#ff0000")
+	.setTitle('An error occured.')
+	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+
+	if (!JSON.parse(playlistsData.content).playlists.includes(args.toString().replace(/,/gi, ' ').trim())) return message.reply('Playlist not found.'); 
+	
+	const data = await rScriptsManager.runScript('playlists', 'listSongsInPlaylist', `-g ${message.guild.id} -n "${args.toString().replace(/,/gi, ' ').trim()}"`);
+	if (typeof data.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
+	.setColor("#ff0000")
+	.setTitle('An error occured.')
+	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
 		.setTitle('List tracks in playlist - Not Yet Finished.')
-		.setDescription(args[0]);
+		.setDescription(data.content.toString());
 	message.reply({ embeds: [embed] });
 };
 

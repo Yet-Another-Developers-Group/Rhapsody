@@ -4,6 +4,7 @@ Specific
 Code		Type						Reason
 E-1001	Creation of playlist		Cannot create playlist, known error.
 E-1002	Creation of playlist		Cannot create playlist, unknown error.
+E-1003	Creation of playlist		Cannot create playlist, duplicate Playlist.
 E-2001	Deletion of playlist		Cannot delete playlist, playlist not found.
 E-2002	Deletion of playlist		Cannot delete playlist, operation not permitted.
 E-2003	Deletion of playlist		Cannot delete playlist, unknown error.

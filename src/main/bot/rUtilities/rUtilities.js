@@ -114,20 +114,22 @@ class rUtilities {
 		_utf8_decode: function(e) {
 			var t = "";
 			var n = 0;
-			var r = c1 = c2 = 0;
+			var r = 0;
+			var c1 = 0;
+			var c2 = 0;
 			while (n < e.length) {
 				r = e.charCodeAt(n);
 				if (r < 128) {
 					t += String.fromCharCode(r);
 					n++
 				} else if (r > 191 && r < 224) {
-					c2 = e.charCodeAt(n + 1);
-					t += String.fromCharCode((r & 31) << 6 | c2 & 63);
+					c1 = e.charCodeAt(n + 1);
+					t += String.fromCharCode((r & 31) << 6 | c1 & 63);
 					n += 2
 				} else {
-					c2 = e.charCodeAt(n + 1);
-					c3 = e.charCodeAt(n + 2);
-					t += String.fromCharCode((r & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+					c1 = e.charCodeAt(n + 1);
+					c2 = e.charCodeAt(n + 2);
+					t += String.fromCharCode((r & 15) << 12 | (c1 & 63) << 6 | c2 & 63);
 					n += 3
 				}
 			}
