@@ -191,6 +191,16 @@ class Queue {
 		this.queue = uniqeInQueue(this.queue);
 		return true;
 	}
+
+	async addPlaylistToQueue(a) {
+		this.queue = this.queue.concat(a);
+		if (!this.currentlyPlaying) {
+			this._playNext();
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
 
 module.exports = Queue;
