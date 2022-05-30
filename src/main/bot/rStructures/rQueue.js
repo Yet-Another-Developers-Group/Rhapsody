@@ -5,7 +5,7 @@ const axios = require('axios').default;
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
-const moment = require('moment');
+const { rTimeKeeper } = require('../rTimeKeeper/index.js');
 
 /**
  * Queue class
@@ -25,7 +25,7 @@ class Queue {
 		this.queue = [];
 		this.player = null;
 		this.currentlyPlaying = null;
-		this.currentlyPlayingStartedTimeStamp = null;
+		this.timer = new rTimeKeeper();
 	}
 
 	/**
@@ -95,7 +95,8 @@ class Queue {
 		}
 
 		await this.player.play(nextSong.track);
-		this.currentlyPlayingStartedTimeStamp = moment().valueOf();
+		this.timer.reset();
+		this.timer.resume();
 	}
 
 	/**
@@ -147,6 +148,7 @@ class Queue {
 	async pause() {
 		if (!this.player) return;
 		if (!this.player.paused) await this.player.pause(true);
+		this.timer.pause();
 	}
   
 	/**
@@ -156,6 +158,7 @@ class Queue {
 	async resume() {
 		if (!this.player) return;
 		if (this.player.paused) await this.player.pause(false);
+		this.timer.resume();
 	}
 
 	/**
@@ -171,7 +174,7 @@ class Queue {
 	async seek(t) {
 		if (!this.player) return;
 		this.player.seek(t);
-		this.currentlyPlayingStartedTimeStamp = moment().valueOf()-t;
+		this.timer.seek(t)
 		return true;
 	}
 

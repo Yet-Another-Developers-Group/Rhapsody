@@ -18,7 +18,7 @@ const run = async (client, message) => {
 			.setColor(defaultEmbedColor)
 			.setTitle('Now Playing')
 			.setImage(`https://img.youtube.com/vi/${queues[message.guild.id].currentlyPlaying.info.identifier}/hqdefault.jpg`)
-			.setDescription(`${queues[message.guild.id].currentlyPlaying.info.title} - \`${ millisecondsToHMSString(moment().valueOf() -queues[message.guild.id].currentlyPlayingStartedTimeStamp)}\`/\`${ millisecondsToHMSString(queues[message.guild.id].currentlyPlaying.info.length)}\``);
+			.setDescription(`${queues[message.guild.id].currentlyPlaying.info.title} - \`${ millisecondsToHMSString(queues[message.guild.id].timer.getTime())}\`/\`${ millisecondsToHMSString(queues[message.guild.id].currentlyPlaying.info.length)}\``);
 		message.reply({ embeds: [currentlyPlayingEmbed] });
 	}
 };
