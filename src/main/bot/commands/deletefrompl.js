@@ -43,7 +43,7 @@ const run = async (client, m, args) => {
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
 	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error))
 
-	if (!JSON.parse(playlistsData.content).playlists.includes(name.trim())) return message.reply('Playlist not found.'); 
+	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(name.trim(), "i"))) return message.reply('Playlist not found.'); 
 
 	const conformationMessageData = await rScriptsManager.runScript('playlists', 'getSongFromPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s ${parseInt(song)-1}`);
 	if (typeof conformationMessageData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(conformationMessageData.error))
