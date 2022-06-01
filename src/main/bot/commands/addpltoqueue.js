@@ -5,6 +5,7 @@ const queues = require('../bot.js').queues;
 const locks = require('../bot.js').locks;
 
 const rScriptsManager = require('../rScriptsManager');
+const { rScriptErrorCodeFormatter } = require('../rScriptsManager/rScriptErrorCodeFormatter');
 const { Base64 } = require('../rUtilities/rUtilities');
 /**
  * Adds Playlist to Queue
@@ -26,18 +27,13 @@ const run = async (client, m, args) => {
 	var message = await m.reply('Checking...');
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${m.guild.id}`);
-	if (typeof playlistsData.error != 'undefined') return m.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlisr.error))
+
 
 	if (!JSON.parse(playlistsData.content).playlists.includes(args.toString().replace(/,/gi, ' ').trim())) return message.edit('Playlist not found.'); 
 
 	const playlistScriptJSON = await rScriptsManager.runScript('playlists', 'addPlaylistToQueue', `-g ${m.guild.id} -n "${args.toString().replace(/,/gi, ' ').trim()}"`);
-	if (typeof playlistScriptJSON.error != 'undefined') return m.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	if (typeof playlistScriptJSON.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistScriptJSON.error))
 
 	var queueArray = JSON.parse(playlistScriptJSON.content).queue;
 	queueArray.forEach((e, i) => {

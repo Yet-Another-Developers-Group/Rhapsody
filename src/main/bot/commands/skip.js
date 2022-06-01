@@ -19,7 +19,10 @@ const run = async (client, message) => {
 		locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	
 	queues[message.guild.id]._playNext();
-	message.reply('Skipped current song.');
+
+
+	// It was honor to have you:
+	// message.reply('Skipped current song.');
 };
 
 const shortcuts = [];

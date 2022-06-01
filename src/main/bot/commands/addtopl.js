@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { rNonSteramingSearchManager } = require('../rNonStreamingSearchManager');
 const rScriptsManager = require('../rScriptsManager');
+const { rScriptErrorCodeFormatter } = require('../rScriptsManager/rScriptErrorCodeFormatter');
 const rSearchImagingManager = require('../rSearchImagingManager');
 const { Base64 } = require('../rUtilities/rUtilities.js');
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
@@ -45,10 +46,7 @@ const run = async (client, message, args) => {
 	message.reply({ embeds: [embed] });*/
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
-	if (typeof playlistsData.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	if (typeof playlistsData.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error))
 	 
 	if (!JSON.parse(playlistsData.content).playlists.includes(name.trim())) return message.reply('Playlist not found.'); 
 
@@ -84,10 +82,7 @@ const run = async (client, message, args) => {
 
 	searchResultsMessage.removeAttachments();
 	const data = await rScriptsManager.runScript('playlists', 'addToPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s "${Base64.encode(JSON.stringify(song))}"`);
-	if (typeof data.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	if (typeof data.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(data.error))
 
 	searchResultsMessage.edit(`**${song.info.title} - ${song.info.author}** was added to **${JSON.parse(data.content).name}**.`);
 };

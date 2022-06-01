@@ -41,18 +41,12 @@ const run = async (client, m, args) => {
 	var message = await m.reply('Checking...');
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
-	if (typeof playlistsData.error != 'undefined') return message.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error))
 
 	if (!JSON.parse(playlistsData.content).playlists.includes(name.trim())) return message.reply('Playlist not found.'); 
 
 	const conformationMessageData = await rScriptsManager.runScript('playlists', 'getSongFromPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s ${parseInt(song)-1}`);
-	if (typeof conformationMessageData.error != 'undefined') return m.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${conformationMessageData.error.code}`)] })
+	if (typeof conformationMessageData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(conformationMessageData.error))
 	
 	message.edit(`Are you sure you want to delete **${JSON.parse(Base64.decode(JSON.parse(conformationMessageData.content).song)).info.title}**?\n(Reply to this message with y/n to confirm.)`);
 	const filter = filterMessage => m.author.id === filterMessage.author.id && filterMessage.type == 'REPLY';
@@ -68,10 +62,7 @@ const run = async (client, m, args) => {
 	if(chosenDecision != 'y') return message.edit('Did not remove track.');
 
 	const data = await rScriptsManager.runScript('playlists', 'removeFromPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s ${parseInt(song)-1}`);
-	if (typeof data.error != 'undefined') return m.reply({ embeds: [new Discord.MessageEmbed()
-	.setColor("#ff0000")
-	.setTitle('An error occured.')
-	.setDescription(`We\'re extremely sorry about this. Reach out on [GitHub](https://github.com/Yet-Another-Developers-Group/Rhapsody/issues), and we\'ll get this fixed as soon as possible.\nError code: e-${data.error.code}`)] })
+	if (typeof data.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(data.error))
 	
 	message.edit(`Removed track.`);
 };
