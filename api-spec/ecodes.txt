@@ -6,24 +6,20 @@ E-1001	Creation of playlist		Cannot create playlist, known error.
 E-1002	Creation of playlist		Cannot create playlist, unknown error.
 E-1003	Creation of playlist		Cannot create playlist, duplicate Playlist.
 E-2001	Deletion of playlist		Cannot delete playlist, playlist not found.
-E-2002	Deletion of playlist		Cannot delete playlist, operation not permitted.
-E-2003	Deletion of playlist		Cannot delete playlist, unknown error.
+E-2002	Deletion of playlist		Cannot delete playlist, unknown error.
 E-3001	Add track to playlist		Cannot add track, playlist not found.
-E-3002	Add track to playlist		Cannot add track, track object malformed.
-E-3003	Add track to playlist		Cannot add track, unknown error occurred.
-E-3004	Add track to playlist		Cannot add track, song already exists in playlist.
+E-3002	Add track to playlist		Cannot add track, unknown error occurred.
+E-3003	Add track to playlist		Cannot add track, song already exists in playlist.
 E-4001	Delete track from playlist	Cannot delete track, playlist not found.
-E-4002	Delete track from playlist	Cannot delete track, track id malformed.
-E-4003	Delete track from playlist	Cannot delete track, track does not exist.
-E-4004	Delete track from playlist	Cannot delete track, unknown error occurred.
-E-5001	Get Playlist				Cannot get playlist, playlist not found.
-E-5002	Get Playlist				Cannot get playlist, playlist empty.
-E-5003	Get Playlist				Cannot get playlist, unknown error.
-E-6001	List Playlists				Cannot list playlists, guild not found.
-E-6002	List Playlists				Cannot get playlist, unknown error.
-E-7001	rScriptsManager Error	     Cannot find script.
-E-7002	rScriptsManager Error	     Timeout
-E-7003	rScriptsManager Error	     Cannot execute script, unknown error.
+E-4002	Delete track from playlist	Cannot delete track, unknown error occurred.
+E-5001	Add Playlist To Queue		Cannot add playlist to queue, unknown error.
+E-6001	Get Song From Playlist		Cannot get song from playlist, unknown error.
+E-7001	List Playlists				Cannot list playlists, guild not found.
+E-7002	List Playlists				Cannot get playlist, unknown error.
+E-8001  List Songs In Playlist      Cannot list songs in playlist, unknown error.
+E-9001	rScriptsManager Error	     Cannot find script.
+E-9002	rScriptsManager Error	     Timeout
+E-9003	rScriptsManager Error	     Cannot execute script, unknown error.
 		
 Generic		
 Code			Type									Reason
