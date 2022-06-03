@@ -26,6 +26,7 @@ class Queue {
 		this.player = null;
 		this.currentlyPlaying = null;
 		this.timer = new rTimeKeeper();
+		this.loop = false;
 	}
 
 	/**
@@ -64,6 +65,13 @@ class Queue {
 	 * Plays next song.
 	 */
 	async _playNext() {
+		if (this.loop) {
+			await this.player.play(this.currentlyPlaying.track);
+			this.timer.reset();
+			this.timer.resume();
+			return;
+		};
+
 		const nextSong = this.queue.shift();
 		this.currentlyPlaying = nextSong;
 

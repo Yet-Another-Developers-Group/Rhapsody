@@ -57,9 +57,12 @@ const run = async (client, message, args) => {
 		if (typeof unitObject == 'undefined') return message.reply(`Sorry, I couldn't understand this time specification: \n\`${group}\``);
 		totalMS += value*unitObject.numberOfMilliseconds;
 	}
+
+	if (totalMS > queues[message.guild.id].currentlyPlaying.info.length) return message.reply('Sorry, I could not seek to that location because it does not exist on the track. Please try again.')
+
 	
 	queues[message.guild.id].seek(totalMS);
-
+	
 	message.reply('Seeked.');
 };
 
