@@ -42,4 +42,5 @@ try:
     print(res)
 
 except Exception as e:
-    print(e)
+    print(json.dumps({"ecode": "E-5001",
+                      "error": str(e)}))

@@ -1,4 +1,5 @@
 import argparse
+from types import NoneType
 
 import pymongo
 from pymongo import MongoClient
@@ -28,6 +29,10 @@ try:
 
     ### Get required info
     info_doc = playlist.find_one({"_id":"info"})
+
+    if type(info_doc) == NoneType:
+        print(json.dumps({"ecode": "E-4001"}))
+
     list_songs = info_doc["list_songs"]
     num_songs = info_doc["num_songs"]
 
@@ -59,4 +64,5 @@ try:
     print(res)
 
 except Exception as e:
-    print(e)
+    print(json.dumps({"ecode": "E-4002",
+                      "error": str(e)}))

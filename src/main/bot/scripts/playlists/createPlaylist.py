@@ -62,6 +62,10 @@ try:
 
     print(res)
 
+except pymongo.errors.PyMongoError as e:
+    print(json.dumps({"ecode": "E-1001",
+                      "error": str(e)}))
+
 except Exception as e:
-    # print(json.dumps({"ecode":"E-1001"}))
-    print(e)
+    print(json.dumps({"ecode": "E-1002",
+                      "error": str(e)}))

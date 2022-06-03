@@ -20,8 +20,8 @@ try:
 
     if args.name in server_info["list_playlists"]:
 
-        server_info["num_playlists"] -= 1
         server_info["list_playlists"].remove(args.name)
+        server_info["num_playlists"] -= 1
 
         server_list.update_one({"_id" : args.server_id}, {"$set" : server_info})
 
@@ -43,8 +43,7 @@ try:
 
 except Exception as e:
 
-    # print(json.dumps({
-    #     "ecode": "E-2003"
-    # }))
-
-    print(e)
+    print(json.dumps({
+        "ecode": "E-2002",
+        "error": str(e)
+    }))

@@ -40,7 +40,7 @@ try:
     song_info = [song_doc["info"]["title"], song_doc["info"]["author"], song_doc["info"]["length"]]
 
     if song_info in list_songs:
-        print(json.dumps({"ecode":"E-3004"}))
+        print(json.dumps({"ecode":"E-3003"}))
         exit()
 
     else:
@@ -62,4 +62,5 @@ try:
     print(res)
 
 except Exception as e:
-    print(e)
+    print(json.dumps({"ecode": "E-3002",
+                      "error": str(e)}))
