@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const { rllManager } = require('../bot.js');
 const { uniqeInQueue, findNonUniqeInQueue } = require('../rUtilities/rUtilities.js');
 const axios = require('axios').default;
+// eslint-disable-next-line
 const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
@@ -70,7 +71,7 @@ class Queue {
 			this.timer.reset();
 			this.timer.resume();
 			return;
-		};
+		}
 
 		const nextSong = this.queue.shift();
 		this.currentlyPlaying = nextSong;
@@ -182,7 +183,7 @@ class Queue {
 	async seek(t) {
 		if (!this.player) return;
 		this.player.seek(t);
-		this.timer.seek(t)
+		this.timer.seek(t);
 		return true;
 	}
 

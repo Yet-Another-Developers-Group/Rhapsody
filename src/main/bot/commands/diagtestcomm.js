@@ -1,13 +1,12 @@
 const run = async (client, message, args) => {
-	data = args.join(' ').split('-');
-	message.reply(`Question: ${data[0]}\nExpected: ${data[1]}`);
+	message.reply(`Diagnostics Test Command - Remove Before Release\nArgs: ${args.toString()}`);
 };
 
 const shortcuts = ['dtc'];
 
 const helpDoc = {
-	name: '`DIAGTESTCOMM`',
-	desc: '`DIAGNOSTICS AND TESTING - REMOVE BEFORE RELEASE!`',
+	name: 'Diagnostics Test Command',
+	desc: '`Diagnostics Test Command - Remove Before Release`',
 	commandSyntax: '-diagtestcomm <ARGS>',
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };

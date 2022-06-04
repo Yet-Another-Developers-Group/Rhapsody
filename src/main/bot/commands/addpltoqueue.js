@@ -1,6 +1,3 @@
-const Discord = require('discord.js');
-const defaultEmbedColor = require('../config.json').defaultEmbedColor;
-
 const queues = require('../bot.js').queues;
 const locks = require('../bot.js').locks;
 
@@ -27,17 +24,15 @@ const run = async (client, m, args) => {
 	var message = await m.reply('Checking...');
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${m.guild.id}`);
-	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlisr.error))
-
-
-	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(args.toString().replace(/,/gi, ' ').trim(), "i"))) return message.edit('Playlist not found.'); 
+	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error));
+	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(args.toString().replace(/,/gi, ' ').trim(), 'i'))) return message.edit('Playlist not found.'); 
 
 	const playlistScriptJSON = await rScriptsManager.runScript('playlists', 'addPlaylistToQueue', `-g ${m.guild.id} -n "${args.toString().replace(/,/gi, ' ').trim()}"`);
-	if (typeof playlistScriptJSON.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistScriptJSON.error))
+	if (typeof playlistScriptJSON.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistScriptJSON.error));
 
 	var queueArray = JSON.parse(playlistScriptJSON.content).queue;
 	queueArray.forEach((e, i) => {
-		queueArray[i] = JSON.parse(Base64.decode(e))
+		queueArray[i] = JSON.parse(Base64.decode(e));
 	});
 	
 	queues[m.guild.id].addPlaylistToQueue(queueArray);

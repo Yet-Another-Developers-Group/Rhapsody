@@ -1,6 +1,5 @@
-const Discord = require('discord.js');
-const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const rScriptsManager = require('../rScriptsManager/index.js');
+const { rScriptErrorCodeFormatter } = require('../rScriptsManager/rScriptErrorCodeFormatter.js');
 
 /**
  * Lists playlists
@@ -9,7 +8,7 @@ const rScriptsManager = require('../rScriptsManager/index.js');
  *  */
 const run = async (client, message) => {
 	const data = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
-	if (typeof data.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(data.error))
+	if (typeof data.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(data.error));
 	
 	
 	const text = JSON.parse(data.content).playlists.map((pl, index) => `${++index}. ${pl}`);

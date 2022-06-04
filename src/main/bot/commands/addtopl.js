@@ -1,10 +1,8 @@
-const Discord = require('discord.js');
 const { rNonSteramingSearchManager } = require('../rNonStreamingSearchManager');
 const rScriptsManager = require('../rScriptsManager');
 const { rScriptErrorCodeFormatter } = require('../rScriptsManager/rScriptErrorCodeFormatter');
 const rSearchImagingManager = require('../rSearchImagingManager');
 const { Base64 } = require('../rUtilities/rUtilities.js');
-const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 
 /**
  * Adds track to Playlist
@@ -46,9 +44,9 @@ const run = async (client, message, args) => {
 	message.reply({ embeds: [embed] });*/
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
-	if (typeof playlistsData.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error))
-	 
-	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(name.trim(), "i"))) return message.reply('Playlist not found.'); 
+	if (typeof playlistsData.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error));
+
+	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(name.trim(), 'i'))) return message.reply('Playlist not found.');
 
 	var searchResultsMessage = await message.reply('Loading search results...');
 
@@ -82,7 +80,7 @@ const run = async (client, message, args) => {
 
 	searchResultsMessage.removeAttachments();
 	const data = await rScriptsManager.runScript('playlists', 'addToPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s "${Base64.encode(JSON.stringify(song))}"`);
-	if (typeof data.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(data.error))
+	if (typeof data.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(data.error));
 
 	searchResultsMessage.edit(`**${song.info.title} - ${song.info.author}** was added to **${JSON.parse(data.content).name}**.`);
 };

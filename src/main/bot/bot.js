@@ -52,19 +52,19 @@ module.exports = {
 
 Error.prototype.toJSON = function() {
 	var ret = {
-	    name: this.name,
-	    message: this.message,
-	    stack: this.stack,
-	    __error__: true
+		name: this.name,
+		message: this.message,
+		stack: this.stack,
+		__error__: true
 	};
 	// Add any custom properties such as .code in file-system errors
 	Object.keys(this).forEach(function(key) {
-	    if (!ret[key]) {
-		   ret[key] = this[key];
-	    }
+		if (!ret[key]) {
+			ret[key] = this[key];
+		}
 	}, this);
 	return ret;
- };
+};
 
 process.stdin.resume();//so the program will not close instantly
 var exitSequenceHasBeenCalled = false;

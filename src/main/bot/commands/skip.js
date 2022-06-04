@@ -18,7 +18,7 @@ const run = async (client, message) => {
 		locks[message.guild.id].userID != message.author.id &&
 		locks[message.guild.id].allowedUsers.indexOf('<@!'+message.author.id+'>') < 0) return message.reply('This player is currently locked by <@!'+locks[message.guild.id].userID+'>.');
 	
-	if (queues[message.guild.id].loop) return message.reply('Sorry, I can\'t skip this track because it\'s currently set to loop.')
+	if (queues[message.guild.id].loop) return message.reply('Sorry, I can\'t skip this track because it\'s currently set to loop.');
 
 	queues[message.guild.id]._playNext();
 

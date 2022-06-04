@@ -1,7 +1,6 @@
-const Discord = require('discord.js');
 const rScriptsManager = require('../rScriptsManager');
+const { rScriptErrorCodeFormatter } = require('../rScriptsManager/rScriptErrorCodeFormatter');
 const { Base64 } = require('../rUtilities/rUtilities');
-const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 
 /**
  * Deletes track from playlist.
@@ -36,17 +35,17 @@ const run = async (client, m, args) => {
 		}
 	}
 
-	if (parseInt(song) < 1) return m.reply('I\'m sorry, I didn\'t understand that. The argument for `-s` must be a positive integer.')
+	if (parseInt(song) < 1) return m.reply('I\'m sorry, I didn\'t understand that. The argument for `-s` must be a positive integer.');
 	
 	var message = await m.reply('Checking...');
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
-	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error))
+	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error));
 
-	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(name.trim(), "i"))) return message.reply('Playlist not found.'); 
+	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(name.trim(), 'i'))) return message.reply('Playlist not found.'); 
 
 	const conformationMessageData = await rScriptsManager.runScript('playlists', 'getSongFromPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s ${parseInt(song)-1}`);
-	if (typeof conformationMessageData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(conformationMessageData.error))
+	if (typeof conformationMessageData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(conformationMessageData.error));
 	
 	message.edit(`Are you sure you want to delete **${JSON.parse(Base64.decode(JSON.parse(conformationMessageData.content).song)).info.title}**?\n(Reply to this message with y/n to confirm.)`);
 	const filter = filterMessage => m.author.id === filterMessage.author.id && filterMessage.type == 'REPLY';
@@ -62,9 +61,9 @@ const run = async (client, m, args) => {
 	if(chosenDecision != 'y') return message.edit('Did not remove track.');
 
 	const data = await rScriptsManager.runScript('playlists', 'removeFromPlaylist', `-g ${message.guild.id} -n "${name.trim()}" -s ${parseInt(song)-1}`);
-	if (typeof data.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(data.error))
+	if (typeof data.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(data.error));
 	
-	message.edit(`Removed track.`);
+	message.edit('Removed track.');
 };
 
 const shortcuts = [];

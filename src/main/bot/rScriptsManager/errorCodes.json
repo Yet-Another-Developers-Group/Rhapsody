@@ -1,87 +1,87 @@
 {
-"E-1001": {
-    "type": "systemGenerated",
-    "reason": "Cannot create playlist, known error.",
-    "userreadablereason": "Sorry, I could not create a playlist."
-},
-"E-1002": {
-    "type": "systemGenerated",
-    "reason": "Cannot create playlist, unknown error.",
-    "userreadablereason": "Sorry, I could not create a playlist."
-},
-"E-1003": {
-    "type": "userError",
-    "reason": "Cannot create playlist, duplicate playlist.",
-    "userreadablereason": "Sorry, that playlist already exists."
-},
-"E-2001": {
-    "type": "userError",
-    "reason": "Cannot delete playlist, playlist not found.",
-    "userreadablereason": "Sorry, that playlist does not exist."
-},
-"E-2002": {
-    "type": "systemGenerated",
-    "reason": "Cannot delete playlist, unknown error.",
-    "userreadablereason": "Sorry, I could not delete that playlist."
-},
-"E-3001": {
-    "type": "userError",
-    "reason": " Cannot add track, playlist not found.",
-    "userreadablereason": "Sorry, that playlist does not exist."
-},
-"E-3002": {
-    "type": "systemGenerated",
-    "reason": " Cannot add track, unknown error.",
-    "userreadablereason": "Sorry, I could not add that track."
-},
-"E-3003": {
-    "type": "systemGenerated",
-    "reason": " Cannot add track, track already exists.",
-    "userreadablereason": "Sorry, I could not add that track."
-},
-"E-4001": {
-    "type": "userError",
-    "reason": "Cannot delete track, playlist not found.",
-    "userreadablereason": "Sorry, that playlist does not exist."
-},
-"E-4002": {
-    "type": "systemGenerated",
-    "reason": "Cannot delete track, unknown error.",
-    "userreadablereason": "Sorry, I could not delete that track."
-},
-"E-5001": {
-    "type": "systemGenerated",
-    "reason": "Cannot get song from playlist, unknown error",
-    "userreadablereason": "An error occurred while trying to get the resource."
-},
-"E-6001": {
-    "type": "userError",
-    "reason": "Cannot list playlists, guild not found.",
-    "userreadablereason": "You do not have any playlists at the moment."
-},
-"E-6002": {
-    "type": "systemGenerated",
-    "reason": "Cannot list playlists, unknown error.",
-    "userreadablereason": "An error occurred while trying to get the resource."
-},
-"E-7001": {
-    "type": "systemGenerated",
-    "reason": "Cannot list songs in playlist, unknown error.",
-    "userreadablereason": "An error occurred while trying to get the resource."
-},
-"E-8001": {
-    "type": "systemGenerated",
-    "reason": "Cannot find script.",
-    "userreadablereason": "Horrible error occurred."
-},
-"E-8002": {
-    "type": "systemGenerated",
-    "reason": "Timeout",
-    "userreadablereason": "Horrible error occurred."
-},
-"E-8003": {
-    "type": "systemGenerated",
-    "reason": "Cannot execute script, unknown error.",
-    "userreadablereason": "Horrible error occurred."
-}
+	"E-1001": {
+		"type": "systemGenerated",
+		"reason": "Cannot create playlist, known error.",
+		"userreadablereason": "Sorry, I could not create a playlist."
+	},
+	"E-1002": {
+		"type": "systemGenerated",
+		"reason": "Cannot create playlist, unknown error.",
+		"userreadablereason": "Sorry, I could not create a playlist."
+	},
+	"E-1003": {
+		"type": "userError",
+		"reason": "Cannot create playlist, duplicate playlist.",
+		"userreadablereason": "Sorry, that playlist already exists."
+	},
+	"E-2001": {
+		"type": "userError",
+		"reason": "Cannot delete playlist, playlist not found.",
+		"userreadablereason": "Sorry, that playlist does not exist."
+	},
+	"E-2002": {
+		"type": "systemGenerated",
+		"reason": "Cannot delete playlist, unknown error.",
+		"userreadablereason": "Sorry, I could not delete that playlist."
+	},
+	"E-3001": {
+		"type": "userError",
+		"reason": " Cannot add track, playlist not found.",
+		"userreadablereason": "Sorry, that playlist does not exist."
+	},
+	"E-3002": {
+		"type": "systemGenerated",
+		"reason": " Cannot add track, unknown error.",
+		"userreadablereason": "Sorry, I could not add that track."
+	},
+	"E-3003": {
+		"type": "systemGenerated",
+		"reason": " Cannot add track, track already exists.",
+		"userreadablereason": "Sorry, I could not add that track."
+	},
+	"E-4001": {
+		"type": "userError",
+		"reason": "Cannot delete track, playlist not found.",
+		"userreadablereason": "Sorry, that playlist does not exist."
+	},
+	"E-4002": {
+		"type": "systemGenerated",
+		"reason": "Cannot delete track, unknown error.",
+		"userreadablereason": "Sorry, I could not delete that track."
+	},
+	"E-5001": {
+		"type": "systemGenerated",
+		"reason": "Cannot get song from playlist, unknown error",
+		"userreadablereason": "An error occurred while trying to get the resource."
+	},
+	"E-6001": {
+		"type": "userError",
+		"reason": "Cannot list playlists, guild not found.",
+		"userreadablereason": "You do not have any playlists at the moment."
+	},
+	"E-6002": {
+		"type": "systemGenerated",
+		"reason": "Cannot list playlists, unknown error.",
+		"userreadablereason": "An error occurred while trying to get the resource."
+	},
+	"E-7001": {
+		"type": "systemGenerated",
+		"reason": "Cannot list songs in playlist, unknown error.",
+		"userreadablereason": "An error occurred while trying to get the resource."
+	},
+	"E-8001": {
+		"type": "systemGenerated",
+		"reason": "Cannot find script.",
+		"userreadablereason": "Horrible error occurred."
+	},
+	"E-8002": {
+		"type": "systemGenerated",
+		"reason": "Timeout",
+		"userreadablereason": "Horrible error occurred."
+	},
+	"E-8003": {
+		"type": "systemGenerated",
+		"reason": "Cannot execute script, unknown error.",
+		"userreadablereason": "Horrible error occurred."
+	}
 }

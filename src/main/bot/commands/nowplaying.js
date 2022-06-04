@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const { millisecondsToHMSString } = require('../rUtilities/rUtilities');
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const queues = require('../bot.js').queues;
-const moment = require('moment');
 
 /**
  * Skips currently playing track

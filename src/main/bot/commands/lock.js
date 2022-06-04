@@ -27,7 +27,7 @@ const run = async (client, message) => {
 					if (isUnlocked) {
 						message.reply('Automatically unlocked this player.');
 					}
-			}
+				}
 			}, 900000);
 		})();
 	} else {

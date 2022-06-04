@@ -58,4 +58,4 @@ class rTimeKeeper {
 	}
 }
 
-module.exports = { rTimeKeeper }
+module.exports = { rTimeKeeper };
