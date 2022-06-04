@@ -17,31 +17,5 @@ E-6001	Get Song From Playlist		Cannot get song from playlist, unknown error.
 E-7001	List Playlists				Cannot list playlists, guild not found.
 E-7002	List Playlists				Cannot get playlist, unknown error.
 E-8001  List Songs In Playlist      Cannot list songs in playlist, unknown error.
-E-9001	rScriptsManager Error	     Cannot find script.
-E-9002	rScriptsManager Error	     Timeout
-E-9003	rScriptsManager Error	     Cannot execute script, unknown error.
-		
-Generic		
-Code			Type									Reason
-E-PYMON-01	pymongo.errors.AutoReconnect				Refer to PyMongo documentation.
-E-PYMON-02	pymongo.errors.BulkWriteError				Refer to PyMongo documentation.
-E-PYMON-03	pymongo.errors.CollectionInvalid			Refer to PyMongo documentation.
-E-PYMON-04	pymongo.errors.ConfigurationError			Refer to PyMongo documentation.
-E-PYMON-05	pymongo.errors.ConnectionFailure			Refer to PyMongo documentation.
-E-PYMON-06	pymongo.errors.CursorNotFound				Refer to PyMongo documentation.
-E-PYMON-07	pymongo.errors.DocumentTooLarge			Refer to PyMongo documentation.
-E-PYMON-08	pymongo.errors.DuplicateKeyError			Refer to PyMongo documentation.
-E-PYMON-09	pymongo.errors.EncryptionError			Refer to PyMongo documentation.
-E-PYMON-10	pymongo.errors.ExecutionTimeout			Refer to PyMongo documentation.
-E-PYMON-11	pymongo.errors.InvalidName				Refer to PyMongo documentation.
-E-PYMON-12	pymongo.errors.InvalidOperation			Refer to PyMongo documentation.
-E-PYMON-13	pymongo.errors.NetworkTimeout				Refer to PyMongo documentation.
-E-PYMON-14	pymongo.errors.NotPrimaryError			Refer to PyMongo documentation.
-E-PYMON-15	pymongo.errors.OperationFailure			Refer to PyMongo documentation.
-E-PYMON-16	pymongo.errors.ProtocolError				Refer to PyMongo documentation.
-E-PYMON-17	pymongo.errors.ServerSelectionTimeoutError	Refer to PyMongo documentation.
-E-PYMON-18	pymongo.errors.WTimeoutError				Refer to PyMongo documentation.
-E-PYMON-19	pymongo.errors.WriteConcernError			Refer to PyMongo documentation.
-E-PYMON-20	pymongo.errors.WriteError				Refer to PyMongo documentation.
-E-NONFATAL	Non-fatal error						Any non-fatal error that occurs.
-E-FATAL-ERR	Fatal error							Any fatal error. In this case, the process must restart.
+E-RSCRIPTSMANAGER-ERR-NOSCRIPT	rScriptsManager Error	     Cannot find script.
+E-RSCRIPTSMANAGER-ERR-ERR	rScriptsManager Error	     Cannot execute script, unknown error.
