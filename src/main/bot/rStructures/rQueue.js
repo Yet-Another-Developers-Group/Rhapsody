@@ -7,6 +7,7 @@ const urlValidityCheckExpression = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%
 const defaultEmbedColor = require('../config.json').defaultEmbedColor;
 const msToHMS = require('../rUtilities/rUtilities.js').millisecondsToHMSString;
 const { rTimeKeeper } = require('../rTimeKeeper/index.js');
+const EventEmitter = require('events');
 
 /**
  * Queue class
@@ -27,6 +28,7 @@ class Queue {
 		this.player = null;
 		this.currentlyPlaying = null;
 		this.timer = new rTimeKeeper();
+		this.events = new EventEmitter();
 		this.loop = false;
 	}
 
@@ -58,6 +60,7 @@ class Queue {
 			this._playNext();
 			return false;
 		} else {
+			this.events.emit('update');
 			return true;
 		}
 	}
@@ -106,6 +109,8 @@ class Queue {
 		await this.player.play(nextSong.track);
 		this.timer.reset();
 		this.timer.resume();
+
+		this.events.emit('update');
 	}
 
 	/**
@@ -141,6 +146,7 @@ class Queue {
 	 */
 	async exit() {
 		if (rllManager.players.get(this.guildID)) {
+			this.events.emit('update');
 			this.player = null;
 			this.currentlyPlaying = null;
 			rllManager.leave(this.guildID);
@@ -177,6 +183,7 @@ class Queue {
 	 */
 	async remove(n) {
 		this.queue.splice(n,1);
+		this.events.emit('update');
 		return;
 	}
 
@@ -189,6 +196,7 @@ class Queue {
 
 	async clearQueue() {
 		if (!this.player) return;
+		this.events.emit('update');
 		this.queue = [];
 		return true;
 	}
@@ -200,11 +208,13 @@ class Queue {
 
 	async removeDuplicateTracks() {
 		if (!this.player || this.queue == null || this.queue == []) return;
+		this.events.emit('update');
 		this.queue = uniqeInQueue(this.queue);
 		return true;
 	}
 
 	async addPlaylistToQueue(a) {
+		this.events.emit('update');
 		this.queue = this.queue.concat(a);
 		if (!this.currentlyPlaying) {
 			this._playNext();

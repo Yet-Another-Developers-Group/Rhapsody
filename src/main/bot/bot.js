@@ -50,6 +50,7 @@ module.exports = {
 	locks: {},
 };
 
+// Custom prototype additions
 Error.prototype.toJSON = function() {
 	var ret = {
 		name: this.name,
@@ -65,6 +66,15 @@ Error.prototype.toJSON = function() {
 	}, this);
 	return ret;
 };
+
+Object.defineProperty(Array.prototype, 'chunk', {
+	value: function(chunkSize) {
+	  var R = [];
+	  for (var i = 0; i < this.length; i += chunkSize)
+	    R.push(this.slice(i, i + chunkSize));
+	  return R;
+	}
+});
 
 process.stdin.resume();//so the program will not close instantly
 var exitSequenceHasBeenCalled = false;

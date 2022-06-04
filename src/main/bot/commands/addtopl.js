@@ -45,9 +45,8 @@ const run = async (client, message, args) => {
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${message.guild.id}`);
 	if (typeof playlistsData.error != 'undefined') return message.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error));
-
-	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(name.trim(), 'i'))) return message.reply('Playlist not found.');
-
+	
+	if (!JSON.parse(playlistsData.content).playlists.some(e => new RegExp(name.trim(), 'i').test(e))) return message.reply('Playlist not found.');
 	var searchResultsMessage = await message.reply('Loading search results...');
 
 	const allSongs = await rNonSteramingSearchManager.search(track);

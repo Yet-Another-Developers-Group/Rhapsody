@@ -25,7 +25,7 @@ const run = async (client, m, args) => {
 
 	const playlistsData = await rScriptsManager.runScript('playlists', 'listPlaylists', `-g ${m.guild.id}`);
 	if (typeof playlistsData.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistsData.error));
-	if (!JSON.parse(playlistsData.content).playlists.includes(new RegExp(args.toString().replace(/,/gi, ' ').trim(), 'i'))) return message.edit('Playlist not found.'); 
+	if (!JSON.parse(playlistsData.content).playlists.some(e => new RegExp(args.toString().replace(/,/gi, ' ').trim(), 'i').test(e))) return message.edit('Playlist not found.'); 
 
 	const playlistScriptJSON = await rScriptsManager.runScript('playlists', 'addPlaylistToQueue', `-g ${m.guild.id} -n "${args.toString().replace(/,/gi, ' ').trim()}"`);
 	if (typeof playlistScriptJSON.error != 'undefined') return m.reply(rScriptErrorCodeFormatter.formatError(playlistScriptJSON.error));

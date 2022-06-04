@@ -28,12 +28,12 @@ try:
 
     else:
         print(json.dumps({
-            "ecodes": "E-7001",
+            "ecode": "E-7001",
             "error": "Guild Not Found"
         }))
 
 except Exception as e:
     print(json.dumps({
-        "ecodes": "E-7002",
+        "ecode": "E-7002",
         "error": str(e)
     }))
