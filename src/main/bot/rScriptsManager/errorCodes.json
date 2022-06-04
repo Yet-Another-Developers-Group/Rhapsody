@@ -51,35 +51,35 @@
 	},
 	"E-5001": {
 		"type": "systemGenerated",
-		"reason": "Cannot get song from playlist, unknown error",
+		"reason": "Cannot add playlist to queue, unknown error.",
 		"userreadablereason": "An error occurred while trying to get the resource."
 	},
 	"E-6001": {
+		"type": "systemGenerated",
+		"reason": "Cannot get song from playlist, unknown error.",
+		"userreadablereason": "An error occurred while trying to get the resource."
+	},
+	"E-7001": {
 		"type": "userError",
 		"reason": "Cannot list playlists, guild not found.",
 		"userreadablereason": "You do not have any playlists at the moment."
 	},
-	"E-6002": {
+	"E-7002": {
 		"type": "systemGenerated",
 		"reason": "Cannot list playlists, unknown error.",
 		"userreadablereason": "An error occurred while trying to get the resource."
 	},
-	"E-7001": {
+	"E-8001": {
 		"type": "systemGenerated",
 		"reason": "Cannot list songs in playlist, unknown error.",
 		"userreadablereason": "An error occurred while trying to get the resource."
 	},
-	"E-8001": {
+	"E-RSCRIPTSMANAGER-ERR-NOSCRIPT": {
 		"type": "systemGenerated",
 		"reason": "Cannot find script.",
 		"userreadablereason": "Horrible error occurred."
 	},
-	"E-8002": {
-		"type": "systemGenerated",
-		"reason": "Timeout",
-		"userreadablereason": "Horrible error occurred."
-	},
-	"E-8003": {
+	"E-RSCRIPTSMANAGER-ERR-ERR": {
 		"type": "systemGenerated",
 		"reason": "Cannot execute script, unknown error.",
 		"userreadablereason": "Horrible error occurred."
