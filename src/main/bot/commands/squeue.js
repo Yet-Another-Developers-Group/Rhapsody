@@ -28,15 +28,15 @@ const run = async (client, message) => {
 
 	const pages = next.map((song, index) => `${++index}. ${song.info.title} (${song.info.isStream ? 'Live Stream' : msToHMS(song.info.length)})`).chunk(5);
 
-	if (pages.length == 0) return message.reply('No songs in queue.');
+	if (pages.length-1 == 0) return message.reply('No songs in queue.');
 
 	const queueMessage = await message.reply({
 		content: '```'+pages[0].join('\r\n')+'```',
-		components: pages.length < 2
+		components: pages.length-1 < 2
 			? []
 			: [new MessageActionRow({components: [forwardButton]})]
 	});
-	if (pages.length < 2) return;
+	if (pages.length-1 < 2) return;
 
 	const collector = queueMessage.createMessageComponentCollector({
 		filter: ({user}) => user.id == message.author.id
@@ -55,7 +55,7 @@ const run = async (client, message) => {
 						// back button if it isn't the start
 						...(currentIndex ? [backButton] : []),
 						// forward button if it isn't the end
-						...(currentIndex < pages.length ? [forwardButton] : [])
+						...(currentIndex < pages.length-1 ? [forwardButton] : [])
 					]
 				})
 			]

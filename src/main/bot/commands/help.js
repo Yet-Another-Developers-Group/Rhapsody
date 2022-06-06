@@ -1,6 +1,20 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const { defaultEmbedColor } = require('../config.json');
 const rHelpManager = require('../rHelpManager');
+
+// PAGINATION - CONSTANTS
+const backId = 'back';
+const forwardId = 'forward';
+const backButton = new MessageButton({
+	style: 'SECONDARY',
+	label: 'Previous Page',
+	customId: backId
+});
+const forwardButton = new MessageButton({
+	style: 'SECONDARY',
+	label: 'Next Page',
+	customId: forwardId
+});
 
 /**
  * Help.
@@ -20,7 +34,46 @@ const run = async (client, message, args) => {
 			.setDescription(helpDocs.defaultPresets.defaultDialogIntroductionDescription);
 		return message.reply({ embeds: [helpEmbed] });
 	}
-	if (args[0] == 'list') return message.reply({ content: `**Rhapsody Commands List**\n\`\`\`${helpDocs.docs.map(doc => `${doc.name + ' - ' + doc.id}\n`).join('')}\`\`\`` });
+
+	if (args[0] == 'list') {
+		const text = helpDocs.docs.map((listItem, index) => `${index}. **${listItem.name}**\n\`-${listItem.id}\`\n`);
+		const pages = text.chunk(5);
+
+		let currentIndex = 0;
+		const queueMessage = await message.channel.send({
+			content: `**Rhapsody Commands List** - Page ${currentIndex+1}\n${pages[currentIndex].join('\r\n')}`,
+			components: pages.length-1 < 2
+				? []
+				: [new MessageActionRow({components: [forwardButton]})]
+		});
+		if (pages.length-1 < 2) return;
+
+		const collector = queueMessage.createMessageComponentCollector({
+			filter: ({user}) => user.id == message.author.id,
+			time: 360000
+		});
+
+		collector.on('collect', async interaction => {
+			// Increase/decrease index
+			interaction.customId === backId ? (currentIndex--) : (currentIndex++);
+			// Respond to interaction by updating message with new embed
+			await interaction.update({
+				content: `**Rhapsody Commands List** - Page ${currentIndex+1}\n${pages[currentIndex].join('\r\n')}`,
+				components: [
+					new MessageActionRow({
+						components: [
+							// back button if it isn't the start
+							...(currentIndex ? [backButton] : []),
+							// forward button if it isn't the end
+							...(currentIndex < pages.length-1 ? [forwardButton] : [])
+						]
+					})
+				]
+			});
+		});
+		return;
+	}
+
 
 	const helpDoc = helpDocs.docs.filter(doc => doc.id == args[0])[0];
 
