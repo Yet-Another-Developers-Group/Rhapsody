@@ -38,15 +38,15 @@ const run = async (client, message, args) => {
 	const text = JSON.parse(data.content).song.map((song, index) => `${++index}. ${song[0]} (${song[1]})`);
 	const pages = text.chunk(5);
 
-	if (pages.length-1 == 0) return message.reply('No songs in playlist.');
+	if (pages.length == 0) return message.reply('No songs in playlist.');
 
 	const queueMessage = await message.reply({
 		content: '```'+pages[0].join('\r\n')+'```',
-		components: pages.length-1 < 2
+		components: pages.length < 2
 			? []
 			: [new MessageActionRow({components: [forwardButton]})]
 	});
-	if (pages.length-1 < 2) return;
+	if (pages.length < 2) return;
 
 	const collector = queueMessage.createMessageComponentCollector({
 		filter: ({user}) => user.id == message.author.id,

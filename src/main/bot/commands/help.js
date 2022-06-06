@@ -36,17 +36,17 @@ const run = async (client, message, args) => {
 	}
 
 	if (args[0] == 'list') {
-		const text = helpDocs.docs.map((listItem, index) => `${index}. **${listItem.name}**\n\`-${listItem.id}\`\n`);
+		const text = helpDocs.docs.map((listItem, index) => `${index+1}. **${listItem.name}**\n\`-${listItem.id}\`\n`);
 		const pages = text.chunk(5);
 
 		let currentIndex = 0;
 		const queueMessage = await message.channel.send({
 			content: `**Rhapsody Commands List** - Page ${currentIndex+1}\n${pages[currentIndex].join('\r\n')}`,
-			components: pages.length-1 < 2
+			components: pages.length < 2
 				? []
 				: [new MessageActionRow({components: [forwardButton]})]
 		});
-		if (pages.length-1 < 2) return;
+		if (pages.length < 2) return;
 
 		const collector = queueMessage.createMessageComponentCollector({
 			filter: ({user}) => user.id == message.author.id,

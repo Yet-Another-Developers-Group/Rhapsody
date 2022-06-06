@@ -27,22 +27,22 @@ const run = async (client, message) => {
 	const next = queues[message.guild.id].queue;
 
 	const pages = next.map((song, index) => `${++index}. ${song.info.title} (${song.info.isStream ? 'Live Stream' : msToHMS(song.info.length)})`).chunk(5);
+	console.log(pages.length)
+	if (pages.length == 0) return message.reply('No songs in queue.');
 
-	if (pages.length-1 == 0) return message.reply('No songs in queue.');
 
+	let currentIndex = 0;
 	const queueMessage = await message.reply({
-		content: '```'+pages[0].join('\r\n')+'```',
-		components: pages.length-1 < 2
+		content: '```'+pages[currentIndex].join('\r\n')+'```',
+		components: pages.length < 2
 			? []
 			: [new MessageActionRow({components: [forwardButton]})]
 	});
-	if (pages.length-1 < 2) return;
+	if (pages.length < 2) return;
 
 	const collector = queueMessage.createMessageComponentCollector({
 		filter: ({user}) => user.id == message.author.id
 	});
-
-	let currentIndex = 0;
 	collector.on('collect', async interaction => {
 		// Increase/decrease index
 		interaction.customId === backId ? (currentIndex--) : (currentIndex++);

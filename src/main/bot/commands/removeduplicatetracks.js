@@ -23,7 +23,7 @@ const run = async (client, message) => {
 	
 	if (duplicateTracks.length < 1) return message.reply('No duplicates.');
 
-	message.reply(`Are you sure you want to remove duplicate tracks from the queue?\`\`\`${duplicateTracks.map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`).join('\n')}\`\`\`\n(Reply to this message with y/n to confirm.)`);
+	message.reply(`Are you sure you want to remove duplicate tracks from the queue?\`\`\`${duplicateTracks.slice(0, 5).map((song, index) => `${++index}) ${song.info.title} - ${song.info.author} - ${msToHMS(song.info.length)}`).join('\n')}${duplicateTracks > 5 ? `\n\n... and ${duplicateTracks.length-5} more.` : ""}\`\`\`\n(Reply to this message with y/n to confirm.)`);
 
 	const filter = m => message.author.id === m.author.id && m.type == 'REPLY';
 	function getChosenDecisionResult() {
