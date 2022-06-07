@@ -100,7 +100,7 @@ class Queue {
 				node: rllManager.idealNodes[0].id
 			}, { selfdeaf: true });
 			this.player = rllManager.players.get(this.guildID);
-			this.player.once('end', data => {
+			this.player.on('end', data => {
 				if(data.reason === 'REPLACED' || data.reason === 'STOPPED') return;
 				this._playNext();
 			});

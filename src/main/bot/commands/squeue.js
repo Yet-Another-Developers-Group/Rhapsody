@@ -27,7 +27,7 @@ const run = async (client, message) => {
 	const next = queues[message.guild.id].queue;
 
 	const pages = next.map((song, index) => `${++index}. ${song.info.title} (${song.info.isStream ? 'Live Stream' : msToHMS(song.info.length)})`).chunk(5);
-	console.log(pages.length)
+
 	if (pages.length == 0) return message.reply('No songs in queue.');
 
 
