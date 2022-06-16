@@ -87,7 +87,6 @@ class Queue {
 				.setDescription(this.currentlyPlaying.info.title + ` - \`${this.currentlyPlaying.info.isStream ? 'Live Stream' : msToHMS(this.currentlyPlaying.info.length)}\``);
 			this.textChannel.send({ embeds: [currentlyPlayingEmbed] });
 		} else {
-			this.player = null;
 			this.currentlyPlaying = null;
 			this.textChannel.send({ content: 'No more songs in queue. Use the `queue` or `play` command to add more songs to the queue.' });
 			return;
@@ -110,7 +109,7 @@ class Queue {
 		this.timer.reset();
 		this.timer.resume();
 
-		this.events.emit('update');
+		//this.events.emit('update');
 	}
 
 	/**
