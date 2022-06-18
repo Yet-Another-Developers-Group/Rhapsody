@@ -1,4 +1,5 @@
 import argparse
+import re
 
 import pymongo
 from pymongo import MongoClient
@@ -18,14 +19,15 @@ db = client["rhapsody"]
 
 playlist_name = args.server_id + "-" + args.name
 
-playlist = db[playlist_name]
+playlist = db[playlist_name.lower()]
 
 song_list = []
-
+actual_name = ""
 try:
     ### Find song in playlist collection
     for song in playlist.find():
         if song["_id"] == "info":
+            actual_name = song["name"]
             continue
 
         else:
@@ -34,7 +36,7 @@ try:
     ### Response
     res = {
         "guild_id": args.server_id,
-        "playlist": args.name,
+        "playlist": actual_name,
         "queue": song_list
     }
 

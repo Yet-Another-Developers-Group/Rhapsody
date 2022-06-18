@@ -19,7 +19,7 @@ db = client["rhapsody"]
 
 playlist_name = args.server_id + "-" + args.name.strip()
 
-playlist = db[playlist_name]
+playlist = db[playlist_name.lower()]
 
 song_doc = json.loads(base64.urlsafe_b64decode(args.song_track_object).decode())
 song_doc["base64"] = args.song_track_object

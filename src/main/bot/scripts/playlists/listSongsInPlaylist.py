@@ -18,7 +18,7 @@ db = client["rhapsody"]
 
 playlist_name = args.server_id + "-" + args.name
 
-playlist = db[playlist_name]
+playlist = db[playlist_name.lower()]
 
 try:
     ### Find song in playlist collection
@@ -27,7 +27,7 @@ try:
     ### Response
     res = {
         "guild_id": args.server_id,
-        "playlist": args.name,
+        "playlist": info.name,
         "song": info["list_songs"]
     }
 

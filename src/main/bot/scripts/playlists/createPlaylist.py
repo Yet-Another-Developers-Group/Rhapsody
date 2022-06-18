@@ -41,7 +41,7 @@ try:
 
         server_list.insert_one(new_doc)
 
-    playlist_id = args.server_id + "-" + args.name
+    playlist_id = args.server_id + "-" + args.name.lower()
     playlist = db[playlist_id]
 
     info_doc = {"_id" : "info",

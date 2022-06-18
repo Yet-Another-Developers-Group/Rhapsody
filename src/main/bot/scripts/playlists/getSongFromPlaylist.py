@@ -19,7 +19,7 @@ db = client["rhapsody"]
 
 playlist_name = args.server_id + "-" + args.name
 
-playlist = db[playlist_name]
+playlist = db[playlist_name.lower()]
 song_idx = int(args.song_index)
 
 try:
@@ -30,7 +30,7 @@ try:
     ### Response
     res = {
         "guild_id": args.server_id,
-        "playlist": args.name,
+        "playlist": song.name,
         "song": song_b64
     }
 

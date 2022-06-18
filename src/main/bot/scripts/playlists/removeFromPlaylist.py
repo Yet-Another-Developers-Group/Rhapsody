@@ -21,7 +21,7 @@ db = client["rhapsody"]
 
 playlist_name = args.server_id + "-" + args.name
 
-playlist = db[playlist_name]
+playlist = db[playlist_name.lower()]
 
 pos = int(args.song_position) 
 
@@ -56,7 +56,7 @@ try:
     ### Response
     res = {
         "guild_id": args.server_id,
-        "name": args.name,
+        "name": info_doc.name,
         "track": song[0]
     }
 
