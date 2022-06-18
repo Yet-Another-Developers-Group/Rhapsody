@@ -27,7 +27,7 @@ try:
     ### Response
     res = {
         "guild_id": args.server_id,
-        "playlist": info.name,
+        "playlist": info["name"],
         "song": info["list_songs"]
     }
 
