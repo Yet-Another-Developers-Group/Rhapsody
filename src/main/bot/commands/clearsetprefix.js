@@ -33,8 +33,11 @@ const helpDoc = {
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 
+const commandIsUsable = true;
+
 module.exports = {
 	run,
 	shortcuts,
-	helpDoc
+	helpDoc,
+	commandIsUsable
 };

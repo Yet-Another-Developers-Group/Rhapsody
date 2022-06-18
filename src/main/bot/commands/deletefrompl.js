@@ -35,6 +35,8 @@ const run = async (client, m, args) => {
 		}
 	}
 
+	if (name.length == 0) return m.reply('I\'m sorry, I didn\'t understand that. Please specify what playlist you want to delete a song from.');
+
 	if (parseInt(song) < 1) return m.reply('I\'m sorry, I didn\'t understand that. The argument for `-s` must be a positive integer.');
 	
 	var message = await m.reply('Checking...');
@@ -75,8 +77,11 @@ const helpDoc = {
 	shortcuts: shortcuts.map(i => '-'+i).join(', ')
 };
 
+const commandIsUsable = true;
+
 module.exports = {
 	run,
 	shortcuts,
-	helpDoc
+	helpDoc,
+	commandIsUsable
 };

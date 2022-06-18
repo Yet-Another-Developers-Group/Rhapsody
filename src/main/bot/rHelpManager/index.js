@@ -15,7 +15,7 @@ class rHelpManager {
 			files.forEach(file => {
 				if (!file.endsWith('.js')) return;
 				let helpDoc = require(__dirname + `/../commands/${file}`).helpDoc;
-                    
+				if (!require(__dirname + `/../commands/${file}`).commandIsUsable) return;
 				process.send(chalk.yellow.bold('[Loading HelpDoc]') + ` ${file.split('.')[0]}...`);
 				helpDoc.id = file.split('.')[0];
 				if (helpDoc.shortcuts === '') helpDoc.shortcuts = 'None.';

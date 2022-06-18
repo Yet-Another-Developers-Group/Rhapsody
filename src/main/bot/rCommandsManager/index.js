@@ -11,6 +11,7 @@ class rCommandsManager {
 				if (!file.endsWith('.js')) return;
 				let props = require(__dirname + `/../commands/${file}`);
 				let commandName = file.split('.')[0];
+				if (!props.commandIsUsable) return;
 				process.send(chalk.magenta.bold('[Loading Command]') + ` ${commandName}...`);
 				client.commands.set(commandName, props);
 				props.shortcuts.forEach(sc => {

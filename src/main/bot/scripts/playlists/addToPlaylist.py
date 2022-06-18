@@ -54,7 +54,7 @@ try:
 
     res = {
         "guild_id": args.server_id,
-        "name": args.name,
+        "name": info_doc.name,
         "track": song_info[0]
     }
 

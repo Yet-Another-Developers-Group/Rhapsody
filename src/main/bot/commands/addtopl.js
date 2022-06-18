@@ -36,6 +36,9 @@ const run = async (client, message, args) => {
 			break;
 		}
 	}
+
+	if(track.length == 0 || name.length == 0) return message.reply('Please specify a playlist\'s name and a song to search for like this:\n`-addtopl -n <name> -s <song>`');
+
 	/*if (song == '' || name == '') return message.reply('I\'m sorry, I didn\'t understand that.');
 	const embed = new Discord.MessageEmbed()
 		.setColor(defaultEmbedColor)
@@ -93,8 +96,11 @@ const helpDoc = {
 	shortcuts: shortcuts.map(i => '-'+i).join(', ')
 };
 
+const commandIsUsable = true;
+
 module.exports = {
 	run,
 	shortcuts,
-	helpDoc
+	helpDoc,
+	commandIsUsable
 };
