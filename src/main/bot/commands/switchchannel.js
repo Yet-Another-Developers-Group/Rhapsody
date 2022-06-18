@@ -35,7 +35,7 @@ const helpDoc = {
 	shortcuts: shortcuts.map(i => '`-'+i+'`').join(', ')
 };
 
-const commandIsUsable = true;
+const commandIsUsable = false;
 
 module.exports = {
 	run,
